@@ -1,0 +1,192 @@
+% arara: pdflatex: { synctex: yes }
+% arara: makeindex: { style: ctuthesis }
+%% arara: bibtex
+
+%\listfiles
+
+
+%\PassOptionsToPackage{cp1250}{inputenc}
+
+% The class takes all the key=value arguments that \ctusetup does,
+% and couple more: draft and oneside
+\documentclass[oneside]{ctuthesis}
+
+\makeatletter
+\edef\mytoday{\expandafter\@gobbletwo\the\year\ifnum\month<10 0\fi\the\month\ifnum\day<10 0\fi\the\day}
+\makeatother
+
+% LaTeX logo with better kerning in sf bf font
+\makeatletter
+\newcommand\LaTeX@lmss@bx{L\kern -.33em{\sbox \z@ T\vbox to\ht \z@ {\hbox {\check@mathfonts \fontsize \sf@size \z@ \math@fontsfalse \selectfont A}\vss }}\kern -.15em\TeX}
+\DeclareRobustCommand\myLaTeX{%
+	\ifcsname LaTeX@\f@family @\f@series\endcsname
+		\csname LaTeX@\f@family @\f@series\endcsname
+	\else
+		\LaTeX
+	\fi
+}
+
+
+\ctusetup{
+	mainlanguage = english,
+	secondlanguage = czech,
+	otherlanguages = {czech},
+%   title-czech = {Bias Detection in Czech News},
+	title-english = {Bias Detection in Czech News},
+	doctype = B,
+	faculty = F3,
+	department-czech = {Katedra počítačů},
+	department-english = {Department of Computer Science},
+	author = {Tomáš Horych},
+	supervisor = {Ing. Jan Drchal, Ph.D},
+	fieldofstudy-english = {Open Informatics},
+	subfieldofstudy-english = {Artificial Intelligence and Computer Science},
+	fieldofstudy-czech = {Matematcké inženýrství},
+	subfieldofstudy-czech = {Matematické modelování},
+	keywords-czech = {bias detekce, transformers, text classification},
+	keywords-english = {bias detection, transformers, text classification},
+	day = 10,
+	month = 2,
+	year = 2022,
+	specification-file = {zadani.pdf},
+    pkg-listings = true,
+    ctulstbg = none,
+}
+
+\ctuprocess
+
+% Theorem declarations, this is the reasonable default, anybody can do what they wish.
+% If you prefer theorems in italics rather than slanted, use \theoremstyle{plainit}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{note}
+\newtheorem*{remark*}{Remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Marginpars used as navigation aids.
+\usepackage{mparhack}
+
+\newcommand\indexmp[1]{{\sffamily\bfseries#1}}
+
+\ExplSyntaxOn
+\cs_new:Nn \ctuman_domarginpar:n {
+	\marginpar
+	[ \raggedleft \footnotesize \sffamily #1 ]
+	{ \raggedright \footnotesize \sffamily #1 }
+}
+\cs_generate_variant:Nn \ctuman_domarginpar:n { x }
+\DeclareDocumentCommand \ctump { m } {
+	\clist_set:Nn \ctuman_temp_clist { #1 }
+	\ctuman_domarginpar:x { \clist_use:Nnnn \ctuman_temp_clist { \\ } { \\ } { \\ } }
+	\clist_map_inline:Nn \ctuman_temp_clist { \index{##1|indexmp} }
+	\ignorespaces
+}
+\ExplSyntaxOff
+
+% Abstract in Czech
+\begin{abstract-czech}
+Tento mánuál představuje \LaTeX ovou třídu ctuthesis, její použití, požadavky na systém atd.
+\end{abstract-czech}
+
+% Abstract in English
+\begin{abstract-english}
+This manual shows how to use the ctuthesis \LaTeX\ class, what are the requirements, etc.
+\end{abstract-english}
+
+% Acknowledgements / Podekovani
+\begin{thanks}
+We thank the CTU in Prague for being a~very good \emph{alma mater}.
+\end{thanks}
+
+% Declaration / Prohlaseni
+\begin{declaration}
+I declare that this work is all my own work and I have cited all sources I have
+used in the bibliography.
+
+\medskip
+
+Prague, \monthinlanguage{title} \ctufield{day}, \ctufield{year}
+
+\vspace*{2cm}
+
+Prohlašuji, že jsem předloženou práci vypracoval samostatně, a že jsem uvedl veškerou použitou literaturu.
+
+\medskip
+
+V Praze, \ctufield{day}.~\monthinlanguage{second}~\ctufield{year}
+\end{declaration}
+
+\usepackage{url}
+\usepackage{tabularx,array}
+\usepackage{mathtools,amssymb}
+
+% A savebox for typesetting listings in the titles
+\newsavebox{\myboxa}
+
+%\newcommand*\symbO{$\color{red}\bowtie$}
+\newcommand*\symbO{\raisebox{0.5\height}{\scalebox{0.7}{\color{red}${\vartriangleright}\mkern-6mu{\vartriangleleft}$}}}
+\newcommand*\symbM{\raisebox{0.5\height}{\scalebox{0.7}{\color{red}${\blacktriangleright}\mkern-6mu{\blacktriangleleft}$}}}
+\newcommand*\itemO{\item\leavevmode\kern-0.33em\symbO}
+\newcommand*\itemM{\item\leavevmode\kern-0.33em\symbM}
+
+
+
+\begin{document}
+
+% We actually don't want inline listings to have a background color
+\renewcommand \ctulstsep {0pt}
+
+% \ctuclsname for typesetting the class' name
+\newcommand\ctuclsname{\leavevmode\unhcopy\ctuclsnamebox}
+\newsavebox\ctuclsnamebox
+\begin{lrbox}{\ctuclsnamebox}
+\ctulst!ctuthesis!
+\end{lrbox}
+
+% all the formal stuff (abstract, title page etc)
+\maketitle
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%-------------------------------------------------------------------------------------------------------------------
+% MAIN TEXT
+\input{mythesis/introduction}
+
+
+\part{Data}
+\input{mythesis/datasets}
+
+\part{models}
+\input{mythesis/models}
+
+%\appendix
+
+\printindex
+
+\bibliographystyle{amsalpha}
+\bibliography{mythesis/citation}
+
+\end{document}
