@@ -1,0 +1,33 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.1.1}{About bias}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Gender bias - SOTA}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.3}{Media bias - SOTA}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.4}{Media bias - some more in depth info?}{chapter.1}% 5
+\BOOKMARK [-1][-]{part.1}{Data}{}% 6
+\BOOKMARK [0][-]{chapter.2}{Current media bias related datasets}{part.1}% 7
+\BOOKMARK [1][-]{section.2.1}{Current datasets}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.2}{BABE dataset}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.3}{SUBJ dataset}{chapter.2}% 10
+\BOOKMARK [1][-]{section.2.4}{MPQA dataset}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.5}{WIKI npov dataset}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.6}{and more}{chapter.2}% 13
+\BOOKMARK [0][-]{chapter.3}{Czech datasets}{part.1}% 14
+\BOOKMARK [1][-]{section.3.1}{methodology \(translation\)}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.2}{creation of wiki npov data}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.3}{output all collected cz bias data}{chapter.3}% 17
+\BOOKMARK [-1][-]{part.2}{Experiments}{}% 18
+\BOOKMARK [0][-]{chapter.4}{Experiments}{part.2}% 19
+\BOOKMARK [1][-]{section.4.1}{Transformer architecture}{chapter.4}% 20
+\BOOKMARK [1][-]{section.4.2}{Czech models}{chapter.4}% 21
+\BOOKMARK [2][-]{subsection.4.2.1}{RobeCzech,Czert,FERNET}{section.4.2}% 22
+\BOOKMARK [1][-]{section.4.3}{Training}{chapter.4}% 23
+\BOOKMARK [1][-]{section.4.4}{Evaluation}{chapter.4}% 24
+\BOOKMARK [-1][-]{part.3}{Application to news corpora}{}% 25
+\BOOKMARK [0][-]{chapter.5}{Czech news corpora}{part.3}% 26
+\BOOKMARK [1][-]{section.5.1}{Inference on sampled data}{chapter.5}% 27
+\BOOKMARK [1][-]{section.5.2}{Statistics - Analysis}{chapter.5}% 28
+\BOOKMARK [1][-]{section.5.3}{Inference on article level?}{chapter.5}% 29
+\BOOKMARK [0][-]{chapter.6}{Interpretability? Ethics?}{part.3}% 30
+\BOOKMARK [0][-]{chapter.7}{Conclusion}{part.3}% 31
+\BOOKMARK [1][-]{section.7.1}{Solutions}{chapter.7}% 32
+\BOOKMARK [1][-]{section.7.2}{future work}{chapter.7}% 33
