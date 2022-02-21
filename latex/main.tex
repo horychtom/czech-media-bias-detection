@@ -11,6 +11,9 @@
 % and couple more: draft and oneside
 \documentclass[oneside]{ctuthesis}
 
+% MY IMPORTS
+\usepackage{pdfpages}
+
 \makeatletter
 \edef\mytoday{\expandafter\@gobbletwo\the\year\ifnum\month<10 0\fi\the\month\ifnum\day<10 0\fi\the\day}
 \makeatother
@@ -48,7 +51,8 @@
 	day = 10,
 	month = 2,
 	year = 2022,
-	specification-file = {zadani.pdf},
+	specification-file = {my_modules/assignment.pdf},
+	front-specification = true,
     pkg-listings = true,
     ctulstbg = none,
 }
@@ -92,8 +96,11 @@
 }
 \ExplSyntaxOff
 
+
+
 % Abstract in Czech
 \begin{abstract-czech}
+
 Tento mánuál představuje \LaTeX ovou třídu ctuthesis, její použití, požadavky na systém atd.
 \end{abstract-czech}
 
@@ -153,9 +160,8 @@ V Praze, \ctufield{day}.~\monthinlanguage{second}~\ctufield{year}
 \end{lrbox}
 
 % all the formal stuff (abstract, title page etc)
+
 \maketitle
-
-
 
 
 
@@ -175,15 +181,15 @@ V Praze, \ctufield{day}.~\monthinlanguage{second}~\ctufield{year}
 % MAIN TEXT
 \input{my_modules/introduction}
 
+\input{my_modules/theoretical_background}
 
-\part{Data}
-\input{my_modules/datasets}
+\input{my_modules/sota}
 
-\part{Experiments}
-\input{my_modules/models}
+\input{my_modules/czech_datasets}
 
-\part{Application to news corpora}
-\input{my_modules/news_application}
+\input{my_modules/experiments}
+
+\input{my_modules/Conclusion}
 
 %\appendix
 
