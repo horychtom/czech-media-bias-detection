@@ -1,1 +1,7 @@
 latex-update.sh
+slurm/.wiki-data.batch.swp
+.gitignore
+slurm/jupyter_gpu.batch
+slurm/wiki-data.batch
+slurm/self_training.batch
+slurm/jupyter_cpu.batch
