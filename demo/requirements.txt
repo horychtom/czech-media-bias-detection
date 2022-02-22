@@ -1,0 +1,6 @@
+gradio
+torch
+numpy
+corpy
+transformers
+
