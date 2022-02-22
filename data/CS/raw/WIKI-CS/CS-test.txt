@@ -1,3 +1,4 @@
+label	sentence
 __label__biased	podle reprezentačního trenéra laciny byla po fyzické stránce připravena dobře
 __label__neutral	aloe pravá je často uváděna pod synonymem aloe barbadensis
 __label__neutral	rodinu tvoří manželé jejich děti eventuálně další příbuzní kteří s nimi společně žijí a kteří ve smyslu občanského zákoníku tvoří společnou domácnost a kteří vůči sobě mají vzájemná práva a povinnosti

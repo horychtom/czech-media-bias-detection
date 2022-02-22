@@ -1,3 +1,4 @@
+label	sentence
 __label__neutral	například tehdejší ministr vladimír mlynář ač původem převážně žid na pohřbu biháriové pronášel že se stydí za to že je čech a aniž by soud o případu rozhodl požadoval pro podezřelé co nejpřísnější tresty
 __label__biased	multiplex numtkn vysílá z městského vysílače barvičova a vytvořil s vysílačem hády jednofrekvenční síť na kanále numtkn
 __label__neutral	panovníkovi náležela mimo jiné nejvyšší moc soudní výhradní právo zákonodárné ius legis ferendae a moc správní organizace úřadů

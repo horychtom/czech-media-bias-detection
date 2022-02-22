@@ -1,3 +1,4 @@
+label	sentence
 __label__biased	spisovatelé kteří odešli do exilu postupně ztráceli kontakt s českou katolickou literaturou a emigrantská centra měla v českých zemích vcelku malý ohlas
 __label__biased	téměř tři tisíce národů nemůže užívat svůj mateřsky jazyk v mezinárodních stycích a je odkázáno na zprostředkování jiných jazyků
 __label__neutral	po aféře s privatizací knižního velkoobchodu se stáhl z vysoké politiky
