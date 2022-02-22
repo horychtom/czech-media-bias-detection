@@ -6,3 +6,4 @@ slurm/wiki-data.batch
 slurm/self_training.batch
 slurm/jupyter_cpu.batch
 scripts/end_job.sh
+src/utils/__pycache__/myutils.cpython-38.pyc
