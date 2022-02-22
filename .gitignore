@@ -5,3 +5,4 @@ slurm/jupyter_gpu.batch
 slurm/wiki-data.batch
 slurm/self_training.batch
 slurm/jupyter_cpu.batch
+scripts/end_job.sh
