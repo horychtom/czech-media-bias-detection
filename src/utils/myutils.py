@@ -1,4 +1,3 @@
-
 import torch
 import gc
 import matplotlib.pyplot as plt
@@ -7,6 +6,14 @@ import numpy as np
 
 from datasets import load_metric
 
+
+def preprocess_data(data,tokenizer):
+    tokenize = lambda data : tokenizer(data['sentence'], truncation=True)
+    
+    data = data.map(tokenize,batched=True)
+    data = data.remove_columns(['sentence'])
+    data.set_format("torch")
+    return data
 
 def tokenize(tokenizer,data):
     """ for mapping over dataset"""
