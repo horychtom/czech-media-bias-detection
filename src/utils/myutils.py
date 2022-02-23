@@ -7,17 +7,24 @@ import numpy as np
 from datasets import load_metric
 
 
-def preprocess_data(data,tokenizer):
-    tokenize = lambda data : tokenizer(data['sentence'], truncation=True)
+def preprocess_data(data,tokenizer,col_name:str):
+    """tokenization and necessary processing
+
+    Args:
+        data (_type_): _description_
+        tokenizer (_type_): _description_
+        col_name (str): _description_
+
+    Returns:
+        _type_: _description_
+    """
+    tokenize = lambda data : tokenizer(data[col_name], truncation=True,max_length=512)
     
     data = data.map(tokenize,batched=True)
-    data = data.remove_columns(['sentence'])
+    data = data.remove_columns([col_name])
     data.set_format("torch")
     return data
 
-def tokenize(tokenizer,data):
-    """ for mapping over dataset"""
-    return tokenizer(data['sentence'],truncation=True)
 
 def clean_memory():
     """cuda memory gets full while training transformers"""
