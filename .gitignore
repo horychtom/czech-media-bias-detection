@@ -8,3 +8,4 @@ slurm/jupyter_cpu.batch
 scripts/end_job.sh
 src/utils/__pycache__/myutils.cpython-38.pyc
 .vscode/settings.json
+notebooks/media/.ipynb_checkpoints/wiki-cs-training-checkpoint.ipynb

@@ -52,7 +52,7 @@ def compute_metrics(model,device,testing_dataloader):
             outputs = model(**batch)
 
         logits = outputs.logits
-        predictions = torch.argmax(logits, dim=-1)
+        predictions = torch.argmax(logits, dim=-1)  
         metric.add_batch(predictions=predictions, references=batch["labels"])
         
     return metric.compute(average='micro')
