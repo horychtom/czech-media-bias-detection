@@ -9,3 +9,4 @@ scripts/end_job.sh
 src/utils/__pycache__/myutils.cpython-38.pyc
 .vscode/settings.json
 notebooks/media/.ipynb_checkpoints/wiki-cs-training-checkpoint.ipynb
+notebooks/media/.ipynb_checkpoints/wiki2-cs-training-checkpoint.ipynb
