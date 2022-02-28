@@ -4,12 +4,12 @@ from datasets import load_dataset,Dataset
 
 
 class DataCreator():
-    def __init__(self,dataset_name:str,fname:str):
+    def __init__(self,dataset_name:str):
         self.PATH=os.getcwd().split('/src')[0]
         sys.path.insert(1, self.PATH)
         self.cs_path = self.PATH + "/data/CS/raw/" + dataset_name + "/"
         self.en_path = self.PATH + "/data/EN/raw/" + dataset_name + "/"
-        self.fname = fname
+        self.fname = None
         self.data = None
         self.sentences = None
         self.labels = None

@@ -1,9 +1,9 @@
-from datasets import load_dataset,Dataset
-
 import argparse
+
 from SUBJ import SUBJ
 from DataCreator import DataCreator
 from MPQA import MPQA
+from CWhard import CWhard
 
 parser = argparse.ArgumentParser(description='Ukraine transform script.')
 parser.add_argument("-t","--translated", help="Toggle if you already have translated data", action="store_true")
@@ -14,11 +14,13 @@ args = parser.parse_args()
 dataset = args.dataset
 
 if dataset == "UA-crisis":
-    dc = DataCreator(dataset,"sentences-with-binary-labels-bias.csv")    
+    dc = DataCreator(dataset)
 elif dataset == "SUBJ":
     dc = SUBJ(dataset)
 elif dataset == "MPQA":
-    dc = MPQA(dataset,"subj_obj_sentences.txt")
+    dc = MPQA(dataset)
+elif dataset == "CW-HARD":
+    dc = CWhard(dataset)
 
 
 dc.preprocess()
