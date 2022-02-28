@@ -10,3 +10,8 @@ src/utils/__pycache__/myutils.cpython-38.pyc
 .vscode/settings.json
 notebooks/media/.ipynb_checkpoints/wiki-cs-training-checkpoint.ipynb
 notebooks/media/.ipynb_checkpoints/wiki2-cs-training-checkpoint.ipynb
+src/data/__pycache__/DataCreator.cpython-38.pyc
+src/data/__pycache__/MPQA.cpython-38.pyc
+src/data/__pycache__/SUBJ.cpython-38.pyc
+src/data/dataset_classes/__pycache__/DataCreator.cpython-38.pyc
+src/data/dataset_classes/__pycache__/SUBJ.cpython-38.pyc
