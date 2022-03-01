@@ -25,7 +25,7 @@ class SUBJ(DataCreator):
             sentences_cs = f.read().splitlines()
 
         cs_dataset = Dataset.from_dict({"sentence": sentences_cs,"label":self.labels})
-        cs_dataset = cs_dataset.shuffle()
+        cs_dataset = cs_dataset.shuffle(seed=self.seed)
         cs_dataset.to_csv(self.cs_path+self.fname,index=False)
             
 

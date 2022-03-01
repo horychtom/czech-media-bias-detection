@@ -11,7 +11,7 @@ class MPQA(DataCreator):
 
     def preprocess(self):
         self.data = load_dataset('csv',data_files=self.en_path + self.fname,
-                    sep=",",column_names=["sentence","label"])['train']
+                    sep=",",column_names=self.cols)['train']
         self.sentences = [s.strip("b").strip("\"").strip('\'') for s in self.data['sentence']]
 
         mapping = {"objective":0,"subjective":1}
