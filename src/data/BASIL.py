@@ -1,4 +1,4 @@
-from datasets import load_dataset,Dataset
+from datasets import load_dataset, Dataset
 
 from DataCreator import DataCreator
 
@@ -10,8 +10,8 @@ class BASIL(DataCreator):
         self.fname = "basil.csv"
 
     def preprocess(self):
-        self.data = load_dataset('csv',data_files=self.en_path + self.fname,sep=",")['train']
+        self.data = load_dataset(
+            'csv', data_files=self.en_path + self.fname, sep=",")['train']
         self.data = self.data.filter(lambda row: row['sentence'] != None)
         self.sentences = self.data['sentence']
         self.labels = self.data['lex_bias']
-

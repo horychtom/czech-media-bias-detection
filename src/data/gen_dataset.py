@@ -8,9 +8,11 @@ from UAcrisis import UAcrisis
 from WIKI1 import WIKI1
 from WIKI2 import WIKI2
 
-parser = argparse.ArgumentParser(description='Data preprocessing script. Outputs the data in simple format.')
-parser.add_argument("-t","--translated", help="Toggle if you already have translated data", action="store_true")
-parser.add_argument("-d","--dataset", help="dataset name",required=True)
+parser = argparse.ArgumentParser(
+    description='Data preprocessing script. Outputs the data in simple format.')
+parser.add_argument("-t", "--translated",
+                    help="Toggle if you already have translated data", action="store_true")
+parser.add_argument("-d", "--dataset", help="dataset name", required=True)
 
 args = parser.parse_args()
 
@@ -37,7 +39,7 @@ else:
 dc.preprocess()
 
 # BEFORE TRANSLATION
-if not args.translated:      
+if not args.translated:
     dc.generate_sentences()
 
 # AFTER TRANSLATION
