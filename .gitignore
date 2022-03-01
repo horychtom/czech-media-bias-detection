@@ -22,3 +22,4 @@ data/EN/raw/WNC/biased_neutral_180k.csv
 src/data/__pycache__/BABE.cpython-38.pyc
 src/data/__pycache__/CWhard.cpython-38.pyc
 src/data/__pycache__/UAcrisis.cpython-38.pyc
+src/data/__pycache__/WNC.cpython-38.pyc

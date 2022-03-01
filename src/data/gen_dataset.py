@@ -8,6 +8,7 @@ from UAcrisis import UAcrisis
 from WIKI1 import WIKI1
 from WIKI2 import WIKI2
 from BABE import BABE
+from WNC import WNC
 
 parser = argparse.ArgumentParser(
     description='Data preprocessing script. Outputs the data in simple format.')
@@ -35,6 +36,8 @@ elif dataset == "WIKI2":
     dc = WIKI2(dataset)
 elif dataset == "BABE":
     dc = BABE(dataset)
+elif dataset == "WNC":
+    dc = WNC(dataset)
 else:
     print("Error, no suitable dataset selected.")
 
