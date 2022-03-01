@@ -1,7 +1,7 @@
 # Making imports convenient
 import sys
 import os
-PATH=os.getcwd().split('/src')[0]
+PATH=os.getcwd().split('/src')[0] + "/bias-detection-thesis/"
 sys.path.insert(1,PATH)
 
 import torch
@@ -13,7 +13,6 @@ from datasets import load_metric,load_dataset,Dataset
 import transformers
 from transformers import AutoTokenizer, DataCollatorWithPadding,RobertaForSequenceClassification,AdamW,get_scheduler,TrainingArguments,Trainer
 
-import itertools
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -25,8 +24,6 @@ from tqdm.auto import tqdm, trange
 from src.utils.myutils import clean_memory,compute_metrics,preprocess_data
 
 model_checkpoint = 'roberta-base'
-
-
 
 def compute_metrics(eval_preds):
     metric = load_metric("f1")
@@ -49,10 +46,11 @@ val_tokenized = preprocess_data(wnc['test'],tokenizer,'sentence')
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
 training_args = TrainingArguments(
-    num_train_epochs=1,
+    num_train_epochs=3,
     per_device_train_batch_size=BATCH_SIZE,  
     per_device_eval_batch_size=BATCH_SIZE,
     logging_steps=1000,
+    save_steps=1000,
     disable_tqdm = False,
     warmup_steps=2000,
     save_total_limit=2,
@@ -64,7 +62,7 @@ training_args = TrainingArguments(
     learning_rate=2e-5)
 
 model = RobertaForSequenceClassification.from_pretrained(model_checkpoint);
-trainer = Trainer(model,training_args,train_dataset=val_tokenized,eval_dataset=val_tokenized,compute_metrics=compute_metrics,data_collator=data_collator,
+trainer = Trainer(model,training_args,train_dataset=train_tokenized,eval_dataset=val_tokenized,compute_metrics=compute_metrics,data_collator=data_collator,
                       tokenizer=tokenizer)
 trainer.train()
 
