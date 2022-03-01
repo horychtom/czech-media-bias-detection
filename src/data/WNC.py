@@ -27,4 +27,5 @@ class WNC(DataCreator):
     def ensemble(self):
         dataset = Dataset.from_dict(
             {"sentence": self.sentences, "label": self.labels})
+        dataset = dataset.shuffle(seed=self.seed)
         dataset.to_csv(self.PATH + "/data/EN/processed/WNC/" + "wnc.csv", index=False)
