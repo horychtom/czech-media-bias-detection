@@ -28,6 +28,7 @@ class DataCreator():
         """ Generates text files with plain sentences ready to
         translate via DeepL
         """
+        i=0
         with open(self.en_path + "texts.txt", "w") as f:
             for sentence in self.sentences:
                 f.write(sentence+"\n")

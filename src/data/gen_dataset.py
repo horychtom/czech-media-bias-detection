@@ -7,6 +7,7 @@ from BASIL import BASIL
 from UAcrisis import UAcrisis
 from WIKI1 import WIKI1
 from WIKI2 import WIKI2
+from BABE import BABE
 
 parser = argparse.ArgumentParser(
     description='Data preprocessing script. Outputs the data in simple format.')
@@ -32,16 +33,13 @@ elif dataset == "WIKI1":
     dc = WIKI1(dataset)
 elif dataset == "WIKI2":
     dc = WIKI2(dataset)
+elif dataset == "BABE":
+    dc = BABE(dataset)
 else:
     print("Error, no suitable dataset selected.")
 
-
 dc.preprocess()
-
-# BEFORE TRANSLATION
 if not args.translated:
     dc.generate_sentences()
-
-# AFTER TRANSLATION
 else:
     dc.ensemble()
