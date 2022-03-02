@@ -46,7 +46,7 @@ val_tokenized = preprocess_data(wnc['test'],tokenizer,'sentence')
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
 training_args = TrainingArguments(
-    num_train_epochs=3,
+    num_train_epochs=10,
     per_device_train_batch_size=BATCH_SIZE,  
     per_device_eval_batch_size=BATCH_SIZE,
     logging_steps=1000,
