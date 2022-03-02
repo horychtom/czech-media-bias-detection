@@ -23,3 +23,6 @@ src/data/__pycache__/BABE.cpython-38.pyc
 src/data/__pycache__/CWhard.cpython-38.pyc
 src/data/__pycache__/UAcrisis.cpython-38.pyc
 src/data/__pycache__/WNC.cpython-38.pyc
+notebooks/media/.ipynb_checkpoints/babe_EN-checkpoint.ipynb
+notebooks/media/.ipynb_checkpoints/wnc-finetuning-checkpoint.ipynb
+src/models/wnc.pth
