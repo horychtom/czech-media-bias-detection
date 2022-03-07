@@ -1,8 +1,39 @@
-\section{Available datasets}
+\section{Datasets}
+Due to the varying definition of bias, many datasets aim to detect different angles of bias. In this section, I present a collection of all datasets available, related to biased writing and subjectivity detection.
 
+Because there are not many media bias datasets of sufficient quality, I decided to gather all relevant data which are on some level related to the media bias and later leverage their bias information to augment smaller ground truth datasets, which I will discuss in the experiment chapter.
+
+As discussed in \ref{methodology} this work only focuses on sentence level classification, thus datasets on the article level are not considered.
 \subsection{SUBJ}
+The Subjectivity dataset (SUBJ) \cite{Pang+Lee:04a} consists of 10000 sentences gathered from movie review sites. Sentences are labeled as subjective and objective with 1:1 ratio. The data were collected in an automatic way, hence the labels can be assumed to be noisy. The authors made an assumption that all reviews from www.rottentomatoes.com are subjective and all plot summaries from www.imdb.com are objective. Then 5k of sentences were sampled randomly for each class.
+
 \subsection{MPQA}
-\subsection{cw\_hard}
-\subsection{ukraine\_crisis}
-\subsection{WNC}
+\textbf{M}ulti-\textbf{P}erspective \textbf{Q}uestion \textbf{A}nswering (MPQA) Opinion corpus is another dataset that can be used for subjectivity detection. For the purpose of our task, I used the MPQA Opinion corpus version 2.0, which consists of 692 articles from 187 different news sources summing up to 15,802 sentences. All articles are from June 2001 to May 2002. (+ topics?).
+
+The corpus offers a rich annotation scheme \cite{wiebe2005annotating} that focuses on sentiment and subjectivity annotations. For bias corpus creation, I focused on two types of annotations:
+\begin{itemize}
+    \item Direct subjective
+    \item Expressive subjective
+\end{itemize}
+Each annotation consists of indices of span in the text and properties. For each sentence in corpus I extracted labels as follows:
+
+If there was at least one annotation ($direct\_subjective$ or $expressive\_subjectivity$) with span inside the sentence and intensity tag was not $low$, the sentence was labelled as subjective/biased. All other sentences were extracted as objective/unbiased.
+
+This approach yielded $9,484$ subjective sentences and 6318 objective sentences.
+
+\subsection{BASIL}
+
+\subsection{CW-HARD}
+Hube et. al \cite{hube2019neural} constructed a dataset using Wikipedia's Neutral Point Of View policy \footnote{\url{https://en.wikipedia.org/wiki/Wikipedia:Neutral_point_of_view}}. The history of Wikipedia pages was scrapped for the revisions that contained "POV" tag in the comment. Then revisions where one sentence has been changed were filtered. However, this leads to a very noisy dataset, thus the authors sampled 5000 sentences and used crowdsourcing to annotate them with bias/unbiased labels. However, the Krippendorffs Alpha agreement score measured only $\alpha = 0.124$ which is considered low. 
+
+After filtering out sentences labeled "I dont know", the final dataset consists of 1843 statements labeled as biased 3109 labeled as neutral, total of 4953 sentences.
+
+\subsection{Ukraine Crisis Dataset}
+This dataset \cite{farber2020multidimensional} 
+
+\subsection{Wiki Neutrality Corpus}
 \subsection{BABE}
+\section{Unused datasets}
+\subsection{NewsB}
+\subsection{IBC}
+Is a dataset focused on bla bla. Is not publicly available and I was not able to get the dataset from the authors.
