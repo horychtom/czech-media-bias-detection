@@ -9,6 +9,7 @@ from WIKI1 import WIKI1
 from WIKI2 import WIKI2
 from BABE import BABE
 from WNC import WNC
+from NFNJ import NFNJ
 
 parser = argparse.ArgumentParser(
     description='Data preprocessing script. Outputs the data in simple format.')
@@ -38,6 +39,8 @@ elif dataset == "BABE":
     dc = BABE(dataset)
 elif dataset == "WNC":
     dc = WNC(dataset)
+elif dataset == "NFNJ":
+    dc = NFNJ(dataset)
 else:
     print("Error, no suitable dataset selected.")
 
