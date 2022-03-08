@@ -4,11 +4,11 @@
 \babel@toc {english}{}
 \babel@toc {english}{}
 \babel@toc {english}{}
-\contentsline {paragraph}{Keywords:}{iii}{paragraph*.1}%
-\contentsline {paragraph}{Supervisor:}{iii}{paragraph*.2}%
+\contentsline {paragraph}{Keywords:}{v}{paragraph*.2}%
+\contentsline {paragraph}{Supervisor:}{v}{paragraph*.3}%
 \babel@toc {czech}{}
-\contentsline {paragraph}{Keywords:}{iii}{paragraph*.3}%
-\contentsline {paragraph}{Title\ translation:}{iii}{paragraph*.4}%
+\contentsline {paragraph}{Keywords:}{v}{paragraph*.4}%
+\contentsline {paragraph}{Title\ translation:}{v}{paragraph*.5}%
 \babel@toc {english}{}
 \babel@toc {english}{}
 \babel@toc {english}{}
@@ -20,35 +20,54 @@
 \babel@toc {english}{}
 \babel@toc {english}{}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
-\contentsline {section}{\numberline {1.1}About bias}{1}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Gender bias - SOTA}{1}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Media bias - SOTA}{1}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Media bias - some more in depth info?}{1}{section.1.4}%
-\contentsline {part}{\numberline {I}Data}{2}{part.1}%
-\contentsline {chapter}{\numberline {2}Current media bias related datasets}{3}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Current datasets}{3}{section.2.1}%
-\contentsline {section}{\numberline {2.2}BABE dataset}{3}{section.2.2}%
-\contentsline {section}{\numberline {2.3}SUBJ dataset}{3}{section.2.3}%
-\contentsline {section}{\numberline {2.4}MPQA dataset}{3}{section.2.4}%
-\contentsline {section}{\numberline {2.5}WIKI npov dataset}{3}{section.2.5}%
-\contentsline {section}{\numberline {2.6}and more}{3}{section.2.6}%
-\contentsline {chapter}{\numberline {3}Czech datasets}{4}{chapter.3}%
-\contentsline {section}{\numberline {3.1}methodology (translation)}{4}{section.3.1}%
-\contentsline {section}{\numberline {3.2}creation of wiki npov data}{4}{section.3.2}%
-\contentsline {section}{\numberline {3.3}output \= all collected cz bias data}{4}{section.3.3}%
-\contentsline {part}{\numberline {II}Experiments}{5}{part.2}%
-\contentsline {chapter}{\numberline {4}Experiments}{6}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Transformer architecture}{6}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Czech models}{6}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}RobeCzech,Czert,FERNET}{6}{subsection.4.2.1}%
-\contentsline {section}{\numberline {4.3}Training}{6}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Evaluation}{6}{section.4.4}%
-\contentsline {part}{\numberline {III}Application to news corpora}{7}{part.3}%
-\contentsline {chapter}{\numberline {5}Czech news corpora}{8}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Inference on sampled data}{8}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Statistics - Analysis}{8}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Inference on article level?}{8}{section.5.3}%
-\contentsline {chapter}{\numberline {6}Interpretability? Ethics?}{9}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Conclusion}{10}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Solutions}{10}{section.7.1}%
-\contentsline {section}{\numberline {7.2}future work}{10}{section.7.2}%
+\contentsline {section}{\numberline {1.1}Motivation}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Outline}{1}{section.1.2}%
+\contentsline {chapter}{\numberline {2}State of the art}{2}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Bias}{2}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Gender bias}{2}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}md\_gender dataset}{2}{subsection.2.2.1}%
+\contentsline {section}{\numberline {2.3}Media bias detection}{2}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Informational vs Lexical}{2}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Methodology (SOTA)}{2}{subsection.2.3.2}%
+\contentsline {chapter}{\numberline {3}Datasets}{3}{chapter.3}%
+\contentsline {subsection}{\numberline {3.0.1}SUBJ}{3}{subsection.3.0.1}%
+\contentsline {subsection}{\numberline {3.0.2}MPQA}{3}{subsection.3.0.2}%
+\contentsline {subsection}{\numberline {3.0.3}BASIL}{4}{subsection.3.0.3}%
+\contentsline {subsection}{\numberline {3.0.4}Ukraine Crisis Dataset}{4}{subsection.3.0.4}%
+\contentsline {subsection}{\numberline {3.0.5}NFNJ}{4}{subsection.3.0.5}%
+\contentsline {subsection}{\numberline {3.0.6}BABE}{5}{subsection.3.0.6}%
+\contentsline {section}{\numberline {3.1}Wikipedia NPOV datasets}{5}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Wiki Neutrality Corpus}{6}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}CW-HARD}{7}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}WikiBias}{7}{subsection.3.1.3}%
+\contentsline {section}{\numberline {3.2}Unused datasets}{7}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}NewsB}{8}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}IBC}{8}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Datasets summary}{8}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Theoretical background}{9}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Text classification}{9}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Neural Networks }{9}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Attention and transformers}{9}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Transfer learning}{9}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Czech datasets}{10}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Translation}{10}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}DeepL}{10}{subsection.5.1.1}%
+\contentsline {section}{\numberline {5.2}Processing}{10}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Analysis}{10}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Czech Wiki Neutrality Corpus}{11}{section.5.4}%
+\contentsline {subsubsection}{WIKI1-CS}{11}{subsubsection*.6}%
+\contentsline {subsubsection}{WIKI1-CS}{11}{subsubsection*.6}%
+\contentsline {subsubsection}{WIKI2-CS}{11}{subsubsection*.7}%
+\contentsline {subsubsection}{WIKI2-CS}{11}{subsubsection*.7}%
+\contentsline {section}{\numberline {5.5}Not translated}{12}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Experiments}{13}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Czech models}{13}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Evaluation}{13}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Inference on Czech News Samples}{13}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Analysis and statistics}{13}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Few words Article level}{13}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}LIME analysis and demo}{13}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Multi-Task learning approach}{13}{section.6.5}%
+\contentsline {chapter}{\numberline {7}Conclusion}{14}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Summary of work done}{14}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Future perspective}{14}{section.7.2}%

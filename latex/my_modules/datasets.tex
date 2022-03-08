@@ -67,7 +67,7 @@ In raw data, contributions from multiple annotators on each sentence are provide
     \item 3: 'biased'
     \item 4: 'very biased'
 \end{itemize}
-To obtain final truth labels in neutral/biased format I simply assumed sentences with score <= 2 as neutral and > 2 as biased.
+To obtain final truth labels in neutral/biased format I simply assumed sentences with score $\leq$ 2 as neutral and $>$ 2 as biased.
 
 
 
@@ -117,7 +117,34 @@ Hube et. al \cite{hube2019neural} constructed a dataset based on NPOV, where onl
 
 After filtering out sentences which annotators labeled with "I dont know" option, the final dataset consists of 1843 statements labeled as biased 3109 labeled as neutral, a total of 4953 sentences.
 
-
+\begin{table}
+\begin{ctucolortab}
+\begin{tabular}{c|c|c|c}
+ \textbf{Dataset} & \textbf{Size} & \textbf{Annotation} & \textbf{Agreement}\\
+ \hline
+ \textbf{SUBJ} & 10.000 & automatic & -\\ 
+ \hline
+ \textbf{MPQA} & 15.802 & annotators & high \\
+ \hline
+ \textbf{BASIL} &  1.727 & annotators & medium \\ 
+ \hline
+ \textbf{Ukraine Crisis Dataset} & 2.057 & crowdsourcing & low \\ 
+ \hline
+ \textbf{NFNJ} & 888 & crowdsourcing & low \\
+ \hline
+ \textbf{BABE} & 3700 & annotators & medium \\
+ \hline 
+ \textbf{WNC} & 362.990 & automatic & - \\
+ \hline
+ \textbf{CW-hard} & 4953 & crowdsourcing & low \\
+ \hline 
+ \textbf{WikiBias} & 8198 & annotators & high \\
+ \hline
+\end{tabular}
+\end{ctucolortab}
+\caption{Comparison of all bias related datasets collected}
+\label{table:1}
+\end{table}
 
 
 \subsection{WikiBias}
@@ -143,4 +170,4 @@ Is a dataset focused on detectino of ideology. However,it is not publicly availa
 
 
 \section{Datasets summary}
-In this section I introduced all datasets that are publicly available and are more or less related to the media bias detection task. The overview of all datasets and it's properties can be seen in figure ref.
+In this section I introduced all datasets that are publicly available and are more or less related to the media bias detection task. The overview of all datasets and it's properties can be seen in figure \ref{table:1}.
