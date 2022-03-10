@@ -1,0 +1,8 @@
+models:
+  - UWB-AIR/Czert-B-base-cased
+  - ufal/robeczech-base
+  - bert-base-multilingual-cased
+  - fav-kky/FERNET-C5
+  - fav-kky/FERNET-News
+  - DeepPavlov/bert-base-bg-cs-pl-ru-cased
+  - xlm-roberta-large
