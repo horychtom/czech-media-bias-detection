@@ -68,3 +68,6 @@ data/EN/raw/WNC/.ipynb_checkpoints/Untitled-checkpoint.ipynb
 data/EN/raw/WNC/Untitled.ipynb
 src/data/__pycache__/SUBJ.cpython-36.pyc
 src/data/__pycache__/WikiBias.cpython-38.pyc
+notebooks/media/.ipynb_checkpoints/babe_EN_testsplit-checkpoint.ipynb
+notebooks/media/.ipynb_checkpoints/cz_models_cls-checkpoint.ipynb
+notebooks/media/baseline/.ipynb_checkpoints/baseline_czech-checkpoint.ipynb
