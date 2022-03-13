@@ -71,3 +71,5 @@ src/data/__pycache__/WikiBias.cpython-38.pyc
 notebooks/media/.ipynb_checkpoints/babe_EN_testsplit-checkpoint.ipynb
 notebooks/media/.ipynb_checkpoints/cz_models_cls-checkpoint.ipynb
 notebooks/media/baseline/.ipynb_checkpoints/baseline_czech-checkpoint.ipynb
+data/EN/raw/WNC/texts/texty.zip
+data/EN/raw/WNC/texts/texty2.zip
