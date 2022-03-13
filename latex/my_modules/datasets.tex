@@ -81,22 +81,14 @@ and -0.0824)$ averaging at zero, making this data as a standalone dataset practi
 \subsection{BABE}
 \textbf{B}ias \textbf{A}nnotations \textbf{B}y \textbf{E}xperts (BABE) is a key media bias dataset from \Gls{mbg}, which is to the best of my knowledge, the highest quality media bias dataset to this day. It builds on top of MBIC \cite{Spinde2021MBIC} which is a smaller crowdsourced dataset.
 
-BABE contains 3700 sentences. 1700 sentences are from MBIC, which were extracted from 1000 news articles, and in addition extended by 2000 more sentences, altogether covering 12 topics. It has been annotated by 8 experts resulting in \gls{iaa} Krippendorfs $\alpha = 0.39$, which exceeds other media bias datasets by a significant margin. It also provides detailed information about the annotator background, making it a \textbf{reliable} source of bias information. The scheme of authors collection of sentences and labelling can be seen in \ref{fig:babe-data}.
+BABE contains 3700 sentences. 1700 sentences are from MBIC, which were extracted from 1000 news articles, and in addition extended by 2000 more sentences, altogether covering 12 topics, annotated with binary bias indication. In addition, annotations also, if present, include biased words. However, presence of biased word does not always result in overall biased sentence label. See \ref{table:2} for examples.
 
-This dataset plays a pivotal role in my approach to media bias detection and is selected as a target for tuning language models in chapter \ref{experiments}. Examples of BABE datapoints can be seen in \ref{table:2}
-\begin{table}
+It has been annotated by 8 experts resulting in \gls{iaa} Krippendorfs $\alpha = 0.39$, which exceeds other media bias datasets by a significant margin. It also provides detailed information about the annotator background, making it a \textbf{reliable} source of bias information. The scheme of authors collection of sentences and labelling can be seen in \ref{fig:babe-data}.
 
-\makebox[\textwidth][c]{
-\begin{tabular}[\textwidth]{l|c}
-\textbf{sentence} & \textbf{label} \\
-\hline
-Americans \colorbox[RGB]{238,161,161}{know} President Donald Trump is an \colorbox[RGB]{238,161,161}{outrageous}, \colorbox[RGB]{238,161,161}{scandal-ridden} character. & biased \\
-Andrew Cuomo Has A New Plan To Kill New Yorkers. & biased\\
-\end{tabular}
-}
-\caption{Example of biased and unbiased sentences from \textbf{BABE}}
-\label{table:2}
-\end{table}
+This dataset plays a pivotal role in my approach to media bias detection and is selected as a target for tuning language models in chapter \ref{experiments}. Examples of BABE datapoints can be seen in 
+\ref{table:2}
+
+\input{my_modules/tables/babe_example_table}
 
 
 \begin{figure}
@@ -104,6 +96,8 @@ Andrew Cuomo Has A New Plan To Kill New Yorkers. & biased\\
   \caption{Data collection and annotation pipeline of \textbf{BABE}, reprinted from \cite{Spinde2021f}}
   \label{fig:babe-data}
 \end{figure}
+
+
 
 \section{Wikipedia NPOV datasets}\label{wiki-npov}
 Due to annotation costs and the overall lack of large-scale datasets in media bias setting, many researches \cite{pryzant2020automatically,recasens2013linguistic,hube2019neural} used Wikipedia's \Gls{npov} policy\footnote{\url{https://en.wikipedia.org/wiki/Wikipedia:Neutral_point_of_view}}. to construct large-scale datasets automatically. 
@@ -137,40 +131,14 @@ Hube et. al \cite{hube2019neural} constructed dataset based on NPOV, where only 
 
 After filtering out sentences which annotators labeled with "I dont know" option, the final dataset consists of 1843 statements labeled as biased and 3109 labeled as neutral, a total of 4953 sentences.
 
-\begin{table}
-\begin{ctucolortab}
-\begin{tabular}{c|c|c|c}
- \textbf{Dataset} & \textbf{Size} & \textbf{Annotation} & \textbf{Agreement}\\
- \hline
- \textbf{SUBJ} & 10.000 & automatic & -\\ 
- \hline
- \textbf{MPQA} & 15.802 & annotators & high \\
- \hline
- \textbf{BASIL} &  1.727 & annotators & medium \\ 
- \hline
- \textbf{Ukraine Crisis Dataset} & 2.057 & crowdsourcing & low \\ 
- \hline
- \textbf{NFNJ} & 888 & crowdsourcing & low \\
- \hline
- \textbf{BABE} & 3700 & annotators & medium \\
- \hline 
- \textbf{WNC} & 362.990 & automatic & - \\
- \hline
- \textbf{CW-hard} & 4953 & crowdsourcing & low \\
- \hline 
- \textbf{WikiBias} & 8198 & annotators & high \\
- \hline
-\end{tabular}
-\end{ctucolortab}
-\caption{Comparison of all bias related datasets collected}
-\label{table:1}
-\end{table}
+
 
 
 \subsection{WikiBias}
 This is the latest dataset based on Wikipedia. The authors closely follow the approach of WNC \cite{pryzant2020automatically} and extract another parallel wiki corpus of 214k sentences.
 To achieve a higher quality corpus, 4099 sentence pairs were randomly sampled and labeled by trained annotators. As a result, introduced WikiBias-Manual dataset consists of 3,400 biased and 4,798 neutral sentences annotated with high \gls{iaa} Cohen's $\kappa = 0.734$
 
+\input{my_modules/tables/datasets_table}
 
 
 
