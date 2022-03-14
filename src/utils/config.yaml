@@ -5,4 +5,3 @@ models:
   - fav-kky/FERNET-C5
   - fav-kky/FERNET-News
   - DeepPavlov/bert-base-bg-cs-pl-ru-cased
-  - xlm-roberta-large
