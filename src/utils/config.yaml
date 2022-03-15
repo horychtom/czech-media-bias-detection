@@ -5,3 +5,5 @@ models:
   - fav-kky/FERNET-C5
   - fav-kky/FERNET-News
   - DeepPavlov/bert-base-bg-cs-pl-ru-cased
+model_to_tune:
+  - ufal/robeczech-base

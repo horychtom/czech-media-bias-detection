@@ -33,7 +33,7 @@ def clean_memory():
 
 
 def compute_metrics(model,device,testing_dataloader):
-    """computes F1 score over dataset
+    """computes F1 score and accuracy over dataset
 
     Args:
         model (any type): model for evaluation
@@ -43,7 +43,9 @@ def compute_metrics(model,device,testing_dataloader):
     Returns:
         dict: {"f1":score}
     """
-    metric = load_metric("f1")
+    metric1 = load_metric("f1")
+    metric2 = load_metric("accuracy")
+
 
     model.eval()
     for batch in testing_dataloader:
@@ -53,9 +55,10 @@ def compute_metrics(model,device,testing_dataloader):
 
         logits = outputs.logits
         predictions = torch.argmax(logits, dim=-1)  
-        metric.add_batch(predictions=predictions, references=batch["labels"])
+        metric1.add_batch(predictions=predictions, references=batch["labels"])
+        metric2.add_batch(predictions=predictions, references=batch["labels"])
         
-    return metric.compute(average='micro')
+    return {'f1': metric1.compute(average='micro')['f1'],'accuracy': metric2.compute()}
 
 
 def plot_confusion_matrix(cm, classes, normalize=False, title='Confusion matrix', cmap=plt.cm.Blues):
