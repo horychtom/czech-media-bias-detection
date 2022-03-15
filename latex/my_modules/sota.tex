@@ -3,9 +3,24 @@
 \section{Bias}
 Mitigatin vs Detection, importance, types of bias
 \section{Gender bias}
-mdgender = classification. stereoset (and others) = mitigating?
-Experiments in experiments section
-\subsection{md\_gender dataset}
+Most of the work done regarding gender bias aims to study gender bias introduced in the models and methods to measure, clarify, and possibly mitigate it.
+There is clear evidence that current language models possess implicit bias. Whether it means in terms of learned embeddings (odkaz na nurse to woman like man to fighter) or simply underrepresentation of one sex in the training data. 
+
+Yet, my work aspires to classify news texts, therefore I examined the possibilities of gender classification on a sentence level.
+
+I closely followed the approach of Dinan et al. \cite{dinan2020multi}. Where they define three gender bias dimensions: bias when speaking \textit{ABOUT} someone, \textit{TO} someone or \textit{AS} someone. The word bias here simply means an aspect of the statement that implies a gender of a particular person along mentioned dminesions.
+
+Authors further propose that unbiased sentence would mean that machine learning model would not be able to classify a gender in a sentence because there would be basically no difference between the classes.
+
+For measuring this kind of bias around all three dimensions, large-scale dataset (\textbf{MD\_gender}) has been introduced. Authors train a multitask model to capture all three dimensions, however, only \textit{ABOUT} dimension and very small fraction of \textit{AS} dimension is publicly available, thus I only focused on the first one mentioned.
+
+\begin{itemize}
+\item \textbf{md\_gender}\footnote{\url{https://huggingface.co/datasets/md_gender_bias}} - is a collection of automatically labeled large-scale data gathered from various sources around the internet, where gender annotation of the particular dimension is provided (eg. gender information of a user in internet discussion). It also include one small gold-labeled dataset for evaluation.
+\end{itemize}
+
+To mimic the results of the paper mentioned above, I sampled 150k of sentences across all datasets with an \textit{ABOUT} dimension label and translated them via DeepL (more on machine translation in section \ref{DeepL}). Then I managed to train a classifier that achieved a score 80\% on small gold-standard evaluation dataset. Unfortunately, the results are not comparable because I took a bit different approach. I share this model on huggingface hub, where I also present a demo. Usage of the demo can be seen in appendix.
+
+
 \section{Media bias detection}
 \subsection{Informational vs Lexical}
 Many do lexical, framing, něco o dalších, WCL.

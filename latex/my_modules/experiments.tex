@@ -1,34 +1,74 @@
 \chapter{Experiments}\label{experiments}
-I follow current sota approaches which is using large pretrained language models.
-\section{Czech models}
-RobeCzech
-\begin{enumerate}
+In this section I present experiments on text classification over colelcted datasets. Main target dataset for evaluations is BABE, because of its high quality and properties.
+
+Because of novelty of CWNC I also perform evaluation on this dataset.
+I follow the current standard approaches and use pretrained transformers for further pretraining and fine-tuning. One possibility is to use multilingual models, which are trained on set of languages to capture general language properties. In recent years, there have also purely czech models emerged.
+\subsection{Czech models}
+\begin{itemize}
     \item RobeCZECH
     \item Czert
     \item FERNET-C5
     \item FERNET-News
-\end{enumerate}
+\end{itemize}
 
-%multilingual
-\begin{enumerate}
+
+\subsection{Multi-lingual models}
+\begin{itemize}
     \item SlavicBert
-    \item xlm-roberta-large
     \item mBERT
-\end{enumerate}
-zmínka RCI cluster
-\begin{enumerate}
-    \item Training args tuning
-    \item Weights and biases visualisations
-    \item Pre-finetuning, self-training
-    \item experiment on collective dataset
-\end{enumerate}
+\end{itemize}
 
-\section{Evaluation}
-For the BABE dataset baseline, the 15\% of data has been saved for final evluation. I decided not to use early stopping, since cross validation ahs been used and it doesnt go well together
+
+ 15\% of BABE data has been saved for final evaluation. Steps are as follows:
+ \begin{itemize}
+     \item BASELINE:
+	5-CV plain model finetuning on BABE (could be split to train validation but we dont have that many data)
+	\item HYPERPARAM-TUNING:
+	5-CV model tuning parameters (grid search) on BABE
+	\item DATA-COMBINATIONS:
+	5-CV model with tuned hyperparams with varying combinations of data on BABE
+	\item EVALUATION:
+	pick the best model, train it with params and early stopping, and run it on - BABE test set 
+										       - CWNC test set
+	early stopping only on final training! Because the authors essentially made early stopping on "testing set" + it is not recommended to use early stopping in cross validation
+ \end{itemize}
+ 
+ 
+ 
+ 
+ 
+All training has been done on a single GPU on RCI cluster.
+ \section{Baseline setup}
+ As a baseline, I finetuned all Czech models listed above on BABE and evaluated them using 5-fold stratified cross validation. Hyperparameters were the same as used by authors \cite{Spinde2021MBIC}. However, the authors used 10 epochs and early stopping, together with cross validation and used the validation split inside CV to early stop, which is not ideal since the split should be used only for evalaution. That way the model can "see" the data before evaluation, hence I did not use early stopping with CV at all and fixed number of epochs on 3, as authors of BERT \cite{devlin2019bert} suggest. 
+ All other hyperaparemeters remained unchanged. Adam optimizer is used with learning reate $5e-5$
+ 
+ 
+ 
+ 
+ 
+ \section{Hyperparameter tuning}
+ To get the most out of the language models, I decided to tune the hyperparameters via Bayesian Optimization framework. Because a complexity of searching for optimal hyperparameters grows exponentially with number of items, it is reasonable to not try every combination. Bayesian optimization limits this search space by using Bayes theorem.
+ 
+ 
+ 
+ 
+ \section{Combining Datasets}
+ Here i can combine datasets.
+ \subsection{Pretraining on English WNC}
+ \subsection{Subjectivity pretraining}
+ \subsection{Media Bias Pretraining}
+ \subsection{Combining all datasets together Without WNC}
+
+ 
+ 
+ 
+ 
 \section{Inference on Czech News Samples}
-\subsection{Analysis and statistics}
-\subsection{Few words Article level}
+\begin{itemize}
+    \item Analysis and statistics
+    \item Few words Article level
+\end{itemize}
 
-\section{LIME analysis and demo}
+%\section{LIME analysis and demo}
 
 \section{Multi-Task learning approach}\label{mtl}

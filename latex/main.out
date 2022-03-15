@@ -1,10 +1,10 @@
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.1.1}{Motivation}{chapter.1}% 2
-\BOOKMARK [1][-]{section.1.2}{Outline}{chapter.1}% 3
-\BOOKMARK [0][-]{chapter.2}{State of the art}{}% 4
-\BOOKMARK [1][-]{section.2.1}{Bias}{chapter.2}% 5
-\BOOKMARK [1][-]{section.2.2}{Gender bias}{chapter.2}% 6
-\BOOKMARK [2][-]{subsection.2.2.1}{md\137gender dataset}{section.2.2}% 7
+\BOOKMARK [1][-]{section.1.2}{My contribution}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.3}{Outline}{chapter.1}% 4
+\BOOKMARK [0][-]{chapter.2}{State of the art}{}% 5
+\BOOKMARK [1][-]{section.2.1}{Bias}{chapter.2}% 6
+\BOOKMARK [1][-]{section.2.2}{Gender bias}{chapter.2}% 7
 \BOOKMARK [1][-]{section.2.3}{Media bias detection}{chapter.2}% 8
 \BOOKMARK [2][-]{subsection.2.3.1}{Informational vs Lexical}{section.2.3}% 9
 \BOOKMARK [2][-]{subsection.2.3.2}{Methodology \(SOTA\)}{section.2.3}% 10
@@ -20,29 +20,32 @@
 \BOOKMARK [2][-]{subsection.3.1.2}{CW-HARD}{section.3.1}% 20
 \BOOKMARK [2][-]{subsection.3.1.3}{WikiBias}{section.3.1}% 21
 \BOOKMARK [1][-]{section.3.2}{Unused datasets}{chapter.3}% 22
-\BOOKMARK [2][-]{subsection.3.2.1}{NewsB}{section.3.2}% 23
-\BOOKMARK [2][-]{subsection.3.2.2}{IBC}{section.3.2}% 24
-\BOOKMARK [1][-]{section.3.3}{Datasets summary}{chapter.3}% 25
-\BOOKMARK [0][-]{chapter.4}{Theoretical background}{}% 26
-\BOOKMARK [1][-]{section.4.1}{Text classification}{chapter.4}% 27
-\BOOKMARK [1][-]{section.4.2}{Neural Networks }{chapter.4}% 28
-\BOOKMARK [1][-]{section.4.3}{Attention and transformers}{chapter.4}% 29
-\BOOKMARK [1][-]{section.4.4}{Transfer learning}{chapter.4}% 30
-\BOOKMARK [0][-]{chapter.5}{Czech datasets}{}% 31
-\BOOKMARK [1][-]{section.5.1}{Translation}{chapter.5}% 32
-\BOOKMARK [2][-]{subsection.5.1.1}{DeepL}{section.5.1}% 33
-\BOOKMARK [1][-]{section.5.2}{Processing}{chapter.5}% 34
-\BOOKMARK [1][-]{section.5.3}{Analysis}{chapter.5}% 35
-\BOOKMARK [1][-]{section.5.4}{Czech Wiki Neutrality Corpus}{chapter.5}% 36
-\BOOKMARK [1][-]{section.5.5}{Not translated}{chapter.5}% 37
-\BOOKMARK [0][-]{chapter.6}{Experiments}{}% 38
-\BOOKMARK [1][-]{section.6.1}{Czech models}{chapter.6}% 39
-\BOOKMARK [1][-]{section.6.2}{Evaluation}{chapter.6}% 40
-\BOOKMARK [1][-]{section.6.3}{Inference on Czech News Samples}{chapter.6}% 41
-\BOOKMARK [2][-]{subsection.6.3.1}{Analysis and statistics}{section.6.3}% 42
-\BOOKMARK [2][-]{subsection.6.3.2}{Few words Article level}{section.6.3}% 43
-\BOOKMARK [1][-]{section.6.4}{LIME analysis and demo}{chapter.6}% 44
-\BOOKMARK [1][-]{section.6.5}{Multi-Task learning approach}{chapter.6}% 45
-\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 46
-\BOOKMARK [1][-]{section.7.1}{Summary of work done}{chapter.7}% 47
-\BOOKMARK [1][-]{section.7.2}{Future perspective}{chapter.7}% 48
+\BOOKMARK [1][-]{section.3.3}{Datasets summary}{chapter.3}% 23
+\BOOKMARK [0][-]{chapter.4}{Theoretical background}{}% 24
+\BOOKMARK [1][-]{section.4.1}{Text classification}{chapter.4}% 25
+\BOOKMARK [1][-]{section.4.2}{Neural Networks }{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.3}{Attention and transformers}{chapter.4}% 27
+\BOOKMARK [1][-]{section.4.4}{Transfer learning}{chapter.4}% 28
+\BOOKMARK [0][-]{chapter.5}{Czech datasets}{}% 29
+\BOOKMARK [1][-]{section.5.1}{Machine Translation}{chapter.5}% 30
+\BOOKMARK [1][-]{section.5.2}{Processing}{chapter.5}% 31
+\BOOKMARK [1][-]{section.5.3}{Translated data}{chapter.5}% 32
+\BOOKMARK [1][-]{section.5.4}{Czech Wiki Neutrality Corpus}{chapter.5}% 33
+\BOOKMARK [2][-]{subsection.5.4.1}{CWNC-noisy}{section.5.4}% 34
+\BOOKMARK [2][-]{subsection.5.4.2}{CWNC}{section.5.4}% 35
+\BOOKMARK [1][-]{section.5.5}{Not translated}{chapter.5}% 36
+\BOOKMARK [0][-]{chapter.6}{Experiments}{}% 37
+\BOOKMARK [1][-]{subsection.6.0.1}{Czech models}{chapter.6}% 38
+\BOOKMARK [2][-]{subsection.6.0.2}{Multi-lingual models}{subsection.6.0.1}% 39
+\BOOKMARK [1][-]{section.6.1}{Baseline setup}{chapter.6}% 40
+\BOOKMARK [1][-]{section.6.2}{Hyperparameter tuning}{chapter.6}% 41
+\BOOKMARK [1][-]{section.6.3}{Combining Datasets}{chapter.6}% 42
+\BOOKMARK [2][-]{subsection.6.3.1}{Pretraining on English WNC}{section.6.3}% 43
+\BOOKMARK [2][-]{subsection.6.3.2}{Subjectivity pretraining}{section.6.3}% 44
+\BOOKMARK [2][-]{subsection.6.3.3}{Media Bias Pretraining}{section.6.3}% 45
+\BOOKMARK [2][-]{subsection.6.3.4}{Combining all datasets together Without WNC}{section.6.3}% 46
+\BOOKMARK [1][-]{section.6.4}{Inference on Czech News Samples}{chapter.6}% 47
+\BOOKMARK [1][-]{section.6.5}{Multi-Task learning approach}{chapter.6}% 48
+\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 49
+\BOOKMARK [1][-]{section.7.1}{Summary of work done}{chapter.7}% 50
+\BOOKMARK [1][-]{section.7.2}{Future perspective}{chapter.7}% 51
