@@ -1,8 +1,10 @@
 # Making imports convenient
 import sys
 import os
-PATH=os.getcwd().split('/notebooks')[0]
+
+PATH = '/home/horyctom/bias-detection-thesis'
 sys.path.insert(1, PATH)
+
 
 import torch
 import torch.nn.functional as F
