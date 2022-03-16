@@ -39,17 +39,26 @@ I follow the current standard approaches and use pretrained transformers for fur
  
 All training has been done on a single GPU on RCI cluster.
  \section{Baseline setup}
- As a baseline, I finetuned all Czech models listed above on BABE and evaluated them using 5-fold stratified cross validation. Hyperparameters were the same as used by authors \cite{Spinde2021MBIC}. However, the authors used 10 epochs and early stopping, together with cross validation and used the validation split inside CV to early stop, which is not ideal since the split should be used only for evalaution. That way the model can "see" the data before evaluation, hence I did not use early stopping with CV at all and fixed number of epochs on 3, as authors of BERT \cite{devlin2019bert} suggest. 
- All other hyperaparemeters remained unchanged. Adam optimizer is used with learning reate $5e-5$
+ As a baseline, I finetuned all Czech models listed above on BABE and evaluated them using 5-fold stratified cross validation. Hyperparameters were the same as used by authors \cite{Spinde2021MBIC}. However, the authors early stopping together with a cross validation and used the validation split inside CV to early stop, which is not ideal since the split should be used only for evalaution. This way the model can "see" the data before evaluation, hence I did not use early stopping with CV at all and fixed the number of epochs to 3, as authors of BERT \cite{devlin2019bert} suggest. 
+ All other hyperaparemeters remained unchanged. AdamW optimizer is used with the initial learning rate is 5e-5. 
  
+ Baseline evaluation of all used Czech models can be seen in table \ref{table:3}. Final F1 score is averaged across all folds. For further experiments and tuning, I chose the two best performing models \textbf{RobeCzech} and \textbf{FERNET-C5}.
  
  
  
  
  \section{Hyperparameter tuning}
- To get the most out of the language models, I decided to tune the hyperparameters via Bayesian Optimization framework. Because a complexity of searching for optimal hyperparameters grows exponentially with number of items, it is reasonable to not try every combination. Bayesian optimization limits this search space by using Bayes theorem.
+For choosing the best hyperparameters, I restricted the search space only to the combination of:
+ \begin{itemize}
+     \item \textbf{Batch size} $\in \{16,32\}$
+     \item \textbf{Learning rate} $\in $ \{2e-5,3e-5,5e-5\}
+     \item \textbf{Epochs} $\in \{2,3,4\}$
+ \end{itemize}
  
+ As the authors of the original BERT paper suggest. 
  
+  \input{my_modules/tables/baseline}
+
  
  
  \section{Combining Datasets}

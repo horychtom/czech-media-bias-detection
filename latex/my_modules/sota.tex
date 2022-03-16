@@ -2,26 +2,29 @@
 
 \section{Bias}
 Mitigatin vs Detection, importance, types of bias
-\section{Gender bias}
-Most of the work done regarding gender bias aims to study gender bias introduced in the models and methods to measure, clarify, and possibly mitigate it.
-There is clear evidence that current language models possess implicit bias. Whether it means in terms of learned embeddings (odkaz na nurse to woman like man to fighter) or simply underrepresentation of one sex in the training data. 
+\section{Gender bias detection}
+Most of the work done regarding gender bias aims to study the gender bias embedded in the models and further methods to measure, clarify, and possibly mitigate it.
+There is clear evidence that current language models possess implicit gender bias. Whether it means in terms of learned, biased embeddings \cite{bolukbasi2016man} or simply underrepresentation of a particular sex in the data \cite{sun-peng-2021-men}. 
 
-Yet, my work aspires to classify news texts, therefore I examined the possibilities of gender classification on a sentence level.
+Yet, my work aspires to classify news texts, therefore I examined the possibilities of gender classification.
 
-I closely followed the approach of Dinan et al. \cite{dinan2020multi}. Where they define three gender bias dimensions: bias when speaking \textit{ABOUT} someone, \textit{TO} someone or \textit{AS} someone. The word bias here simply means an aspect of the statement that implies a gender of a particular person along mentioned dminesions.
+I closely followed the approach of Dinan et al.\cite{dinan2020multi}. Where they define three gender bias dimensions: bias when speaking \textit{ABOUT} someone, \textit{TO} someone or \textit{AS} someon and target classes are \{masculine,feminine,neutral\}. 
 
-Authors further propose that unbiased sentence would mean that machine learning model would not be able to classify a gender in a sentence because there would be basically no difference between the classes.
+The word \textit{bias} here simply means an aspect of the statement that implies a gender of a particular person along the mentioned dimensions. To make this definition more clear, for example, the authors further propose that an unbiased sentence would be a sentence which a machine learning model would not be able to classify a gender in, because there would basically be no difference between the classes.
 
-For measuring this kind of bias around all three dimensions, large-scale dataset (\textbf{MD\_gender}) has been introduced. Authors train a multitask model to capture all three dimensions, however, only \textit{ABOUT} dimension and very small fraction of \textit{AS} dimension is publicly available, thus I only focused on the first one mentioned.
+For measuring this kind of bias over all three dimensions, large-scale dataset \textbf{md\_gender}\footnote{\url{https://huggingface.co/datasets/md_gender_bias}} has been collected. Authors train a multitask model to capture all three dimensions, however, only \textit{ABOUT} dimension and very small fraction of \textit{AS} dimension is publicly available, thus I only focused on the first one.
 
 \begin{itemize}
-\item \textbf{md\_gender}\footnote{\url{https://huggingface.co/datasets/md_gender_bias}} - is a collection of automatically labeled large-scale data gathered from various sources around the internet, where gender annotation of the particular dimension is provided (eg. gender information of a user in internet discussion). It also include one small gold-labeled dataset for evaluation.
+\item \textbf{md\_gender} - is a collection of automatically labeled large-scale data gathered from various sources around the internet, where gender annotation of a particular dimension is provided (eg., gender information of a user in an internet discussion). It also includes one small gold-labeled dataset for evaluation with 785 data points for \textit{ABOUT} dimension.
 \end{itemize}
 
-To mimic the results of the paper mentioned above, I sampled 150k of sentences across all datasets with an \textit{ABOUT} dimension label and translated them via DeepL (more on machine translation in section \ref{DeepL}). Then I managed to train a classifier that achieved a score 80\% on small gold-standard evaluation dataset. Unfortunately, the results are not comparable because I took a bit different approach. I share this model on huggingface hub, where I also present a demo. Usage of the demo can be seen in appendix.
+To mimic the results of the paper mentioned above, I sampled 150k sentences from across all datasets with an \textit{ABOUT} dimension label and translated them via \textbf{DeepL} machine translator (more on machine translation in section \ref{DeepL}). Then I managed to train a classifier that achieved an F1 score of 80\% on the small gold labeled evaluation dataset. Unfortunately, the results are not comparable because I took a \textbf{single-task} approach and omitted other dimensions completely. I share this model together with translated data on HugginFace\footnote{\url{https://huggingface.co/}} hub and I also present a demo. Usage of the demo can be seen in Appendix.
+
+Gender classifier, like this one, can be used to determine what percentage of a particular article in Czech news environment is about men, women, or is completely genderless. This statistical indicator could help to keep the writing more balanced or give an insight in already published writing.
 
 
 \section{Media bias detection}
+Media bias - hyperpolarized society, allsides definitions. Its not always a bad thing, Even though allsides aim on source level, their definition can be interpolated onto sentence level. According to their definition, there is emotional (setiment detection part), opininon as facts (subjective part (wikipedia!), Insult detection
 \subsection{Informational vs Lexical}
 Many do lexical, framing, něco o dalších, WCL.
 \subsection{Methodology (SOTA)}\label{methodology}
