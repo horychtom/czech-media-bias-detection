@@ -55,19 +55,27 @@ def fit_and_eval(model_name,token_full,train_idx,eval_idx,training_args):
 
 
 param_grid = {
-    'learning_rate':[2e-5,3e-5,4e-5,5e-5],
-    'weight_decay':[0.05,0.1],
-    'batch_size': [32, 64],
-    'warmup_steps': [0,50]
-}
+     'learning_rate':[2e-5,3e-5,4e-5,5e-5],
+     'weight_decay':[0.05,0.1],
+     'batch_size': [32, 64],
+     'warmup_steps': [0,50],
+     'number_of_epochs':[3]
+     }
+# param_grid = {
+#     'number_of_epochs':[2,3,4,5],
+#     'learning_rate':[4e-5],
+#     'batch_size':[32],
+#     'warmup_steps':[0],
+#     'weight_decay':[0.1]
+# }
 param_comb = ParameterGrid(param_grid)
 
-with open(PATH + '/src/models/hyperparam_search.txt','w') as f:
+with open(PATH + '/src/models/fernet_hyperparam_search.txt','w') as f:
     for idx,params in enumerate(param_comb):
 
         training_args = TrainingArguments(
             output_dir = './',
-            num_train_epochs=3,
+            num_train_epochs=params['number_of_epochs'],
             save_total_limit=2,
             disable_tqdm=False,
             per_device_train_batch_size=params['batch_size'],  
