@@ -137,3 +137,4 @@ notebooks/media/baseline/checkpoint-360/vocab.json
 notebooks/media/baseline/.ipynb_checkpoints/baseline_babe-checkpoint.ipynb
 notebooks/media/baseline/.ipynb_checkpoints/baseline_cwnc-checkpoint.ipynb
 notebooks/media/hyperopt/.ipynb_checkpoints/Untitled-checkpoint.ipynb
+data/EN/raw/WNC/texts/texts3.zip
