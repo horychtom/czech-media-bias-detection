@@ -1,12 +1,20 @@
 \chapter{State of the art}
 
 \section{Bias}
-Mitigatin vs Detection, importance, types of bias
+Defining the word \textit{bias} can be a bit tricky, because with different settings and different goals the definition also shifts. A lot of work done in bias also lacks the proper definition and often include vague decriptions of goals \cite{blodgett2020language}. In terms of \Gls{ml}, bias usually means a tilt, prejudice, or tendency that, during the training, gets into the model and may even lead to potentially unfair decisions. The bias is typically skewed towards some group of people, eg groups based on ethnicity, gender, age, etc. 
+
+To put things into perspective, one infamous example is when Microsofts AI chatbot has picked up a racist rhetoric from large racially biased data\footnote{\url{https://spectrum.ieee.org/in-2016-microsofts-racist-chatbot-revealed-the-dangers-of-online-conversation}}. Another example is when large pretrained language models exhibit stereotypical bias. Large language models are often used to generate text and such a biased model can then generate statements that contain social stereotypes \cite{nadeem2021stereoset}.
+
+Nowadays, these systems are used for making decisions in essential areas such as in hiring process, loans, and even justice. Therefore, a detection of possible unfairness of \Gls{ml} models and subsequent mitigation of such biases has been broadly studied \cite{blodgett2020language}.
+
+However, besides the study of the models that reflect the biased nature of the data, one can focus on the origin of the bias introduced by the human in the first place. Biased writing, especially in the news, can have a significant influence on people who consume it. In this work, I define bias as an authors tendency, slant or implicit belief that is reflected in their writing. In terms of news media, this is called \textbf{media bias} and in this work I focus on the detection of this kind of bias.
+
+
 \section{Gender bias detection}
 Most of the work done regarding gender bias aims to study the gender bias embedded in the models and further methods to measure, clarify, and possibly mitigate it.
 There is clear evidence that current language models possess implicit gender bias. Whether it means in terms of learned, biased embeddings \cite{bolukbasi2016man} or simply underrepresentation of a particular sex in the data \cite{sun-peng-2021-men}. 
 
-Yet, my work aspires to classify news texts, therefore I examined the possibilities of gender classification.
+Yet, my work aspires to classify news texts, therefore I examined the possibilities of gender classification in text.
 
 I closely followed the approach of Dinan et al.\cite{dinan2020multi}. Where they define three gender bias dimensions: bias when speaking \textit{ABOUT} someone, \textit{TO} someone or \textit{AS} someon and target classes are \{masculine,feminine,neutral\}. 
 
@@ -23,12 +31,11 @@ To mimic the results of the paper mentioned above, I sampled 150k sentences from
 Gender classifier, like this one, can be used to determine what percentage of a particular article in Czech news environment is about men, women, or is completely genderless. This statistical indicator could help to keep the writing more balanced or give an insight in already published writing.
 
 
+
+
 \section{Media bias detection}
 Media bias - hyperpolarized society, allsides definitions. Its not always a bad thing, Even though allsides aim on source level, their definition can be interpolated onto sentence level. According to their definition, there is emotional (setiment detection part), opininon as facts (subjective part (wikipedia!), Insult detection
 \subsection{Informational vs Lexical}
 Many do lexical, framing, něco o dalších, WCL.
 \subsection{Methodology (SOTA)}\label{methodology}
 bla bla Article level vs sentence level. Neural nets vs classical machine learning. Multitask learning.
-
-
-%\section{Analysis of BABE}

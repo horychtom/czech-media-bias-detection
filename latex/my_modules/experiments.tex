@@ -55,18 +55,21 @@ For choosing the best hyperparameters, I restricted the search space only to the
      \item \textbf{Epochs} $\in \{2,3,4\}$
  \end{itemize}
  
- As the authors of the original BERT paper suggest. 
+ As the authors of the original BERT paper suggest. The models were very sensitive to hyperparameters. After tuning, overall best parameters were learning rate = 3e-5, batch\_size = 16 and number of epochs = 3  
  
   \input{my_modules/tables/baseline}
 
  
  
  \section{Combining Datasets}
- Here i can combine datasets.
- \subsection{Pretraining on English WNC}
- \subsection{Subjectivity pretraining}
- \subsection{Media Bias Pretraining}
+ Here i can combine datasets. Trying all combinations would mean training 128 models.
+ \subsection{Pretraining on WNC}
+ \subsection{Subjectivity pretraining + augmenting}
+ Despite SUBJ task being subset of complex media bias, modelwas not able to learn both tasks at once. Hence used only for pretraining
+ \subsection{Media Bias Pretraining + augmenting }
+ had to be downsampled to 2.5 k
  \subsection{Combining all datasets together Without WNC}
+ \subsection{only high quality}
 
  
  
