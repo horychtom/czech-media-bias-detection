@@ -6,7 +6,7 @@ from CWhard import CWhard
 from BASIL import BASIL
 from UAcrisis import UAcrisis
 from WIKI1 import WIKI1
-from WIKI2 import WIKI2
+from CWNC import CWNC
 from BABE import BABE
 from WNC import WNC
 from NFNJ import NFNJ
@@ -34,8 +34,8 @@ elif dataset == "BASIL":
     dc = BASIL(dataset)
 elif dataset == "WIKI1":
     dc = WIKI1(dataset)
-elif dataset == "WIKI2":
-    dc = WIKI2(dataset)
+elif dataset == "CWNC":
+    dc = CWNC(dataset)
 elif dataset == "BABE":
     dc = BABE(dataset)
 elif dataset == "WNC":

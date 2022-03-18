@@ -1,4 +1,3 @@
-from turtle import pd
 from datasets import load_dataset, Dataset
 from DataCreator import DataCreator
 
