@@ -168,3 +168,17 @@ notebooks/media/data_merging/checkpoint-5000/vocab.json
 src/models/trained/hq_pretrained.pth
 src/models/trained/subj_pretrained.pth
 src/models/trained/mb_pretrained.pth
+notebooks/media/data_merging/checkpoint-4500/config.json
+notebooks/media/data_merging/checkpoint-4500/merges.txt
+notebooks/media/data_merging/checkpoint-4500/optimizer.pt
+notebooks/media/data_merging/checkpoint-4500/pytorch_model.bin
+notebooks/media/data_merging/checkpoint-4500/rng_state.pth
+notebooks/media/data_merging/checkpoint-4500/scheduler.pt
+notebooks/media/data_merging/checkpoint-4500/special_tokens_map.json
+notebooks/media/data_merging/checkpoint-4500/tokenizer_config.json
+notebooks/media/data_merging/checkpoint-4500/trainer_state.json
+notebooks/media/data_merging/checkpoint-4500/training_args.bin
+notebooks/media/data_merging/checkpoint-4500/vocab.json
+notebooks/media/data_merging/.ipynb_checkpoints/high_quality-checkpoint.ipynb
+notebooks/media/data_merging/.ipynb_checkpoints/media_bias_pretrain-checkpoint.ipynb
+notebooks/media/data_merging/.ipynb_checkpoints/subj_pretrain-checkpoint.ipynb
