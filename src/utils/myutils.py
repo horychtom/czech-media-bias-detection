@@ -4,8 +4,26 @@ import matplotlib.pyplot as plt
 import itertools
 import numpy as np
 
-from datasets import load_metric
 
+from datasets import load_metric, Dataset, concatenate_datasets
+
+
+def compute_metrics_eval(eval_preds):
+    metric = load_metric("f1")
+    logits, labels = eval_preds
+    predictions = np.argmax(logits, axis=-1)
+    return metric.compute(predictions=predictions, references=labels)
+
+def resample(data):
+    data_biased = data.filter(lambda x: x['label'] == 1).shuffle(seed=42)
+    data_unbiased = data.filter(lambda x: x['label'] == 0).shuffle(seed=42)
+
+    if len(data_biased) < len(data_unbiased):
+        data_unbiased = Dataset.from_dict(data_unbiased[:len(data_biased)])
+    else: 
+        data_biased = Dataset.from_dict(data_biased[:len(data_unbiased)])
+
+    return concatenate_datasets([data_biased,data_unbiased]).shuffle(seed=42)
 
 def preprocess_data(data,tokenizer,col_name:str):
     """tokenization and necessary processing
