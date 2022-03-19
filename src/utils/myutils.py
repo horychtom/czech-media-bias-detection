@@ -7,6 +7,9 @@ import numpy as np
 
 from datasets import load_metric, Dataset, concatenate_datasets
 
+def ratio(data):
+    values = np.unique(data['label'],return_counts=True)[1]
+    return [values[0]/np.sum(values),values[1]/np.sum(values)]
 
 def compute_metrics_eval(eval_preds):
     metric = load_metric("f1")

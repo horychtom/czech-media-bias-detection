@@ -204,3 +204,4 @@ src/models/trained/babe-pretrain.pth
 src/models/trained/subj-pretrain.pth
 src/models/trained/ua_crisis-pretrain.pth
 src/models/trained/wikibias-pretrain.pth
+src/models/trained/wiki-all-pretrain.pth
