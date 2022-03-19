@@ -63,6 +63,10 @@ For choosing the best hyperparameters, I restricted the search space only to the
  
  \section{Combining Datasets}
  Here i can combine datasets. Trying all combinations would mean training 128 models.
+ \subsection{Pretrianing all}
+ I pretrained all to see which are generally best. Trained all and evaluated on babe, to see what is the most relevant. On the same valid splits.
+ Pretrained odchylka is too little, it has no impact at all. Wiki works very good. -> oversampling? pretraining? Low quality of media bias data really doesnt work out. Too small to learn bias embeddings.
+ Finetuning on small datasets is very unstable ~ weight inicializations are bad.
  \subsection{Pretraining on WNC}
  \subsection{Subjectivity pretraining + augmenting}
  Despite SUBJ task being subset of complex media bias, modelwas not able to learn both tasks at once. Hence used only for pretraining
