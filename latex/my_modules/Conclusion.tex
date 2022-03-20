@@ -1,5 +1,11 @@
 \chapter{Conclusion}
 \section{Summary of work done}
-In this work I presented 8 parallel czech datasets for tackling the media bias detection. 6 of which are related to subjectivity detection and one is.
+In this work I collected and analyzed all the literature and resource for studying state-of-the-art media bias detection. I present new czech parallel corpus derived from wikipedia and in addition 9 parallel translated czech datasets for tackling the media bias detection in Czech language.
+
+I trained and tuned the state-of-the-art language models to achiave F1\% score of ... on target dataset, which is comparable to current SOTA in English.
+
+Finally, the final classifier has been used to build a demo and to analyze a sample of articles from cesky rozhlas throughout the history. Results of this study showed interesting information about progression of media slant in Czech news.
+
+I hope my work will kickstart the research of media bias in Czech news and will motivate future researchers to build up on this work and potentially build larger and better corpora.
 \section{Future perspective}
-As discussed in the section [experimenty] reasearch [citace] suggests that multitask learning increases classification accuracy significantly ref. However, multitask model environment requires a lot of tasks [odkaz na exT5] to perform better than single task models.  
+As discussed in the experiments section, reasearch suggests that multitask learning increases classification accuracy significantly ref. Multitask model environment requires a lot of tasks \cite{aribandi2021ext5} to perform better than single task models. Therefore, for czech language setting, one of the future research possibilities would be to leverage multi-task learning for current classifier improvement. 

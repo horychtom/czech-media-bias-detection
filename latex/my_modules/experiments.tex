@@ -63,19 +63,34 @@ For choosing the best hyperparameters, I restricted the search space only to the
  
  \section{Combining Datasets}
  Here i can combine datasets. Trying all combinations would mean training 128 models.
- \subsection{Pretrianing all}
- I pretrained all to see which are generally best. Trained all and evaluated on babe, to see what is the most relevant. On the same valid splits.
- Pretrained odchylka is too little, it has no impact at all. Wiki works very good. -> oversampling? pretraining? Low quality of media bias data really doesnt work out. Too small to learn bias embeddings.
- Finetuning on small datasets is very unstable ~ weight inicializations are bad.
- \subsection{Pretraining on WNC}
- \subsection{Subjectivity pretraining + augmenting}
- Despite SUBJ task being subset of complex media bias, modelwas not able to learn both tasks at once. Hence used only for pretraining
- \subsection{Media Bias Pretraining + augmenting }
- had to be downsampled to 2.5 k
- \subsection{Combining all datasets together Without WNC}
- \subsection{only high quality}
-
  
+ \subsection{Trained on Datasets, evaluated on BABE}
+ Here we can see that, wiki bias is the most aplicable to BABE
+ 
+ \subsection{Pretrianing Combinations}
+ \begin{itemize}
+     \item \textbf{One by one} -  I pretrained all to see which are generally best. Trained all and evaluated on babe, to see what is the most relevant. On the same valid splits. Low quality of media bias data really doesnt work out. Too small to learn bias embeddings.
+     Pretrained odchylka is too little, it has no impact at all. Wiki works very good.
+     \item \textbf{Splits: SUBJ,HQ,MB, WIKI} - pretraining had no effect. Subj achieved good performance. Subj did actually quite good.
+     \item \textbf{WNC-CS} - Since this is the only large dataset I decided to evaluate it seperately.
+     \item \textbf{All together} - To learn bias embeddings properly.
+ \end{itemize}
+ conclusion: pretraining had no effect,Finetuning on small datasets is very unstable ~ weight inicializations are bad.
+ 
+ Training wiki, freezing parameters nad only training classification layer.
+ Freezing encoder havent worked out yet!
+\subsection{Training jointly}
+\begin{itemize}
+    \item \textbf{with chosen mpqa,wikibias} - Train them jointly.
+    \item \textbf{with SUBJ split} - bad - 73
+    \item \textbf{with all MB}
+    \item \textbf{All togetger, without wnc}
+\end{itemize}
+
+\subsection{Instability of fine-tuning}
+I had to increase numbe of pochs to 10
+\section{Final Training}
+Final setup consists of hyperparams from here, data combination pretraining from here,early stopping, reinicialization and finding best seeds.
  
  
  

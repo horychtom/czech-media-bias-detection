@@ -26,18 +26,16 @@ Gender classifier, like this one, can be used to determine what percentage of a 
 
 
 %___________________________MEDIA_BIAS______________________________________________%
+Start on article vs sentence level.
+Approaches to sentence level ~ liwc vs neural
+
 \section{Media bias detection}
+When it comes to automatic detection of media bias, a standard is to use supervised learning. Most of the prior work done in media bias used handcrafted features together with traditional\footnote{By traditional I refer to all \Gls{ml} models that are not deep neural networks.} \Gls{ml} algorithms. For example Hube et al \cite{hube2018detecting} used lexicon based approach, with various different lexicons (sentiment, bias, subjective, and other linguistic features). Even though hand-crafted feature based approaches offer relatively reasonable explainibility, they were outperformed by neural networks and have been replaced by them completely.
 
-- article vs sentence level
-- handcrafted vs neural (explainibility of handcrafted)
-- lexical vs informational - mention context a paper co se zabývá informational
-- distant supervision ~ allsides, mediabias
-- meta data (social nets etc)
-- multitask
+Most of the current research focuses on \textbf{sentence level} classification \cite{sinha2021determining,Spinde2021MBIC,lee2021unifying,hube2019neural}, however, the classification can be extrapolated to \textbf{article level}.
 
+The article level classification is usually more difficult, since one cannot simply put the whole article through the neural network. Bottom-up solutions are usually used. Naive approach would be to classify all sentences and simply count bias frequency, yet, additional high-level features (eg. position of bias) have been studied and proved to be effective  \cite{chen2020detecting,chen-etal-2020-analyzing}.
 
+As I outlined in previous section, media bias can be divided into two classes where one does depend on outer context and the other one does not. This is commonly refer to as \textbf{informational} and \textbf{lexical} bias. There have been efforts to classify informational bias with varying context size \cite{van2020context}, altough it is rather unique approach and so neither I will focus on informational bias in this work.
 
-\subsection{Informational vs Lexical}
-Many do lexical, framing, něco o dalších, WCL.
-\subsection{Methodology (SOTA)}\label{methodology}
-bla bla Article level vs sentence level. Neural nets vs classical machine learning. Multitask learning.
+Various pretraining and fine-tuning strategies were studied, however, one of the most promising is using a \Gls{mtl} to tackle the problem. Even though there are already some results of applying \Gls{mtl} on media bias detection \cite{lee2021unifying,spindeexploiting}, empirical studies on \Gls{mtl} in general suggest that large number of tasks has to be used. See \ref{mtl} for more details about \gls{mtl}. 
