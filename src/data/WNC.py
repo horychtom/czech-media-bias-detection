@@ -25,7 +25,17 @@ class WNC(DataCreator):
 
     # ALERT! for now changed to en, so i can make some experiments with it
     def ensemble(self):
+
+        with open(self.cs_path + "texts-cs.txt", "r") as f:
+            sentences_cs = f.read().splitlines()
+
+        #EN
         dataset = Dataset.from_dict(
             {"sentence": self.sentences, "label": self.labels})
         dataset = dataset.shuffle(seed=self.seed)
         dataset.to_csv(self.PATH + "/data/EN/processed/WNC/" + "wnc.csv", index=False)
+        #CS
+        dataset = Dataset.from_dict(
+            {"sentence": sentences_cs, "label": self.labels})
+        dataset = dataset.shuffle(seed=self.seed)
+        dataset.to_csv(self.PATH + "/data/CS/processed/WNC/" + "wnc.csv", index=False)
