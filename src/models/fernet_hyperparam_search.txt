@@ -1,18 +1,24 @@
-{'batch_size': 16, 'epochs': 2, 'learning_rate': 2e-05, 'warmup_steps': 0, 'weight_decay': 0.1} 0.7802564102564102
-{'batch_size': 16, 'epochs': 2, 'learning_rate': 3e-05, 'warmup_steps': 0, 'weight_decay': 0.1} 0.7841020512820510
-{'batch_size': 16, 'epochs': 2, 'learning_rate': 5e-05, 'warmup_steps': 0, 'weight_decay': 0.1} 0.7776938461538462
-{'batch_size': 16, 'epochs': 3, 'learning_rate': 2e-05, 'warmup_steps': 0, 'weight_decay': 0.1} 0.7741774358974359
-{'batch_size': 16, 'epochs': 3, 'learning_rate': 3e-05, 'warmup_steps': 0, 'weight_decay': 0.1} 0.7760933333333332
-{'batch_size': 16, 'epochs': 3, 'learning_rate': 5e-05, 'warmup_steps': 0, 'weight_decay': 0.1} 0.7757784615384616
-{'batch_size': 16, 'epochs': 4, 'learning_rate': 2e-05, 'warmup_steps': 0, 'weight_decay': 0.1} 0.7793000000000000
-{'batch_size': 16, 'epochs': 4, 'learning_rate': 3e-05, 'warmup_steps': 0, 'weight_decay': 0.1} 0.7703312820512821
-{'batch_size': 16, 'epochs': 4, 'learning_rate': 5e-05, 'warmup_steps': 0, 'weight_decay': 0.1} 0.7693692307692308
-{'batch_size': 32, 'epochs': 2, 'learning_rate': 2e-05, 'warmup_steps': 0, 'weight_decay': 0.1} 0.7716107692307692
-{'batch_size': 32, 'epochs': 2, 'learning_rate': 3e-05, 'warmup_steps': 0, 'weight_decay': 0.1} 0.7757738461538461
-{'batch_size': 32, 'epochs': 2, 'learning_rate': 5e-05, 'warmup_steps': 0, 'weight_decay': 0.1} 0.7834641025641027
-{'batch_size': 32, 'epochs': 3, 'learning_rate': 2e-05, 'warmup_steps': 0, 'weight_decay': 0.1} 0.7728923076923078
-{'batch_size': 32, 'epochs': 3, 'learning_rate': 3e-05, 'warmup_steps': 0, 'weight_decay': 0.1} 0.7706497435897436
-{'batch_size': 32, 'epochs': 3, 'learning_rate': 5e-05, 'warmup_steps': 0, 'weight_decay': 0.1} 0.7789769230769231
-{'batch_size': 32, 'epochs': 4, 'learning_rate': 2e-05, 'warmup_steps': 0, 'weight_decay': 0.1} 0.7767400000000000
-{'batch_size': 32, 'epochs': 4, 'learning_rate': 3e-05, 'warmup_steps': 0, 'weight_decay': 0.1} 0.7709697435897437
-{'batch_size': 32, 'epochs': 4, 'learning_rate': 5e-05, 'warmup_steps': 0, 'weight_decay': 0.1} 0.7693753846153846
+{"batch_size": 16, "learning_rate": 2e-05, "number_of_epochs": 2} f1: 0.7747177273616199
+{"batch_size": 16, "learning_rate": 2e-05, "number_of_epochs": 3} f1: 0.7784326663191476
+{"batch_size": 16, "learning_rate": 2e-05, "number_of_epochs": 4} f1: 0.7794773881950509
+{"batch_size": 16, "learning_rate": 3e-05, "number_of_epochs": 2} f1: 0.7716497337671764
+{"batch_size": 16, "learning_rate": 3e-05, "number_of_epochs": 3} f1: 0.7779064291871207
+{"batch_size": 16, "learning_rate": 3e-05, "number_of_epochs": 4} f1: 0.7785946400145038
+{"batch_size": 16, "learning_rate": 4e-05, "number_of_epochs": 2} f1: 0.7679734387325927
+{"batch_size": 16, "learning_rate": 4e-05, "number_of_epochs": 3} f1: 0.782075036637295
+{"batch_size": 16, "learning_rate": 4e-05, "number_of_epochs": 4} f1: 0.7813558382444962
+{"batch_size": 16, "learning_rate": 5e-05, "number_of_epochs": 2} f1: 0.7721951299453338
+{"batch_size": 16, "learning_rate": 5e-05, "number_of_epochs": 3} f1: 0.7742894220901084
+{"batch_size": 16, "learning_rate": 5e-05, "number_of_epochs": 4} f1: 0.7738893364960978
+{"batch_size": 32, "learning_rate": 2e-05, "number_of_epochs": 2} f1: 0.7689448678308476
+{"batch_size": 32, "learning_rate": 2e-05, "number_of_epochs": 3} f1: 0.7767133993994861
+{"batch_size": 32, "learning_rate": 2e-05, "number_of_epochs": 4} f1: 0.7852848148324579
+{"batch_size": 32, "learning_rate": 3e-05, "number_of_epochs": 2} f1: 0.7697676585530171
+{"batch_size": 32, "learning_rate": 3e-05, "number_of_epochs": 3} f1: 0.7778694342197511
+{"batch_size": 32, "learning_rate": 3e-05, "number_of_epochs": 4} f1: 0.7778423276004264
+{"batch_size": 32, "learning_rate": 4e-05, "number_of_epochs": 2} f1: 0.7716152864544812
+{"batch_size": 32, "learning_rate": 4e-05, "number_of_epochs": 3} f1: 0.770796135783481
+{"batch_size": 32, "learning_rate": 4e-05, "number_of_epochs": 4} f1: 0.7716352860722415
+{"batch_size": 32, "learning_rate": 5e-05, "number_of_epochs": 2} f1: 0.7635526771428747
+{"batch_size": 32, "learning_rate": 5e-05, "number_of_epochs": 3} f1: 0.7693578669224637
+{"batch_size": 32, "learning_rate": 5e-05, "number_of_epochs": 4} f1: 0.7650888465530621
