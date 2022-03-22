@@ -39,7 +39,7 @@ def preprocess_data(data,tokenizer,col_name:str):
     Returns:
         _type_: _description_
     """
-    tokenize = lambda data : tokenizer(data[col_name], truncation=True,max_length=512)
+    tokenize = lambda data : tokenizer(data[col_name], truncation=True,max_length=128)
     
     data = data.map(tokenize,batched=True)
     data = data.remove_columns([col_name])
@@ -79,7 +79,7 @@ def compute_metrics(model,device,testing_dataloader):
         metric1.add_batch(predictions=predictions, references=batch["labels"])
         metric2.add_batch(predictions=predictions, references=batch["labels"])
         
-    return {'f1': metric1.compute(average='micro')['f1'],'accuracy': metric2.compute()}
+    return {'f1': metric1.compute(average='macro')['f1'],'accuracy': metric2.compute()}
 
 
 def plot_confusion_matrix(cm, classes, normalize=False, title='Confusion matrix', cmap=plt.cm.Blues):
