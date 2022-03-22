@@ -25,9 +25,6 @@ device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cp
 CS_DATA_PATH = PATH + '/data/CS/processed/BABE/train.csv'
 CONFIG_PATH = PATH + '/src/utils/config.yaml'
 
-BATCH_SIZE = 64
-transformers.utils.logging.set_verbosity_error()
-
 #load data
 data = load_dataset('csv',data_files = CS_DATA_PATH)['train']
 with open(CONFIG_PATH) as f:
@@ -35,7 +32,7 @@ with open(CONFIG_PATH) as f:
 skfold = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
 
 #model 
-model_name = config_data['model_to_tune'][0]
+model_name = 'ufal/robeczech-base'
 tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=False,padding=True)
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 token_full = preprocess_data(data,tokenizer,'sentence')
@@ -44,6 +41,8 @@ def fit_and_eval(model_name,token_full,train_idx,eval_idx,training_args):
     token_train = Dataset.from_dict(token_full[train_idx])
     token_valid = Dataset.from_dict(token_full[eval_idx])
     
+    torch.cuda.manual_seed(12345)
+    torch.manual_seed(12345)
     model = AutoModelForSequenceClassification.from_pretrained(model_name,num_labels=2);
     model.to(device);
     trainer = Trainer(model,training_args,train_dataset=token_train,data_collator=data_collator,tokenizer=tokenizer)
@@ -56,31 +55,23 @@ def fit_and_eval(model_name,token_full,train_idx,eval_idx,training_args):
 
 param_grid = {
      'learning_rate':[2e-5,3e-5,4e-5,5e-5],
-     'weight_decay':[0.05,0.1],
-     'batch_size': [32, 64],
-     'warmup_steps': [0,50],
-     'number_of_epochs':[3]
-     }
-# param_grid = {
-#     'number_of_epochs':[2,3,4,5],
-#     'learning_rate':[4e-5],
-#     'batch_size':[32],
-#     'warmup_steps':[0],
-#     'weight_decay':[0.1]
-# }
+     'batch_size': [16, 32],
+     'number_of_epochs':[2,3,4]}
+
 param_comb = ParameterGrid(param_grid)
 
 with open(PATH + '/src/models/fernet_hyperparam_search.txt','w') as f:
     for idx,params in enumerate(param_comb):
 
+        BATCH_SIZE = params['batch_size']
         training_args = TrainingArguments(
             output_dir = './',
             num_train_epochs=params['number_of_epochs'],
             save_total_limit=2,
             disable_tqdm=False,
             per_device_train_batch_size=params['batch_size'],  
-            warmup_steps=params['warmup_steps'],
-            weight_decay=params['weight_decay'],
+            warmup_steps=0,
+            weight_decay=0.1,
             learning_rate=params['learning_rate'])
 
         scores = []
