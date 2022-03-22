@@ -232,3 +232,8 @@ src/models/trained/wnc_cs_pretrained.pth
 src/models/trained/wnc_larger_cs_pretrained.pth
 src/models/fernet_hyperparam_search.txt
 src/models/fernet_hyperparam_search.txt
+src/models/fernet_hyperparam_search.txt
+notebooks/media/data_merging/.ipynb_checkpoints/experimenty_vsechno-checkpoint.ipynb
+notebooks/media/data_merging/.ipynb_checkpoints/jointly_train-checkpoint.ipynb
+notebooks/media/data_merging/.ipynb_checkpoints/train_wncs-checkpoint.ipynb
+src/data/__pycache__/NFNJ.cpython-38.pyc
