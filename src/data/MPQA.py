@@ -17,3 +17,16 @@ class MPQA(DataCreator):
 
         mapping = {"objective": 0, "subjective": 1}
         self.labels = [mapping[key] for key in self.data['label']]
+
+    def ensemble(self):
+        """ Expects text-cs.txt file to be placed in czech directory
+        of particular dataset. Ensembles czech sentences with labels from 
+        original dataset
+        """
+        with open(self.cs_path + "texts-cs.txt", "r") as f:
+            sentences_cs = f.read().splitlines()
+
+        cs_dataset = Dataset.from_dict(
+            {"sentence": sentences_cs, "label": self.labels})
+        cs_dataset = cs_dataset.filter(lambda x: len(x['sentence']) > 20)
+        cs_dataset.to_csv(self.cs_path+self.fname, index=False)
