@@ -63,6 +63,7 @@ for train_index, val_index in skfold.split(babe_tok['input_ids'],babe_tok['label
     token_train = Dataset.from_dict(babe_tok[train_index])
     token_valid = Dataset.from_dict(babe_tok[val_index])
     eval_dataloader = DataLoader(token_valid, batch_size=BATCH_SIZE, collate_fn=data_collator)
+    unlabelled_tok = preprocess_data(subj,tokenizer,'sentence')
 
     
     #self training
@@ -96,7 +97,7 @@ for train_index, val_index in skfold.split(babe_tok['input_ids'],babe_tok['label
             break
             
         #only sample 2x size of BABE
-        if len(token_train) > 7000:
+        if len(token_train) > 3000:
             break
             
         #indices of the highest probability ranked predictions
@@ -120,7 +121,7 @@ for train_index, val_index in skfold.split(babe_tok['input_ids'],babe_tok['label
         print(compute_metrics(model,device,eval_dataloader)['f1'])
     #evaluation
     scores.append(compute_metrics(model,device,eval_dataloader)['f1'])
-    print(scores[-1])
+    print("FINAL SCORE: ",scores[-1])
     
     
 print(scores)
