@@ -1,11 +1,45 @@
 \chapter{Theoretical background}
 
-\section{Neural Networks }
+\section{Natural Language processing}
+
+\section{Neural Networks}
+
 \section{Attention and transformers}\label{att_transformers}
-\section{Transfer learning}
+Trained on unsupervised tasks !
+Transformers have revolutionized almost very field of \Gls{nlp}. 
+
 \section{Text classification}
+Text classification is one of the most fundamental task in natural language processing. After obtaining a representation of a particular text, whether it is via embedding or one hot encoding, any classification algorithm can be ran on top of it (eg., Naive Bayes, SVM,...). A standard loss for classification is Cross-Entropy loss. In case of binary classification:
+
+\begin{equation}
+    L_{BCE} = \frac{1}{n} \sum_{i=1}^n ( y_i \cdot \log\hat{y_i} + (1-y_i)\cdot(1-\hat{y_i}))
+\end{equation}
+
+where $y_i$ denotes the ground-truth label and $\hat{y_i}$ the probability predicted by the model. 
+
+    
 \subsection{Metrics}
-\begin{itemize}
-    \item F1 \label{f1}
-\end{itemize}
+The most basic way to evaluate the prediction ability of a classifier is to use \textbf{accuracy} metric, which means counting correctly classified  data. 
+\begin{equation}
+    accuracy = \frac{correct\ predictions}{total\ predictions}
+\end{equation}
+This metric is feasible if classes of the dataset are balanced. However, imagine a situation where 90\% of data belong to one class and only 10\% to another. Classifier, which always outputs the first class, achieves 90\% accuracy even though its prediction capability is zero. For imbalanced data, it is convenient to use \textbf{F1} metric.
+\begin{equation}
+    F1 = \frac{2*Precision*Recall}{Precision + Recall}
+\end{equation}
+where precision
+\begin{equation}\footnote{TP,TN,FP,FN denotes to True positive, True Negative, Fasle Positive, False Negative}
+    Precision = \frac{TP}{TP+FP}
+\end{equation}
+can be understood as 'how precisely the model predicts a positive class' whereas recall
+\begin{equation}
+    Rrecall = \frac{TP}{TP+FN}
+\end{equation}
+can be understood as 'how much of a positive class can model predict'. Scores for each class are then averaged to obtain the final score.
+
+\subsection{Transformers for text classification}
+Predictive power of transformers is behind every state-of-the-art result, and text classification is no exception. The architecture consists of the \textbf{Encoder} side followed by the \textbf{Decoder} side. 
+
+\section{Transfer learning}
+
 \section{Multi-Task learning}

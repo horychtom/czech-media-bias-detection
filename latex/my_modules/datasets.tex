@@ -1,14 +1,12 @@
 \chapter{Datasets} \label{datasets}
-Due to the varying definitions of bias, different datasets try to capture different aspects of bias. In this section, I present a collection of all datasets related to biased writing and subjectivity detection available.
+Due to the complex nature of bias, different datasets try to capture different aspects of it. In this section, I present a collection of \textbf{all} datasets related to biased writing and subjectivity detection available and later leveraged their bias information to augment smaller ground truth datasets. For details see experiment section \ref{experiments}.
 
-Because there are not many media bias datasets of sufficient quality, I included other relevant datasets which are at least on some level linked to media bias and eventually leveraged their bias information to augment smaller ground truth datasets. For details see experiment section \ref{experiments}.
+As stated before, this work only focuses on sentence level classification, thus article level data were not considered.
 
-As discussed in \ref{methodology} this work only focuses on sentence level classification, thus data that focus only on the article level were not considered.
-
-
+\section{Subjectivity Datasets}
 
 \subsection{SUBJ}
-As allsides.com\footnote{\url{https://www.allsides.com}} consider subjective adjectives as a form of media bias, it is reasonable to include datasets that focus on this particular feature. The Subjectivity dataset (SUBJ) \cite{Pang+Lee:04a} consists of 10000 sentences gathered from movie review sites. Sentences are labeled as subjective and objective with 1:1 ratio. 
+It is reasonable to include datasets that focus on the detection of subjectivity, since it's one of the media bias features. The Subjectivity dataset (SUBJ) \cite{Pang+Lee:04a} consists of 10000 sentences gathered from movie review sites. Sentences are labeled as subjective and objective with 1:1 ratio. 
 
 The data were collected in an automatic way. The authors made an assumption that all reviews from Rottentomatoes\footnote{https://www.rottentomatoes.com/} are subjective and all plot summaries from IMBD\footnote{ www.imdb.com} are objective. Thus, the labels can be assumed to be noisy. For each class, 5k sentences were sampled \textbf{randomly}.
 
@@ -32,14 +30,15 @@ If there was at least one annotation \textbf{direct\_subjective} or \textbf{expr
 This approach has yielded $9484$ subjective sentences and 6318 objective sentences.
 
 
+\section{Media Bias datasets}
 
 
 \subsection{BASIL}
-BASIL dataset \cite{fan2019plain} comprises 300 articles with 1727 sentence level bias annotations. The authors of the dataset distinguish between \textbf{lexical} and \textbf{informational} bias. Here, lexical bias is defined as a form of bias which does not depend on the context and usually introduces polarized words.
+BASIL dataset \cite{fan2019plain} comprises 300 articles with 1727 sentence level bias annotations. The authors of the dataset distinguish between \textbf{lexical} and \textbf{informational} bias.
 
 The annotations were performed by two experts and further resolution discussions have later led to 0.56 and 0.7 \Gls{iaa} score for lexical and informational bias, respectively.
 
-Even though BASIL brings the sufficient annotation quality, most of the labelling resulted in informational bias annotations, leaving only 478 sentences for the lexical bias class. Informational bias requires a different approach to detection \cite{van2020context} and usually depends on context dramatically. Therefore, I extracted all sentences with \textit{informational} label as a neutral class.
+Even though BASIL brings the sufficient annotation quality, most of the labelling resulted in informational bias annotations, leaving only 478 sentences for the lexical bias class. Informational bias requires a different approach to detection \cite{van2020context} and usually depends on context dramatically. Therefore, I extracted all sentences with informational label as a neutral class.
 
 
 
@@ -54,8 +53,7 @@ The authors introduce rich annotations for each sentence. Each one of them looks
     \item Framing
 \end{enumerate}
 In addition, the \textit{overall bias} annotation is presented. Together, the data involve 44547 fine-grained annotations. For simplicity, I only included the overall bias annotation.
-Even though this dataset encompasses comprehensive bias information, it also suffers from low \Gls{iaa} score. Specifically Krippendorff’s $\alpha = -0.05$. Therefore, its usability is limited. 
-
+Even though this dataset encompasses comprehensive bias information, it also suffers from low \Gls{iaa} score. Specifically Krippendorff’s $\alpha = -0.05$.
 
 
 
@@ -78,7 +76,7 @@ The Fleiss Kappa \Gls{iaa} score averaged at zero, which makes it practically un
 
 
 \subsection{BABE}
-\textbf{B}ias \textbf{A}nnotations \textbf{B}y \textbf{E}xperts (BABE) is a key media bias dataset from \Gls{mbg}, which is to the best of my knowledge, the highest quality media bias dataset to this day. It builds on top of MBIC \cite{Spinde2021MBIC} which is a smaller crowdsourced dataset.
+\textbf{B}ias \textbf{A}nnotations \textbf{B}y \textbf{E}xperts (BABE) is a key media bias dataset from \Gls{mbg}\footnote{\url{https://media-bias-research.org/}}, which is to the best of my knowledge, the highest quality media bias dataset to this day. It builds on top of MBIC \cite{Spinde2021MBIC} which is a smaller crowdsourced dataset.
 
 BABE contains 3700 sentences. 1700 sentences are from MBIC, which were extracted from 1000 news articles, and in addition extended by 2000 more sentences, altogether covering 12 topics, annotated with binary bias indications. In addition, the annotations were enriched with a list of biased words. However, the presence of biased words does not always result in an overall biased sentence label. See \ref{table:2} for examples.
 
@@ -126,7 +124,7 @@ In addition to WNC, 385k of sentences which have not been changed during the NPO
 
 
 \subsection{CW-HARD}
-Hube et. al \cite{hube2019neural} constructed a dataset based on NPOV, where only revisions with one sentence diff were filtered. However, because of the potentially noisy outcome, 5000 sentences were sampled and annotated using crouwdsourcing. Yet, the Krippendorffs Alpha agreement score measured only $\alpha = 0.124$ which is generally considered low. 
+Hube et al. \cite{hube2019neural} constructed a dataset based on NPOV, where only revisions with one sentence diff were filtered. However, because of the potentially noisy outcome, 5000 sentences were sampled and annotated using crouwdsourcing. Yet, the Krippendorffs Alpha agreement score measured only $\alpha = 0.124$ which is generally considered low. 
 
 After filtering out sentences which annotators labeled with "I dont know" option, the final dataset consists of 1843 statements labeled as biased and 3109 labeled as neutral, a total of 4953 sentences.
 
@@ -145,10 +143,12 @@ To achieve a higher quality corpus, 4099 sentence pairs were randomly sampled an
  Some datasets focus on a slightly different task, yet still carry potentially useful information. Such data can be useful in a Multi-Task setting \ref{mtl}. To name a few, which are focused on a detection of ideology:
 \begin{itemize}
 \item \textbf{NewsB} - 
-Consists of labels capturing authors political ideology (liberal, conservative)
+Consists of labels capturing authors political ideology (liberal, conservative) Labeled through distant supervision.
 \item \textbf{IBC} - Also focuses on ideology detection, however, it is not publicly available.
 \end{itemize}
 
 
-\section{Datasets summary}
+\section{Summary}
 In the previous section, I introduced all resources that are potentially useful for media bias analysis and are publicly available. The overview of all datasets and its properties can be seen in figure \ref{table:1}.
+
+BABE dataset is generally a good benchmark and its translated parallel version will be used for evaluation in this work. Combinations of different datasets merging are studied in \ref{experiments}. Unfortunately a lot of the data suffer from noisy labelling and low \gls{iaa} greatly. Hence, their usability is considerably limited.
