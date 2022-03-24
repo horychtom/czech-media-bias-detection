@@ -237,3 +237,6 @@ notebooks/media/data_merging/.ipynb_checkpoints/experimenty_vsechno-checkpoint.i
 notebooks/media/data_merging/.ipynb_checkpoints/jointly_train-checkpoint.ipynb
 notebooks/media/data_merging/.ipynb_checkpoints/train_wncs-checkpoint.ipynb
 src/data/__pycache__/NFNJ.cpython-38.pyc
+src/models/trained/wncen_pretrained.pth
+src/models/trained/wncs_pretrained.pth
+notebooks/media/baseline/.ipynb_checkpoints/results-checkpoint.txt
