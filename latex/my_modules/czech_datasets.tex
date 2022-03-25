@@ -32,9 +32,9 @@ Moreover, all sentences, which were originally cased were not lower-cased, since
 
 \newpage
 \section{Translated data}
-In the list below, I present all translated datasets in the unified format. I hope this collection will serve as a good starting point for future research of media bias in Czech News.
+All translated datasets are listed below. I hope this collection will serve as a good starting point for future research of media bias in Czech News.
 
-I will share all listed datasets on HugginFace\footnote{\url{https://huggingface.co/}} hub.
+I share all listed datasets on HugginFace\footnote{\url{https://huggingface.co/}} hub.
 
 \begin{itemize}
     \item BABE-CS
@@ -48,8 +48,14 @@ I will share all listed datasets on HugginFace\footnote{\url{https://huggingface
     \item WNC-large-CS\footnote{additional \textit{large} is added for distinction between large translated WNC and czech version of WNC}
 \end{itemize}
 
-Together, approximately 400k of bias labelled translated sentences were collected.
+Together, approximately 400k of bias labelled translated sentences were collected. A distribution of the datasets can be seen in figure \ref{fig:cz_data}. The WNC is not included in the plot because it represents 87% of all data. 
 
+
+\begin{figure}
+  \includegraphics[scale=0.5]{my_modules/multimedia/withoutWNC.png}
+  \caption{Dataset distribution in czech collection of data (Without WNC)}
+  \label{fig:cz_data}
+\end{figure}
 
 
 
@@ -64,9 +70,8 @@ I followed two main existing approaches, both of them relying on the extraction 
 
 
 \subsection{CWNC-noisy}
-I closely followed the \cite{aleksandrova2019multilingual} approach and used their script. Firstly, a file with all pages and its complete edit history is downloaded from the wiki dump\footnote{\url{https://dumps.wikimedia.org/cswiki/}}. I used the \textbf{20220201} version. Then the edits containing one of the NPOV related tags are extracted and then the process of sentence extraction follows. All used tags can be seen in appendix.
-
-This approach yields 15k sentences, however, it uses a rather trivial assumption that when NPOV tag is removed, \textbf{all} removed sentences are biased and all added are unbiased. This annotating strategy led to poor results \ref{experiments}. For this reason, I excluded this dataset from further experiments entirely.
+I closely followed the \cite{aleksandrova2019multilingual} approach and used their script. Firstly, a file with all pages and its complete edit history is downloaded from the wiki dump\footnote{\url{https://dumps.wikimedia.org/cswiki/}}. I used the \textbf{20220201} version. Then the edits containing one of the NPOV related tags are extracted and then the process of sentence extraction follows.
+This approach yields 15k sentences, however, it uses a rather trivial assumption that when NPOV tag is removed, \textbf{all} removed sentences are biased and all added are unbiased. This annotating strategy led to poor results and for this reason, I excluded this dataset from further experiments entirely.
 
 
 
@@ -77,7 +82,7 @@ This dataset was created following \cite{pryzant2020automatically} approach. The
 I used the script publicly available on Github\footnote{\url{https://github.com/rpryzant/neutralizing-bias}},with a few slight modifications so the processing fits the Czech language properties:
 \begin{enumerate}
     \item Used Regex was extended to exclude czech words that contain "pov" inside eg. \underline{pov}stání, \underline{pov}lak etc.\footnote{Regular expression used to match npov related comments: }
-    \item All cases has been preserved, since bert like models can handle cased language.
+    \item All cases has been preserved.
     \item Czech Morphodita tokenizer was used\footnote{\url{https://ufal.mff.cuni.cz/morphodita/users-manual}}
 \end{enumerate}
 The final dataset consists of:

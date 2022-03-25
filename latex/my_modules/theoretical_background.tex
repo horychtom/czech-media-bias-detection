@@ -1,11 +1,72 @@
 \chapter{Theoretical background}
 
-\section{Neural Networks }
+\section{Text representation}
+Most of the NLP models operate on text on the \textbf{token} level. The token can be understood as the smallest unit of the text and is a product of a process called \textbf{tokenization}.
+
+Tokenization means splitting text into tokens. A common token unit is a word; however, tokens can be as small as a single byte.
+
+    After tokenization, we have to find a numerical representation for each token. 
+
+\section{Neural Networks}
+An \Gls{ann} is a model developed in the early 1940s. The smallest unit of a \Gls{nn} is a perceptron:
+\begin{equation}
+    f(x) = h(w^Tx)
+\end{equation}
+Where $w$ is a \textbf{\textit{weight}} vector with an additional \textbf{\textit{bias}} term, $x$ is an input feature vector in the form $(x,1)$, $h$ is an \textbf{\textit{activation function}}. Activation functions are used for introducing non-linearities into the \Gls{nn}. In case of perceptron, it is a simple threshold function. Although the definition of \Gls{mlp} is loose, it can be understood as a simplest form of neural network with multiple connected perceptrons and a threshold activation function. In general, \Gls{nn}s usually use other activation functions such as sigmoid, ReLu, Tanh, LeakyReLu, etc.
+
+\section{Encoder-Decoder}
+
+\subsection{Recurrent Neural Networks}
+Vanilla \Gls{nn} architecture operates on inputs of fixed length. For variable length, input \Gls{rnn} is used. Let $x = (x_1,x_2,...,x_T)$ be the input sequence. \gls{rnn} works on $x$ sequentially, updating its hidden state vector $h$ with some non-linear function such as sigmoid, at each discrete time step. The final hidden state, also called a context vector $c_T$, is preserved.
+Therefore, \Gls{rnn} is able to map the input of arbitrary length $T$ to a fixed size vector $c_T$ that captures the information of the entire sequence.
+
+\subsection{conventional Encoder-Decoder architecture}
+Sequence-to-sequence \cite{sutskever2014sequence,cho2014learning} model aims to tackle the problem of mapping one sequence to another using two \Gls{rnn}s. The first \Gls{rnn} called \textbf{Encoder} is used to map the input sequence of arbitrary length to the fixed-size context vector. The context vector is then fed to a second \Gls{rnn} called \textbf{Decoder}. Which then decodes the context vector to a final sequence $y = (y_1,...,y_k)$, by updating its hidden state vectors while generating outputs $y_t$.
+
+There are several problems with this architecture. First, vanishing gradients happen in training an RNN based Encoder-Decoder. Second, when a long sequence is processed, the information from earlier parts of sequence is "forgotten". And third problem, RNNs work in sequential manner, hence there is no room for parallelism. Transformer architectures aim to solve all these problems.
+
 \section{Attention and transformers}\label{att_transformers}
-\section{Transfer learning}
+Trained on unsupervised tasks !
+Transformers have revolutionized almost very field of \Gls{nlp}. 
+
 \section{Text classification}
+Text classification is a supervised learning task of assigning a particular text (word, sentence, or document) a category to which it belongs to. After a representation for text is obtained, practically any classification algorithm can be ran on top of it (eg., Naive Bayes, SVM, NN). A standard loss for classification is a Cross-Entropy loss. In case of binary classification:
+
+\begin{equation}
+    L_{BCE} = \frac{1}{n} \sum_{i=1}^n ( y_i \cdot \log\hat{y_i} + (1-y_i)\cdot(1-\hat{y_i}))
+\end{equation}
+
+where $y_i$ denotes the ground-truth label, $\hat{y_i}$ the probability predicted by the model, and $n$ is a number of samples.
+
+    
 \subsection{Metrics}
-\begin{itemize}
-    \item F1 \label{f1}
-\end{itemize}
+The most basic way to evaluate the prediction ability of a classifier is to use \textbf{accuracy} metric, which means counting correctly classified  data. 
+\begin{equation}
+    accuracy = \frac{correct\ predictions}{total\ predictions}
+\end{equation}
+This metric is feasible if classes of the dataset are balanced. However, imagine a situation where 90\% of data belong to one class and only 10\% to another. Classifier, which always outputs the first class, achieves 90\% accuracy even though its prediction capability is trivial. For unbalanced data, it is convenient to use the \textbf{F1} metric. The F1 score is a harmonic mean of \textit{Precision} and \textit{Recall}.
+
+\begin{equation}
+    F1 = \frac{2*Precision*Recall}{Precision + Recall}
+\end{equation}
+where precision
+
+\begin{equation}\footnote{TP,TN,FP,FN denotes to True positive, True Negative, Fasle Positive, False Negative respectively.}
+    Precision = \frac{TP}{TP+FP}
+\end{equation}
+can be understood as "how precisely the model predicts a positive class", whereas recall
+\begin{equation}
+    Rrecall = \frac{TP}{TP+FN}
+\end{equation}
+can be understood as "how much of a positive class can model predict".
+Scores for each class are then averaged to obtain the final score.
+
+
+
+
+\subsection{Transformers for text classification}
+Predictive power of transformers is behind every state-of-the-art result, and text classification is no exception. For classification, usually only the Encoder part of a transformer is used, although some define the classification problem as a sequence-to-sequence and incorporate the decoder too \cite{raffel2019exploring}. 
+
+\section{Transfer learning}
+
 \section{Multi-Task learning}
