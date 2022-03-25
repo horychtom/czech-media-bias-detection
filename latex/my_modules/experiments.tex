@@ -19,6 +19,7 @@ I follow the current standard approaches and use pretrained transformers for fur
 \end{itemize}
 
 
+<<<<<<< HEAD
  15\% of BABE data has been saved for final evaluation. Steps are as follows:
  \begin{itemize}
      \item BASELINE:
@@ -32,6 +33,27 @@ I follow the current standard approaches and use pretrained transformers for fur
 										       - CWNC test set
 	early stopping only on final training! Because the authors essentially made early stopping on "testing set" + it is not recommended to use early stopping in cross validation
  \end{itemize}
+=======
+\section{Note on Instability of fine-tuning}
+bla bla. Cross validace , ukazalo 10x menší variance. -> 10fold cross validace
+
+
+
+\section{Experimental setup}
+All models are fetched, trained, and evaluated using the HuggingFace API. The maximum sequence length is set to 128 tokens. All the parameters can be seen in the Appendix.
+Everything is evaluated using 5-fold cross-validation with fixed seed. The evaluation metric for all experiments is F1 score with macro averaging. A small portion ( 15\%) of the target dataset is left aside as a \textbf{test set} at the beginning and used only for the final evaluation to ensure that there are no data leaks.
+
+First, the baseline models are evaluated, and the best model is selected for further compact hyperparameter tuning. Then experiments on different combinations of datasets are then performed.
+All training has been done on a single GPU on RCI cluster.
+
+
+
+
+
+ \section{Baseline setup}
+ As a baseline, all Czech models are fine-tuned on BABE and evaluated using 5-fold stratified cross-validation. Hyperparameters were the same as those used by the authors \cite{Spinde2021MBIC}. However, the authors used early stopping together with cross-validation and used the validation split inside CV to early stop, which is not ideal since the split should be used only for evaluation. This way the model can "see" the data before evaluation; hence I did not use early stopping with CV at all and fixed the number of epochs to 3, as authors of BERT suggest \cite{devlin2019bert} . 
+ All other hyperaparemeters remained unchanged. AdamW optimizer is used with an initial learning rate 5e-5. 
+>>>>>>> 9bcf7587148a47e9f0506ff6e27c1ec71e8c8b9d
  
  
  
@@ -55,7 +77,18 @@ For choosing the best hyperparameters, I restricted the search space only to the
      \item \textbf{Epochs} $\in \{2,3,4\}$
  \end{itemize}
  
+<<<<<<< HEAD
  As the authors of the original BERT paper suggest. The models were very sensitive to hyperparameters. After tuning, overall best parameters were learning rate = 3e-5, batch\_size = 16 and number of epochs = 3  
+=======
+ As the authors of the original BERT paper suggest. 
+ 
+ The model was very sensitive to hyperparameters. After running the grid search, the overall best parameters were:
+ \begin{center}
+      \{learning\_rate = 2e-5,batch\_size = 16, epochs=3\}
+ \end{center}
+
+
+>>>>>>> 9bcf7587148a47e9f0506ff6e27c1ec71e8c8b9d
  
   \input{my_modules/tables/baseline}
 
@@ -65,20 +98,38 @@ For choosing the best hyperparameters, I restricted the search space only to the
  Here i can combine datasets. Trying all combinations would mean training 128 models.
  
  \subsection{Trained on Datasets, evaluated on BABE}
+<<<<<<< HEAD
  Here we can see that, wiki bias is the most aplicable to BABE
+=======
+ As a starting point, I trained a model on each of the datasets and evaluated their performance on BABE and CWNC, to see, which datasets provide the most relevant bias annotations with respect to the targets. Data from wikipedia family perform comparably better, mainly because their bias information is more straightforward. On the other hand, low quality of MB datasets proves to be problematic. In most cases, pretraining on small dataset only hurts the performance. Only in case of WNC which is large-scale dataset, pretraining outperformed baseline of CWNC. That is because both data come from the same distribution.
+ 
+ 
+ 
+ 
+>>>>>>> 9bcf7587148a47e9f0506ff6e27c1ec71e8c8b9d
  
  \subsection{Pretrianing Combinations}
  \begin{itemize}
-     \item \textbf{One by one} -  I pretrained all to see which are generally best. Trained all and evaluated on babe, to see what is the most relevant. On the same valid splits. Low quality of media bias data really doesnt work out. Too small to learn bias embeddings.
+     \item \textbf{All datasets} -  I pretrained all to see which are generally best. Trained all and evaluated on babe, to see what is the most relevant. On the same valid splits. Low quality of media bias data really doesnt work out. Too small to learn bias embeddings.
      Pretrained odchylka is too little, it has no impact at all. Wiki works very good.
+<<<<<<< HEAD
      \item \textbf{Splits: SUBJ,HQ,MB, WIKI} - pretraining had no effect. Subj achieved good performance. Subj did actually quite good.
      \item \textbf{WNC-CS} - Since this is the only large dataset I decided to evaluate it seperately.
+=======
+     On average variance between all tasks was so low that they bbasically performed tall the same. Thus pretaining on these smaller datasets made no improvement.
+     \item \textbf{Subjective Bias} - pretraining had no effect. Subj achieved good performance. Subj did actually quite good.
+     \item \textbf{Meida Bias}
+     \item \textbf{Wiki Bias} 
+     \item \textbf{WNC} - Since this is the only large dataset I decided to evaluate it seperately.
+>>>>>>> 9bcf7587148a47e9f0506ff6e27c1ec71e8c8b9d
      \item \textbf{All together} - To learn bias embeddings properly.
  \end{itemize}
+ 
  conclusion: pretraining had no effect,Finetuning on small datasets is very unstable ~ weight inicializations are bad.
  
  Training wiki, freezing parameters nad only training classification layer.
  Freezing encoder havent worked out yet!
+<<<<<<< HEAD
 \subsection{Training jointly}
 \begin{itemize}
     \item \textbf{with chosen mpqa,wikibias} - Train them jointly.
@@ -94,6 +145,26 @@ Final setup consists of hyperparams from here, data combination pretraining from
  
  
  
+=======
+ 
+ 
+\section{Final training}
+ 
+\section{Self-Training}
+WikiBias uses selftraining. I use selftraining, stonks.
+I use intuition behind early stopping procedure and extrapolate it to the training. The model is contually 
+I experimented with few datasets. Self-Training is usually performed on arbitrary corpora of text. I decided to incorporate the translated datasets, because they were manually selected as a representative sample of the class, I believe that using regular news corpora would include too many neutral examples, thus would be less efficient.
+
+
+
+\section{Notes on experiments}
+
+For better evaluation nested cross-validation should be used. However, the computational demand would be too large. Random seed was not enough. PyTorch backend brought in some inner randomness.
+  A full study with more models could be performed, but that would require enormous number of trained models thus i perform all experiments on RobeCzech.
+  
+  
+
+>>>>>>> 9bcf7587148a47e9f0506ff6e27c1ec71e8c8b9d
 \section{Inference on Czech News Samples}
 \begin{itemize}
     \item Analysis and statistics
