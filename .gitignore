@@ -240,3 +240,7 @@ src/data/__pycache__/NFNJ.cpython-38.pyc
 src/models/trained/wncen_pretrained.pth
 src/models/trained/wncs_pretrained.pth
 notebooks/media/baseline/.ipynb_checkpoints/results-checkpoint.txt
+src/models/trained/all_balanced.pth
+src/models/trained/mb_balanced.pth
+src/models/trained/subj_balanced.pth
+src/models/trained/wiki_balanced.pth

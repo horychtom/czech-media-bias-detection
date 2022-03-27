@@ -3,8 +3,10 @@ import gc
 import matplotlib.pyplot as plt
 import itertools
 import numpy as np
+from torch.utils.data import DataLoader
 
 
+from transformers import AutoModelForSequenceClassification,Trainer
 from datasets import load_metric, Dataset, concatenate_datasets
 
 def ratio(data):
@@ -114,3 +116,16 @@ def plot_confusion_matrix(cm, classes, normalize=False, title='Confusion matrix'
     plt.tight_layout()
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
+
+
+def plot_losses(losses):
+    loss_train = losses['Training Loss']
+    loss_val = losses['Validation Loss']
+    epochs = np.linspace(0.0, 5.0, num=len(loss_train))
+    plt.plot(epochs, loss_train, 'g', label='Training loss')
+    plt.plot(epochs, loss_val, 'b', label='validation loss')
+    plt.title('Training and Validation loss')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.show()
