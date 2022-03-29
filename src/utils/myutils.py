@@ -118,14 +118,15 @@ def plot_confusion_matrix(cm, classes, normalize=False, title='Confusion matrix'
     plt.xlabel('Predicted label')
 
 
-def plot_losses(losses):
+def plot_losses(losses,epochs,name):
     loss_train = losses['Training Loss']
     loss_val = losses['Validation Loss']
-    epochs = np.linspace(0.0, 5.0, num=len(loss_train))
+    epochs = np.linspace(0.0, epochs, num=len(loss_train))
     plt.plot(epochs, loss_train, 'g', label='Training loss')
     plt.plot(epochs, loss_val, 'b', label='validation loss')
-    plt.title('Training and Validation loss')
+    plt.title(name)
     plt.xlabel('Epochs')
     plt.ylabel('Loss')
     plt.legend()
+    plt.savefig('./'+ name)
     plt.show()
