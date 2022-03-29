@@ -1,4 +1,0 @@
-{"batch_size": 32, "learning_rate": 4e-05, "number_of_epochs": 2, "warmup_steps": 0, "weight_decay": 0.1} f1: 0.7713035897435898
-{"batch_size": 32, "learning_rate": 4e-05, "number_of_epochs": 3, "warmup_steps": 0, "weight_decay": 0.1} f1: 0.7825107692307693
-{"batch_size": 32, "learning_rate": 4e-05, "number_of_epochs": 4, "warmup_steps": 0, "weight_decay": 0.1} f1: 0.7793087179487179
-{"batch_size": 32, "learning_rate": 4e-05, "number_of_epochs": 5, "warmup_steps": 0, "weight_decay": 0.1} f1: 0.7767405128205127
