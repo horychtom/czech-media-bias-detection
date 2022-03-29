@@ -1,7 +1,7 @@
 \chapter{Experiments}\label{experiments}
-In this section I present experiments on text classification over colelcted datasets. The main \textbf{target} dataset for evaluations is BABE, due to its high quality and properties.
+In this section I present experiments on text classification over collected datasets. The main \textbf{target} dataset for evaluations is BABE, due to its high quality and properties.
 
-Due to the novelty of CWNC I also perform an evaluation on this dataset.
+Due to the novelty of CWNC I also perform a baseline evaluation on this dataset, but furthermore it is not tuned.
 I follow the current standard approaches and use pretrained transformers for further pretraining and fine-tuning. 
 
 A brief summary of the models tested can be found in the following:
@@ -25,12 +25,13 @@ A brief summary of the models tested can be found in the following:
 \subsection{Multi-lingual models}
 \begin{itemize}
     \item \textbf{SlavicBert} \cite{arkhipov2019tuning} - BERT-based model with 179M parameters, trained on four languages: Russian, Bulgarian, Czech, and Polish. The model is trained on all 4 languages at once. The model is not trained from scratch, but it is a fine-tuned version of mBERT.
-    \item \textbf{mBERT} - BERT-based model with 179M parameters trained on corpora of 104 languages with MLM task.
+    \item \textbf{mBERT} - BERT-based model with 179M parameters trained on corpora of 104 languages, Czech included, with MLM task.
 \end{itemize}
 
 
-\section{Note on Instability of fine-tuning}
+\section{On Instability of fine-tuning}
 bla bla. Cross validace , ukazalo 10x menší variance. -> 10fold cross validace
+In turned out that different initializations perform differently on different splits. Therefore increasing number of folds in cross validation reduced the variance 10 times.
 
 
 
@@ -68,9 +69,7 @@ I restricted the search space only to the combination of:
      \item \textbf{Epochs} $\in \{2,3,4\}$
  \end{itemize}
  
- As the authors of the original BERT paper suggest. 
- 
- The model was very sensitive to hyperparameters. After running the grid search, the overall best parameters were:
+ As the authors of the original BERT paper suggest.  After running the grid search, the overall best parameters were:
  \begin{center}
       \{learning\_rate = 2e-5,batch\_size = 16, epochs=3\}
  \end{center}
@@ -99,7 +98,7 @@ This section is dedicated to the study of the influence of pre-training and trai
      Pretrained odchylka is too little, it has no impact at all. Wiki works very good.
      On average variance between all tasks was so low that they bbasically performed tall the same. Thus pretaining on these smaller datasets made no improvement.
      \item \textbf{Subjective Bias} - pretraining had no effect. Subj achieved good performance. Subj did actually quite good.
-     \item \textbf{Meida Bias}
+     \item \textbf{Media Bias}
      \item \textbf{Wiki Bias} 
      \item \textbf{WNC} - Since this is the only large dataset I decided to evaluate it seperately.
      \item \textbf{All together} - To learn bias embeddings properly.
@@ -110,6 +109,8 @@ This section is dedicated to the study of the influence of pre-training and trai
  Training wiki, freezing parameters nad only training classification layer.
  Freezing encoder havent worked out yet!
  
+ \ref{table:4}
+ \input{my_modules/tables/all_trained}
  
 \section{Final training}
  

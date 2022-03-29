@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.10.31)  15 MAR 2022 18:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.10.31)  29 MAR 2022 22:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -644,24 +644,42 @@ File: ctuth-templates.tex 2016/06/15 v0.1t1606152353 "Templates" part of the cla
 \c@theorem=\count307
  (/usr/share/texlive/texmf-dist/tex/latex/mparhack/mparhack.sty
 Package: mparhack 2005/04/17 v1.4 (T. Sgouros and S. Ulrich)
+) (/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.sty
+Package: csquotes 2019-12-06 v5.2j context-sensitive quotations (JAW)
+ (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count308
+)
+\csq@reset=\count309
+\csq@gtype=\count310
+\csq@glevel=\count311
+\csq@qlevel=\count312
+\csq@maxlvl=\count313
+\csq@tshold=\count314
+\csq@ltx@everypar=\toks39
+ (/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.def
+File: csquotes.def 2019-12-06 v5.2j csquotes generic definitions (JAW)
+)
+Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
+Package csquotes Info: ... configuration file loaded successfully.
+ (/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.cfg
+File: csquotes.cfg 
+)
+Package csquotes Info: Enabling multilingual quotes.
 ) (/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/gloss.tex (/usr/share/texlive/texmf-dist/tex/latex/glossaries/base/glossaries.sty
 Package: glossaries 2020/02/13 v4.45 (NLCT)
  (/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
  (/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks39
-\XKV@tempa@toks=\toks40
+\XKV@toks=\toks40
+\XKV@tempa@toks=\toks41
 )
-\XKV@depth=\count308
+\XKV@depth=\count315
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )) (/usr/share/texlive/texmf-dist/tex/latex/mfirstuc/mfirstuc.sty
 Package: mfirstuc 2017/11/14 v2.06 (NLCT)
- (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count309
-)
-\@glsmfirst=\toks41
-\@glsmrest=\toks42
+\@glsmfirst=\toks42
+\@glsmrest=\toks43
 ) (/usr/share/texlive/texmf-dist/tex/latex/textcase/textcase.sty
 Package: textcase 2019/09/14 v1.00 Text only upper/lower case changing (DPC)
 ) (/usr/share/texlive/texmf-dist/tex/latex/xfor/xfor.sty
@@ -670,25 +688,25 @@ Package: xfor 2009/02/05 v1.05 (NLCT)
 Package: datatool-base 2019/09/27 v2.32 (NLCT)
  (/usr/share/texlive/texmf-dist/tex/latex/substr/substr.sty
 Package: substr 2009/10/20 v1.2 Handle substrings
-\c@su@anzahl=\count310
+\c@su@anzahl=\count316
 ) (/usr/share/texlive/texmf-dist/tex/latex/datatool/datatool-fp.sty
 Package: datatool-fp 2019/09/27 v2.32 (NLCT)
  (/usr/share/texlive/texmf-dist/tex/latex/fp/fp.sty
 Package: fp 1995/04/02
  `Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich (/usr/share/texlive/texmf-dist/tex/latex/fp/defpattern.sty
 Package: defpattern 1994/10/12
-\actioncount=\count311
+\actioncount=\count317
 ) (/usr/share/texlive/texmf-dist/tex/latex/fp/fp-basic.sty
 Package: fp-basic 1996/05/13
-\FP@xs=\count312
-\FP@xia=\count313
-\FP@xib=\count314
-\FP@xfa=\count315
-\FP@xfb=\count316
-\FP@rega=\count317
-\FP@regb=\count318
-\FP@regs=\count319
-\FP@times=\count320
+\FP@xs=\count318
+\FP@xia=\count319
+\FP@xib=\count320
+\FP@xfa=\count321
+\FP@xfb=\count322
+\FP@rega=\count323
+\FP@regb=\count324
+\FP@regs=\count325
+\FP@times=\count326
 ) (/usr/share/texlive/texmf-dist/tex/latex/fp/fp-addons.sty
 Package: fp-addons 1995/03/15
 ) (/usr/share/texlive/texmf-dist/tex/latex/fp/fp-snap.sty
@@ -701,7 +719,7 @@ Package: fp-trigo 1995/04/14
 Package: fp-pas 1994/08/29
 ) (/usr/share/texlive/texmf-dist/tex/latex/fp/fp-random.sty
 Package: fp-random 1995/02/23
-\FPseed=\count321
+\FPseed=\count327
 ) (/usr/share/texlive/texmf-dist/tex/latex/fp/fp-eqn.sty
 Package: fp-eqn 1995/04/03
 ) (/usr/share/texlive/texmf-dist/tex/latex/fp/fp-upn.sty
@@ -709,15 +727,15 @@ Package: fp-upn 1996/10/21
 ) (/usr/share/texlive/texmf-dist/tex/latex/fp/fp-eval.sty
 Package: fp-eval 1995/04/03
 )))
-\@dtl@toks=\toks43
-\@dtl@tmpcount=\count322
+\@dtl@toks=\toks44
+\@dtl@tmpcount=\count328
 \dtl@tmplength=\skip76
-\dtl@sortresult=\count323
-\@dtl@numgrpsepcount=\count324
-\@dtl@datatype=\count325
-\dtl@codeA=\count326
-\dtl@codeB=\count327
-\@dtl@foreach@level=\count328
+\dtl@sortresult=\count329
+\@dtl@numgrpsepcount=\count330
+\@dtl@datatype=\count331
+\dtl@codeA=\count332
+\dtl@codeB=\count333
+\@dtl@foreach@level=\count334
 ) (/usr/share/texlive/texmf-dist/tex/latex/glossaries/base/glossaries-compatible-307.sty
 Package: glossaries-compatible-307 2020/02/13 v4.45 (NLCT)
 ) (/usr/share/texlive/texmf-dist/tex/latex/tracklang/tracklang.sty
@@ -727,13 +745,13 @@ Package: translator 2019-05-31 v1.12a Easy translation of strings in LaTeX
 ) (/usr/share/texlive/texmf-dist/tex/latex/glossaries-english/glossaries-english.ldf
 File: glossaries-english.ldf 2014/11/23 v1.0
 )
-\gls@level=\count329
-\@gls@tmpb=\toks44
+\gls@level=\count335
+\@gls@tmpb=\toks45
 \gls@tmplen=\skip77
-\glskeylisttok=\toks45
-\glslabeltok=\toks46
-\glsshorttok=\toks47
-\glslongtok=\toks48
+\glskeylisttok=\toks46
+\glslabeltok=\toks47
+\glsshorttok=\toks48
+\glslongtok=\toks49
  (/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-hypernav.sty
 Package: glossary-hypernav 2020/02/13 v4.45 (NLCT)
 ) (/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-list.sty
@@ -747,17 +765,17 @@ Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
 \LTright=\skip80
 \LTpre=\skip81
 \LTpost=\skip82
-\LTchunksize=\count330
+\LTchunksize=\count336
 \LTcapwidth=\dimen261
 \LT@head=\box111
 \LT@firsthead=\box112
 \LT@foot=\box113
 \LT@lastfoot=\box114
-\LT@cols=\count331
-\LT@rows=\count332
-\c@LT@tables=\count333
-\c@LT@chunks=\count334
-\LT@p@ftn=\toks49
+\LT@cols=\count337
+\LT@rows=\count338
+\c@LT@tables=\count339
+\c@LT@chunks=\count340
+\LT@p@ftn=\toks50
 )
 \glsdescwidth=\skip83
 \glspagelistwidth=\skip84
@@ -765,7 +783,7 @@ Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
 Package: glossary-super 2020/02/13 v4.45 (NLCT)
  (/usr/share/texlive/texmf-dist/tex/latex/supertabular/supertabular.sty
 Package: supertabular 2020/02/02 v4.1g the supertabular environment
-\c@tracingst=\count335
+\c@tracingst=\count341
 \ST@wd=\dimen262
 \ST@rightskip=\skip85
 \ST@leftskip=\skip86
@@ -796,22 +814,37 @@ Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
 \col@sep=\dimen272
 \ar@mcellbox=\box116
 \extrarowheight=\dimen273
-\NC@list=\toks50
+\NC@list=\toks51
 \extratabsurround=\skip89
 \backup@length=\skip90
 \ar@cellbox=\box117
 )
-\everycr=\toks51
+\everycr=\toks52
 \minrowclearance=\skip91
+) (/usr/share/texlive/texmf-dist/tex/latex/subfig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+\c@KVtest=\count342
+\sf@farskip=\skip92
+\sf@captopadj=\dimen274
+\sf@capskip=\skip93
+\sf@nearskip=\skip94
+\c@subfigure=\count343
+\c@subfigure@save=\count344
+\c@lofdepth=\count345
+\c@subtable=\count346
+\c@subtable@save=\count347
+\c@lotdepth=\count348
+\sf@top=\skip95
+\sf@bottom=\skip96
 ) (/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
-\TX@col@width=\dimen274
-\TX@old@table=\dimen275
-\TX@old@col=\dimen276
-\TX@target=\dimen277
-\TX@delta=\dimen278
-\TX@cols=\count336
-\TX@ftn=\toks52
+\TX@col@width=\dimen275
+\TX@old@table=\dimen276
+\TX@old@col=\dimen277
+\TX@target=\dimen278
+\TX@delta=\dimen279
+\TX@cols=\count349
+\TX@ftn=\toks53
 ) (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
 Package: mathtools 2020/01/17 v1.23 mathematical typesetting tools
  (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty
@@ -821,50 +854,52 @@ LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
-\g_MT_multlinerow_int=\count337
-\l_MT_multwidth_dim=\dimen279
-\origjot=\skip92
-\l_MT_shortvdotswithinadjustabove_dim=\dimen280
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen281
-\l_MT_above_intertext_sep=\dimen282
-\l_MT_below_intertext_sep=\dimen283
-\l_MT_above_shortintertext_sep=\dimen284
-\l_MT_below_shortintertext_sep=\dimen285
+\g_MT_multlinerow_int=\count350
+\l_MT_multwidth_dim=\dimen280
+\origjot=\skip97
+\l_MT_shortvdotswithinadjustabove_dim=\dimen281
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen282
+\l_MT_above_intertext_sep=\dimen283
+\l_MT_below_intertext_sep=\dimen284
+\l_MT_above_shortintertext_sep=\dimen285
+\l_MT_below_shortintertext_sep=\dimen286
 )
 \myboxa=\box118
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... found 'babel' package.
  (/home/tomas/Documents/THESIS/thesis-git-repo/latex/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 160.
+LaTeX Font Info:    ... okay on input line 160.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 160.
+LaTeX Font Info:    ... okay on input line 160.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 160.
+LaTeX Font Info:    ... okay on input line 160.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 160.
+LaTeX Font Info:    ... okay on input line 160.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 160.
+LaTeX Font Info:    ... okay on input line 160.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 160.
+LaTeX Font Info:    ... okay on input line 160.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 160.
+LaTeX Font Info:    ... okay on input line 160.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 160.
+LaTeX Font Info:    ... okay on input line 160.
 \AtBeginShipoutBox=\box119
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count338
-\scratchdimen=\dimen286
+\scratchcounter=\count351
+\scratchdimen=\dimen287
 \scratchbox=\box120
-\nofMPsegments=\count339
-\nofMParguments=\count340
-\everyMPshowfont=\toks53
-\MPscratchCnt=\count341
-\MPscratchDim=\dimen287
-\MPnumerator=\count342
-\makeMPintoPDFobject=\count343
-\everyMPtoPDFconversion=\toks54
+\nofMPsegments=\count352
+\nofMParguments=\count353
+\everyMPshowfont=\toks54
+\MPscratchCnt=\count354
+\MPscratchDim=\dimen288
+\MPnumerator=\count355
+\makeMPintoPDFobject=\count356
+\everyMPtoPDFconversion=\toks55
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -877,14 +912,14 @@ Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-LaTeX Info: Redefining \microtypecontext on input line 156.
+LaTeX Info: Redefining \microtypecontext on input line 160.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `basictext'.
-LaTeX Info: Redefining \showhyphens on input line 156.
+LaTeX Info: Redefining \showhyphens on input line 160.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -927,6 +962,7 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: longtable package is loaded.
@@ -935,8 +971,8 @@ Package: ltcaption 2018/08/26 v1.4a longtable captions (AR)
 )
 Package caption Info: supertabular package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count344
-Package hyperref Info: Link coloring OFF on input line 156.
+\c@lstlisting=\count357
+Package hyperref Info: Link coloring OFF on input line 160.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -944,50 +980,50 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count345
+\c@section@level=\count358
 )
-LaTeX Info: Redefining \ref on input line 156.
-LaTeX Info: Redefining \pageref on input line 156.
-LaTeX Info: Redefining \nameref on input line 156.
+LaTeX Info: Redefining \ref on input line 160.
+LaTeX Info: Redefining \pageref on input line 160.
+LaTeX Info: Redefining \nameref on input line 160.
 \@outlinefile=\write6
 \openout6 = `main.out'.
 
 \ctuclsnamebox=\box121
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 165.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 169.
  (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 165.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 169.
  (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 165.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 169.
  (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 165.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 169.
  (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 165.
+(Font)              <10.95> on input line 169.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 165.
+(Font)              <8> on input line 169.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 165.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 165.
+(Font)              <6> on input line 169.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 169.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 165.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 169.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 165.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 169.
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1002,16 +1038,16 @@ Package microtype Info: Loading generic protrusion settings for font family
 <ctu_logo_black.pdf, id=4, 366.36874pt x 279.0425pt>
 File: ctu_logo_black.pdf Graphic file (type pdf)
 <use ctu_logo_black.pdf>
-Package pdftex.def Info: ctu_logo_black.pdf  used on input line 170.
+Package pdftex.def Info: ctu_logo_black.pdf  used on input line 174.
 (pdftex.def)             Requested size: 85.86746pt x 65.40001pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 170.
+(Font)              <14.4> on input line 174.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 170.
+(Font)              <10> on input line 174.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 170.
+(Font)              <7> on input line 174.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 170--170
+Overfull \hbox (5.0pt too wide) in paragraph at lines 174--174
 []|| [][][] 
  []
 
@@ -1025,32 +1061,32 @@ Overfull \hbox (5.0pt too wide) in paragraph at lines 170--170
 <my_modules/assignment.pdf, id=14, 597.50829pt x 845.0471pt>
 File: my_modules/assignment.pdf Graphic file (type pdf)
 <use my_modules/assignment.pdf>
-Package pdftex.def Info: my_modules/assignment.pdf  used on input line 170.
+Package pdftex.def Info: my_modules/assignment.pdf  used on input line 174.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: my_modules/assignment.pdf Graphic file (type pdf)
 <use my_modules/assignment.pdf>
-Package pdftex.def Info: my_modules/assignment.pdf  used on input line 170.
+Package pdftex.def Info: my_modules/assignment.pdf  used on input line 174.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 <my_modules/assignment.pdf, id=17, page=1, 597.50829pt x 845.0471pt>
 File: my_modules/assignment.pdf Graphic file (type pdf)
 <use my_modules/assignment.pdf, page 1>
-Package pdftex.def Info: my_modules/assignment.pdf , page1 used on input line 170.
+Package pdftex.def Info: my_modules/assignment.pdf , page1 used on input line 174.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: my_modules/assignment.pdf Graphic file (type pdf)
 <use my_modules/assignment.pdf, page 1>
-Package pdftex.def Info: my_modules/assignment.pdf , page1 used on input line 170.
+Package pdftex.def Info: my_modules/assignment.pdf , page1 used on input line 174.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: my_modules/assignment.pdf Graphic file (type pdf)
 <use my_modules/assignment.pdf, page 1>
-Package pdftex.def Info: my_modules/assignment.pdf , page1 used on input line 170.
+Package pdftex.def Info: my_modules/assignment.pdf , page1 used on input line 174.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: my_modules/assignment.pdf Graphic file (type pdf)
 <use my_modules/assignment.pdf, page 1>
-Package pdftex.def Info: my_modules/assignment.pdf , page1 used on input line 170.
+Package pdftex.def Info: my_modules/assignment.pdf , page1 used on input line 174.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: my_modules/assignment.pdf Graphic file (type pdf)
 <use my_modules/assignment.pdf, page 1>
-Package pdftex.def Info: my_modules/assignment.pdf , page1 used on input line 170.
+Package pdftex.def Info: my_modules/assignment.pdf , page1 used on input line 174.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
  [2
 
@@ -1058,15 +1094,15 @@ Package pdftex.def Info: my_modules/assignment.pdf , page1 used on input line 17
 <my_modules/assignment.pdf, id=61, page=2, 597.50829pt x 845.0471pt>
 File: my_modules/assignment.pdf Graphic file (type pdf)
 <use my_modules/assignment.pdf, page 2>
-Package pdftex.def Info: my_modules/assignment.pdf , page2 used on input line 170.
+Package pdftex.def Info: my_modules/assignment.pdf , page2 used on input line 174.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: my_modules/assignment.pdf Graphic file (type pdf)
 <use my_modules/assignment.pdf, page 2>
-Package pdftex.def Info: my_modules/assignment.pdf , page2 used on input line 170.
+Package pdftex.def Info: my_modules/assignment.pdf , page2 used on input line 174.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: my_modules/assignment.pdf Graphic file (type pdf)
 <use my_modules/assignment.pdf, page 2>
-Package pdftex.def Info: my_modules/assignment.pdf , page2 used on input line 170.
+Package pdftex.def Info: my_modules/assignment.pdf , page2 used on input line 174.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
  [3 </home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/assignment.pdf>]
 *geometry* verbose mode - [ newgeometry ] result:
@@ -1104,7 +1140,7 @@ Package pdftex.def Info: my_modules/assignment.pdf , page2 used on input line 17
 
 
 
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 170.
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 174.
 
 [4
 
@@ -1112,7 +1148,7 @@ Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is usel
 
 ]
 Package babel Info: \l@czech = using hyphenrules for english
-(babel)             (\language0) on input line 170.
+(babel)             (\language0) on input line 174.
  (/usr/share/texlive/texmf-dist/tex/generic/babel/locale/cs/babel-czech.tex
 Package babel Info: Importing basic data for czech
 (babel)             from babel-cs.ini. Reported on input line 11.
@@ -1121,7 +1157,7 @@ Package babel Info: Importing basic data for czech
 Package babel Warning: \czechabstractname not set. Please, define
 (babel)                it in the preamble with something like:
 (babel)                \renewcommand\czechabstractname{..}
-(babel)                Reported on input line 170.
+(babel)                Reported on input line 174.
 
 [5
 
@@ -1177,19 +1213,34 @@ Package babel Warning: \czechabstractname not set. Please, define
 
 
 
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 170.
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 174.
 
 
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 170.
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 174.
 
 
-Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is useless on input line 170.
+Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is useless on input line 174.
 
 (/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/introduction.tex
 Chapter 1.
-) (/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/sota.tex
 
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 1.
+LaTeX Warning: Reference `gender' on page 1 undefined on input line 7.
+
+
+LaTeX Warning: Citation `blodgett2020language' on page 1 undefined on input line 11.
+
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 15.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 15.
+
+LaTeX Warning: Citation `nadeem2021stereoset' on page 1 undefined on input line 15.
+
+
+LaTeX Warning: Citation `blodgett2020language' on page 1 undefined on input line 17.
+
+
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 18.
 
 [1
 
@@ -1198,42 +1249,25 @@ Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is usel
 
 
 ]
-Chapter 2.
 
-LaTeX Warning: Citation `dinan2020multi' on page 2 undefined on input line 11.
+LaTeX Warning: Reference `mediabias' on page 2 undefined on input line 38.
 
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 18.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 18.
-
-LaTeX Warning: Reference `DeepL' on page 2 undefined on input line 21.
-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 22.
-
-[2
-
-]) (/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/datasets.tex
+) (/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/sota.tex
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
 (Font)              Font shape `T1/lmss/m/sl' tried instead on input line 1.
- [3]
-Chapter 3.
+ [2] [3]
+Chapter 2.
 
-LaTeX Warning: Reference `experiments' on page 4 undefined on input line 4.
-
-
-LaTeX Warning: Reference `methodology' on page 4 undefined on input line 6.
+LaTeX Warning: Citation `bolukbasi2016man' on page 4 undefined on input line 7.
 
 
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 10.
+LaTeX Warning: Citation `sun-peng-2021-men' on page 4 undefined on input line 7.
 
 
-LaTeX Warning: Citation `Pang+Lee:04a' on page 4 undefined on input line 11.
+LaTeX Warning: Citation `dinan2020multi' on page 4 undefined on input line 11.
 
 
-LaTeX Warning: Citation `wiebe2005annotating' on page 4 undefined on input line 21.
+LaTeX Warning: Reference `DeepL' on page 4 undefined on input line 21.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 22.
@@ -1241,194 +1275,309 @@ Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is usel
 [4
 
 ]
-Overfull \hbox (51.2887pt too wide) in paragraph at lines 30--31
+
+LaTeX Warning: Citation `hube2018detecting' on page 5 undefined on input line 31.
+
+
+LaTeX Warning: Citation `sinha2021determining' on page 5 undefined on input line 33.
+
+
+LaTeX Warning: Citation `Spinde2021MBIC' on page 5 undefined on input line 33.
+
+
+LaTeX Warning: Citation `lee2021unifying' on page 5 undefined on input line 33.
+
+
+LaTeX Warning: Citation `hube2019neural' on page 5 undefined on input line 33.
+
+
+LaTeX Warning: Citation `chen2020detecting' on page 5 undefined on input line 35.
+
+
+LaTeX Warning: Citation `chen-etal-2020-analyzing' on page 5 undefined on input line 35.
+
+
+LaTeX Warning: Citation `van2020context' on page 5 undefined on input line 37.
+
+
+LaTeX Warning: Citation `lee2021unifying' on page 5 undefined on input line 39.
+
+
+LaTeX Warning: Citation `spindeexploiting' on page 5 undefined on input line 39.
+
+
+LaTeX Warning: Reference `mtl' on page 5 undefined on input line 39.
+
+) (/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/datasets.tex [5]
+Chapter 3.
+
+LaTeX Warning: Reference `experiments' on page 6 undefined on input line 2.
+
+
+LaTeX Warning: Citation `Pang+Lee:04a' on page 6 undefined on input line 16.
+
+
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 25.
+
+[6
+
+]
+
+LaTeX Warning: Citation `wiebe2005annotating' on page 7 undefined on input line 26.
+
+[7]
+Overfull \hbox (51.2887pt too wide) in paragraph at lines 35--36
 []\T1/lmr/m/n/10.95 (-20) If there was at least one an-no-ta-tion \T1/lmr/bx/n/10.95 di-rect_subjective \T1/lmr/m/n/10.95 (-20) or \T1/lmr/bx/n/10.95 ex-pres-sive_subjectivity
  []
 
 
-LaTeX Warning: Citation `fan2019plain' on page 5 undefined on input line 38.
+LaTeX Warning: Citation `fan2019plain' on page 8 undefined on input line 44.
 
 
-LaTeX Warning: Citation `van2020context' on page 5 undefined on input line 42.
+LaTeX Warning: Citation `van2020context' on page 8 undefined on input line 48.
 
 
-LaTeX Warning: Citation `farber2020multidimensional' on page 5 undefined on input line 48.
-
-
-LaTeX Warning: Citation `farber2020multidimensional' on page 5 undefined on input line 63.
-
-[5]
-
-LaTeX Warning: Citation `Spinde2021MBIC' on page 6 undefined on input line 81.
-
-
-LaTeX Warning: Reference `table:2' on page 6 undefined on input line 83.
-
-
-LaTeX Warning: Reference `fig:babe-data' on page 6 undefined on input line 85.
-
-
-LaTeX Warning: Reference `experiments' on page 6 undefined on input line 87.
-
-
-LaTeX Warning: Reference `table:2' on page 6 undefined on input line 88.
-
-(/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/tables/babe_example_table.tex)
-<my_modules/multimedia/babe_workflow.png, id=158, 898.35625pt x 886.31125pt>
-File: my_modules/multimedia/babe_workflow.png Graphic file (type png)
-<use my_modules/multimedia/babe_workflow.png>
-Package pdftex.def Info: my_modules/multimedia/babe_workflow.png  used on input line 94.
-(pdftex.def)             Requested size: 269.50894pt x 265.89542pt.
-
-
-LaTeX Warning: Citation `Spinde2021f' on page 6 undefined on input line 95.
-
-
-LaTeX Warning: Citation `Spinde2021f' on page 6 undefined on input line 95.
-
-
-LaTeX Warning: Citation `pryzant2020automatically' on page 6 undefined on input line 102.
-
-
-LaTeX Warning: Citation `recasens2013linguistic' on page 6 undefined on input line 102.
-
-
-LaTeX Warning: Citation `hube2019neural' on page 6 undefined on input line 102.
-
-[6] [7 </home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/multimedia/babe_workflow.png>]
-
-LaTeX Warning: Citation `hube2019neural' on page 8 undefined on input line 113.
-
-
-LaTeX Warning: Citation `zhong-etal-2021-wikibias-detecting' on page 8 undefined on input line 113.
-
-
-LaTeX Warning: Citation `hube2019neural' on page 8 undefined on input line 113.
-
-
-LaTeX Warning: Reference `experiments' on page 8 undefined on input line 115.
-
-
-LaTeX Warning: Citation `pryzant2020automatically' on page 8 undefined on input line 121.
-
-
-LaTeX Warning: Reference `wiki-npov' on page 8 undefined on input line 121.
-
-
-LaTeX Warning: Citation `hube2019neural' on page 8 undefined on input line 129.
-
-
-LaTeX Warning: Citation `zhong-etal-2021-wikibias-detecting' on page 8 undefined on input line 137.
-
-
-LaTeX Warning: Citation `pryzant2020automatically' on page 8 undefined on input line 137.
-
-(/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/tables/datasets_table.tex)
-
-LaTeX Warning: Reference `mtl' on page 8 undefined on input line 145.
+LaTeX Warning: Citation `farber2020multidimensional' on page 8 undefined on input line 54.
 
 [8]
 
-LaTeX Warning: Reference `table:1' on page 9 undefined on input line 154.
+LaTeX Warning: Citation `farber2020multidimensional' on page 9 undefined on input line 68.
 
-) (/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/theoretical_background.tex [9]
+
+LaTeX Warning: Citation `Spinde2021MBIC' on page 9 undefined on input line 86.
+
+
+LaTeX Warning: Reference `table:2' on page 9 undefined on input line 88.
+
+
+LaTeX Warning: Reference `fig:babe-data' on page 9 undefined on input line 90.
+
+
+LaTeX Warning: Reference `experiments' on page 9 undefined on input line 92.
+
+
+LaTeX Warning: Reference `table:2' on page 9 undefined on input line 93.
+
+(/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/tables/babe_example_table.tex)
+<my_modules/multimedia/babe_workflow.png, id=199, 898.35625pt x 886.31125pt>
+File: my_modules/multimedia/babe_workflow.png Graphic file (type png)
+<use my_modules/multimedia/babe_workflow.png>
+Package pdftex.def Info: my_modules/multimedia/babe_workflow.png  used on input line 99.
+(pdftex.def)             Requested size: 269.50894pt x 265.89542pt.
+
+
+LaTeX Warning: Citation `Spinde2021f' on page 9 undefined on input line 100.
+
+
+LaTeX Warning: Citation `Spinde2021f' on page 9 undefined on input line 100.
+
+
+LaTeX Warning: Citation `pryzant2020automatically' on page 9 undefined on input line 107.
+
+
+LaTeX Warning: Citation `recasens2013linguistic' on page 9 undefined on input line 107.
+
+
+LaTeX Warning: Citation `hube2019neural' on page 9 undefined on input line 107.
+
+[9] [10 </home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/multimedia/babe_workflow.png>]
+
+LaTeX Warning: Citation `hube2019neural' on page 11 undefined on input line 118.
+
+
+LaTeX Warning: Citation `zhong-etal-2021-wikibias-detecting' on page 11 undefined on input line 118.
+
+
+LaTeX Warning: Citation `hube2019neural' on page 11 undefined on input line 118.
+
+
+LaTeX Warning: Reference `experiments' on page 11 undefined on input line 120.
+
+
+LaTeX Warning: Citation `pryzant2020automatically' on page 11 undefined on input line 126.
+
+
+LaTeX Warning: Reference `wiki-npov' on page 11 undefined on input line 126.
+
+
+LaTeX Warning: Citation `hube2019neural' on page 11 undefined on input line 134.
+
+
+LaTeX Warning: Citation `zhong-etal-2021-wikibias-detecting' on page 11 undefined on input line 142.
+
+
+LaTeX Warning: Citation `pryzant2020automatically' on page 11 undefined on input line 142.
+
+(/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/tables/datasets_table.tex)
+
+LaTeX Warning: Reference `mtl' on page 11 undefined on input line 150.
+
+[11]
+
+LaTeX Warning: Reference `table:1' on page 12 undefined on input line 159.
+
+
+LaTeX Warning: Reference `experiments' on page 12 undefined on input line 161.
+
+) (/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/czech_datasets.tex [12]
 Chapter 4.
-) (/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/czech_datasets.tex
 
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 1.
-
-[10
-
-]
-Chapter 5.
-
-LaTeX Warning: Citation `Spinde2021f' on page 11 undefined on input line 6.
+LaTeX Warning: Citation `Spinde2021f' on page 13 undefined on input line 6.
 
 
-LaTeX Warning: Reference `wiki-npov' on page 11 undefined on input line 8.
+LaTeX Warning: Reference `wiki-npov' on page 13 undefined on input line 8.
 
 
-LaTeX Warning: Reference `wncs' on page 11 undefined on input line 8.
+LaTeX Warning: Reference `wncs' on page 13 undefined on input line 8.
 
 
-LaTeX Warning: Reference `datasets' on page 11 undefined on input line 10.
+LaTeX Warning: Reference `datasets' on page 13 undefined on input line 10.
 
 
-LaTeX Warning: Reference `processing' on page 11 undefined on input line 10.
+LaTeX Warning: Reference `processing' on page 13 undefined on input line 10.
 
 
-LaTeX Warning: Reference `att_transformers' on page 11 undefined on input line 17.
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 16.
 
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 18.
-
-[11
+[13
 
 ]
 
-LaTeX Warning: Reference `att_transformers' on page 12 undefined on input line 19.
-
-[12]
-
-LaTeX Warning: Citation `11858/00-097C-0000-0022-FF60-B' on page 13 undefined on input line 58.
+LaTeX Warning: Reference `att_transformers' on page 14 undefined on input line 17.
 
 
-LaTeX Warning: Citation `aleksandrova2019multilingual' on page 13 undefined on input line 67.
+LaTeX Warning: Reference `att_transformers' on page 14 undefined on input line 19.
 
-[13]
+[14]
 
-LaTeX Warning: Reference `experiments' on page 14 undefined on input line 69.
+LaTeX Warning: Reference `fig:cz_data' on page 15 undefined on input line 51.
+
+<my_modules/multimedia/withoutWNC.png, id=278, 433.62pt x 289.08pt>
+File: my_modules/multimedia/withoutWNC.png Graphic file (type png)
+<use my_modules/multimedia/withoutWNC.png>
+Package pdftex.def Info: my_modules/multimedia/withoutWNC.png  used on input line 55.
+(pdftex.def)             Requested size: 216.80946pt x 144.53964pt.
+
+LaTeX Warning: Citation `11858/00-097C-0000-0022-FF60-B' on page 15 undefined on input line 64.
+
+[15 </home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/multimedia/withoutWNC.png>]
+
+LaTeX Warning: Citation `aleksandrova2019multilingual' on page 16 undefined on input line 73.
 
 
-LaTeX Warning: Citation `pryzant2020automatically' on page 14 undefined on input line 76.
+LaTeX Warning: Citation `pryzant2020automatically' on page 16 undefined on input line 81.
 
 
-LaTeX Warning: Reference `wiki-npov' on page 14 undefined on input line 76.
+LaTeX Warning: Reference `wiki-npov' on page 16 undefined on input line 81.
 
 (/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/tables/cwnc_example_table.tex)
 
-LaTeX Warning: Reference `table:cwnc_example' on page 14 undefined on input line 93.
+LaTeX Warning: Reference `table:cwnc_example' on page 16 undefined on input line 98.
 
-[14]) (/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/experiments.tex [15]
-Chapter 6.
+) [16] (/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/theoretical_background.tex [17]
+Chapter 5.
 
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 6.
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 16.
 
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 34.
-
-[16
+[18
 
 ]
 
-LaTeX Warning: Citation `Spinde2021MBIC' on page 17 undefined on input line 42.
+LaTeX Warning: Citation `sutskever2014sequence' on page 19 undefined on input line 37.
 
 
-LaTeX Warning: Citation `devlin2019bert' on page 17 undefined on input line 42.
+LaTeX Warning: Citation `cho2014learning' on page 19 undefined on input line 37.
 
-) (/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/Conclusion.tex [17] [18]
+[19]
+
+LaTeX Warning: Citation `bahdanau2014neural' on page 20 undefined on input line 53.
+
+
+LaTeX Warning: Citation `luongeffective' on page 20 undefined on input line 53.
+
+<my_modules/multimedia/atalyned.png, id=354, 366.168pt x 539.3751pt>
+File: my_modules/multimedia/atalyned.png Graphic file (type png)
+<use my_modules/multimedia/atalyned.png>
+Package pdftex.def Info: my_modules/multimedia/atalyned.png  used on input line 56.
+(pdftex.def)             Requested size: 183.08354pt x 269.68689pt.
+
+LaTeX Warning: Citation `vaswani2017attention' on page 20 undefined on input line 57.
+
+
+LaTeX Warning: Citation `vaswani2017attention' on page 20 undefined on input line 57.
+
+
+LaTeX Warning: Reference `fig:transformer' on page 20 undefined on input line 62.
+
+[20 </home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/multimedia/atalyned.png>]
+
+LaTeX Warning: Citation `raffel2019exploring' on page 21 undefined on input line 108.
+
+[21]) (/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/experiments.tex [22]
+Chapter 6.
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 12.
+
+
+LaTeX Warning: Citation `strakarobeczech' on page 23 undefined on input line 14.
+
+
+LaTeX Warning: Citation `sido-etal-2021-czert' on page 23 undefined on input line 15.
+
+
+LaTeX Warning: Citation `lehevcka2021comparison' on page 23 undefined on input line 16.
+
+
+LaTeX Warning: Citation `lehevcka2021comparison' on page 23 undefined on input line 17.
+
+
+LaTeX Warning: Citation `arkhipov2019tuning' on page 23 undefined on input line 27.
+
+
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 35.
+
+[23
+
+]
+
+LaTeX Warning: Citation `Spinde2021MBIC' on page 24 undefined on input line 50.
+
+
+LaTeX Warning: Citation `devlin2019bert' on page 24 undefined on input line 50.
+
+
+LaTeX Warning: Reference `table:3' on page 24 undefined on input line 53.
+
+(/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/tables/baseline.tex) [24] [25]
+
+LaTeX Warning: Reference `table:4' on page 26 undefined on input line 112.
+
+(/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/tables/all_trained.tex)) (/home/tomas/Documents/THESIS/thesis-git-repo/latex/my_modules/Conclusion.tex [26]
 Chapter 7.
+
+LaTeX Warning: Citation `aribandi2021ext5' on page 27 undefined on input line 17.
+
 )
 No file main.ind.
 No file main.bbl.
 No file main.gls.
 
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 213.
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 215.
 
-[19
+[27
 
-]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 213.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 213.
+] [28]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 215.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 215.
  (/home/tomas/Documents/THESIS/thesis-git-repo/latex/main.aux
 
 Package mparhack Warning: Marginpars may have changed.
 (mparhack)                Rerun to get them right.
 
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 213.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 213.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 215.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 215.
 
 
 Package rerunfilecheck Warning: File `main.out' has changed.
@@ -1437,23 +1586,35 @@ Package rerunfilecheck Warning: File `main.out' has changed.
 
 Package rerunfilecheck Info: Checksums for `main.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  805D57CAF1FC9A95FAA57E076C38BADE;3283.
+(rerunfilecheck)             After:  8C979B616AE38CE2389EBA5EAB0B8A5E;3854.
 
 LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 213.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 215.
  ) 
 Here is how much of TeX's memory you used:
- 22547 strings out of 483140
- 379998 string characters out of 5965150
- 744862 words of memory out of 5000000
- 36812 multiletter control sequences out of 15000+600000
- 640153 words of font info for 152 fonts, out of 8000000 for 9000
+ 23639 strings out of 483140
+ 397267 string characters out of 5965150
+ 771499 words of memory out of 5000000
+ 37832 multiletter control sequences out of 15000+600000
+ 640444 words of font info for 156 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 54i,19n,79p,1060b,1228s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 54i,19n,84p,1060b,1228s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{glo:mlm} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{glo:sota} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{glo:rnn} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{glo:mlp} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{glo:nn} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{glo:ann} has been referenced but does not exist, replaced by a fixed one
+
 pdfTeX warning (dest): name{glo:nup} has been referenced but does not exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{glo:nmt} has been referenced but does not exist, replaced by a fixed one
@@ -1470,11 +1631,15 @@ pdfTeX warning (dest): name{glo:mbg} has been referenced but does not exist, rep
 
 pdfTeX warning (dest): name{glo:iaa} has been referenced but does not exist, replaced by a fixed one
 
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx9.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri9.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt9.pfb>
-Output written on /home/tomas/Documents/THESIS/thesis-git-repo/latex/main.pdf (26 pages, 603052 bytes).
+pdfTeX warning (dest): name{glo:mtl} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{glo:ml} has been referenced but does not exist, replaced by a fixed one
+
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx9.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri9.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt9.pfb>
+Output written on /home/tomas/Documents/THESIS/thesis-git-repo/latex/main.pdf (35 pages, 792404 bytes).
 PDF statistics:
- 388 PDF objects out of 1000 (max. 8388607)
- 324 compressed objects within 4 object streams
- 118 named destinations out of 1000 (max. 500000)
- 33316 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 525 PDF objects out of 1000 (max. 8388607)
+ 445 compressed objects within 5 object streams
+ 162 named destinations out of 1000 (max. 500000)
+ 33326 words of extra memory for PDF output out of 35830 (max. 10000000)
 

@@ -1,51 +1,60 @@
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.1.1}{Motivation}{chapter.1}% 2
-\BOOKMARK [1][-]{section.1.2}{My contribution}{chapter.1}% 3
-\BOOKMARK [1][-]{section.1.3}{Outline}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.1}{Outline and Motivation}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Bias}{chapter.1}% 3
+\BOOKMARK [2][-]{subsection.1.2.1}{Media Bias}{section.1.2}% 4
 \BOOKMARK [0][-]{chapter.2}{State of the art}{}% 5
-\BOOKMARK [1][-]{section.2.1}{Bias}{chapter.2}% 6
-\BOOKMARK [1][-]{section.2.2}{Gender bias}{chapter.2}% 7
-\BOOKMARK [1][-]{section.2.3}{Media bias detection}{chapter.2}% 8
-\BOOKMARK [2][-]{subsection.2.3.1}{Informational vs Lexical}{section.2.3}% 9
-\BOOKMARK [2][-]{subsection.2.3.2}{Methodology \(SOTA\)}{section.2.3}% 10
-\BOOKMARK [0][-]{chapter.3}{Datasets}{}% 11
-\BOOKMARK [1][-]{subsection.3.0.1}{SUBJ}{chapter.3}% 12
-\BOOKMARK [2][-]{subsection.3.0.2}{MPQA}{subsection.3.0.1}% 13
-\BOOKMARK [2][-]{subsection.3.0.3}{BASIL}{subsection.3.0.1}% 14
-\BOOKMARK [2][-]{subsection.3.0.4}{Ukraine Crisis Dataset}{subsection.3.0.1}% 15
-\BOOKMARK [2][-]{subsection.3.0.5}{NFNJ}{subsection.3.0.1}% 16
-\BOOKMARK [2][-]{subsection.3.0.6}{BABE}{subsection.3.0.1}% 17
-\BOOKMARK [1][-]{section.3.1}{Wikipedia NPOV datasets}{chapter.3}% 18
-\BOOKMARK [2][-]{subsection.3.1.1}{Wiki Neutrality Corpus}{section.3.1}% 19
-\BOOKMARK [2][-]{subsection.3.1.2}{CW-HARD}{section.3.1}% 20
-\BOOKMARK [2][-]{subsection.3.1.3}{WikiBias}{section.3.1}% 21
-\BOOKMARK [1][-]{section.3.2}{Unused datasets}{chapter.3}% 22
-\BOOKMARK [1][-]{section.3.3}{Datasets summary}{chapter.3}% 23
-\BOOKMARK [0][-]{chapter.4}{Theoretical background}{}% 24
-\BOOKMARK [1][-]{section.4.1}{Text classification}{chapter.4}% 25
-\BOOKMARK [1][-]{section.4.2}{Neural Networks }{chapter.4}% 26
-\BOOKMARK [1][-]{section.4.3}{Attention and transformers}{chapter.4}% 27
-\BOOKMARK [1][-]{section.4.4}{Transfer learning}{chapter.4}% 28
-\BOOKMARK [0][-]{chapter.5}{Czech datasets}{}% 29
-\BOOKMARK [1][-]{section.5.1}{Machine Translation}{chapter.5}% 30
-\BOOKMARK [1][-]{section.5.2}{Processing}{chapter.5}% 31
-\BOOKMARK [1][-]{section.5.3}{Translated data}{chapter.5}% 32
-\BOOKMARK [1][-]{section.5.4}{Czech Wiki Neutrality Corpus}{chapter.5}% 33
-\BOOKMARK [2][-]{subsection.5.4.1}{CWNC-noisy}{section.5.4}% 34
-\BOOKMARK [2][-]{subsection.5.4.2}{CWNC}{section.5.4}% 35
-\BOOKMARK [1][-]{section.5.5}{Not translated}{chapter.5}% 36
-\BOOKMARK [0][-]{chapter.6}{Experiments}{}% 37
-\BOOKMARK [1][-]{subsection.6.0.1}{Czech models}{chapter.6}% 38
-\BOOKMARK [2][-]{subsection.6.0.2}{Multi-lingual models}{subsection.6.0.1}% 39
-\BOOKMARK [1][-]{section.6.1}{Baseline setup}{chapter.6}% 40
-\BOOKMARK [1][-]{section.6.2}{Hyperparameter tuning}{chapter.6}% 41
-\BOOKMARK [1][-]{section.6.3}{Combining Datasets}{chapter.6}% 42
-\BOOKMARK [2][-]{subsection.6.3.1}{Pretraining on English WNC}{section.6.3}% 43
-\BOOKMARK [2][-]{subsection.6.3.2}{Subjectivity pretraining}{section.6.3}% 44
-\BOOKMARK [2][-]{subsection.6.3.3}{Media Bias Pretraining}{section.6.3}% 45
-\BOOKMARK [2][-]{subsection.6.3.4}{Combining all datasets together Without WNC}{section.6.3}% 46
-\BOOKMARK [1][-]{section.6.4}{Inference on Czech News Samples}{chapter.6}% 47
-\BOOKMARK [1][-]{section.6.5}{Multi-Task learning approach}{chapter.6}% 48
-\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 49
-\BOOKMARK [1][-]{section.7.1}{Summary of work done}{chapter.7}% 50
-\BOOKMARK [1][-]{section.7.2}{Future perspective}{chapter.7}% 51
+\BOOKMARK [1][-]{section.2.1}{Gender bias detection}{chapter.2}% 6
+\BOOKMARK [1][-]{section.2.2}{Media bias detection}{chapter.2}% 7
+\BOOKMARK [0][-]{chapter.3}{Datasets}{}% 8
+\BOOKMARK [1][-]{section.3.1}{Subjectivity Datasets}{chapter.3}% 9
+\BOOKMARK [2][-]{subsection.3.1.1}{SUBJ}{section.3.1}% 10
+\BOOKMARK [2][-]{subsection.3.1.2}{MPQA}{section.3.1}% 11
+\BOOKMARK [1][-]{section.3.2}{Media Bias datasets}{chapter.3}% 12
+\BOOKMARK [2][-]{subsection.3.2.1}{BASIL}{section.3.2}% 13
+\BOOKMARK [2][-]{subsection.3.2.2}{Ukraine Crisis Dataset}{section.3.2}% 14
+\BOOKMARK [2][-]{subsection.3.2.3}{NFNJ}{section.3.2}% 15
+\BOOKMARK [2][-]{subsection.3.2.4}{BABE}{section.3.2}% 16
+\BOOKMARK [1][-]{section.3.3}{Wikipedia datasets}{chapter.3}% 17
+\BOOKMARK [2][-]{subsection.3.3.1}{Wiki Neutrality Corpus}{section.3.3}% 18
+\BOOKMARK [2][-]{subsection.3.3.2}{CW-HARD}{section.3.3}% 19
+\BOOKMARK [2][-]{subsection.3.3.3}{WikiBias}{section.3.3}% 20
+\BOOKMARK [1][-]{section.3.4}{Unused datasets}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.5}{Summary}{chapter.3}% 22
+\BOOKMARK [0][-]{chapter.4}{Czech datasets}{}% 23
+\BOOKMARK [1][-]{section.4.1}{Machine Translation}{chapter.4}% 24
+\BOOKMARK [1][-]{section.4.2}{Processing}{chapter.4}% 25
+\BOOKMARK [1][-]{section.4.3}{Translated data}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.4}{Czech Wiki Neutrality Corpus}{chapter.4}% 27
+\BOOKMARK [2][-]{subsection.4.4.1}{CWNC-noisy}{section.4.4}% 28
+\BOOKMARK [2][-]{subsection.4.4.2}{CWNC}{section.4.4}% 29
+\BOOKMARK [1][-]{section.4.5}{Not translated}{chapter.4}% 30
+\BOOKMARK [0][-]{chapter.5}{Theoretical background}{}% 31
+\BOOKMARK [1][-]{section.5.1}{Text representation}{chapter.5}% 32
+\BOOKMARK [1][-]{section.5.2}{Neural Networks}{chapter.5}% 33
+\BOOKMARK [1][-]{section.5.3}{Encoder-Decoder}{chapter.5}% 34
+\BOOKMARK [1][-]{section.5.4}{Transformers}{chapter.5}% 35
+\BOOKMARK [2][-]{subsection.5.4.1}{Attention}{section.5.4}% 36
+\BOOKMARK [2][-]{subsection.5.4.2}{Transformer architecture}{section.5.4}% 37
+\BOOKMARK [1][-]{section.5.5}{Text classification}{chapter.5}% 38
+\BOOKMARK [2][-]{subsection.5.5.1}{Metrics}{section.5.5}% 39
+\BOOKMARK [2][-]{subsection.5.5.2}{Transformers for text classification}{section.5.5}% 40
+\BOOKMARK [1][-]{section.5.6}{Transfer learning}{chapter.5}% 41
+\BOOKMARK [1][-]{section.5.7}{Multi-Task learning}{chapter.5}% 42
+\BOOKMARK [0][-]{chapter.6}{Experiments}{}% 43
+\BOOKMARK [1][-]{subsection.6.0.1}{Czech monolingual models}{chapter.6}% 44
+\BOOKMARK [2][-]{subsection.6.0.2}{Multi-lingual models}{subsection.6.0.1}% 45
+\BOOKMARK [1][-]{section.6.1}{On Instability of fine-tuning}{chapter.6}% 46
+\BOOKMARK [1][-]{section.6.2}{Experimental setup}{chapter.6}% 47
+\BOOKMARK [1][-]{section.6.3}{Baseline setup}{chapter.6}% 48
+\BOOKMARK [1][-]{section.6.4}{Hyperparameter tuning}{chapter.6}% 49
+\BOOKMARK [1][-]{section.6.5}{Combining Datasets}{chapter.6}% 50
+\BOOKMARK [2][-]{subsection.6.5.1}{Trained on Datasets, evaluated on BABE}{section.6.5}% 51
+\BOOKMARK [2][-]{subsection.6.5.2}{Pretrianing Combinations}{section.6.5}% 52
+\BOOKMARK [1][-]{section.6.6}{Final training}{chapter.6}% 53
+\BOOKMARK [1][-]{section.6.7}{Self-Training}{chapter.6}% 54
+\BOOKMARK [1][-]{section.6.8}{Notes on experiments}{chapter.6}% 55
+\BOOKMARK [1][-]{section.6.9}{Inference on Czech News Samples}{chapter.6}% 56
+\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 57
+\BOOKMARK [1][-]{section.7.1}{Summary of work done}{chapter.7}% 58
+\BOOKMARK [1][-]{section.7.2}{What hasnt make it into this work}{chapter.7}% 59
+\BOOKMARK [1][-]{section.7.3}{Future perspective}{chapter.7}% 60

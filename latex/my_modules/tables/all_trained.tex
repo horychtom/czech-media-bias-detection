@@ -1,16 +1,16 @@
 \begin{table}
 \makebox[\textwidth][c]{
 \begin{ctucolortab}
-\begin{tabular}{c||c|c|c|c|c|c}
- \textbf{target}\textbackslash \textbf{models} & \textbf{Czert} & \textbf{RobeCzech} & \textbf{mBERT} & \textbf{FERNET-C5} & \textbf{FERNET-News} & \textbf{SlavicBERT}\\
+\begin{tabular}{c||c|c|c|c|c|c|}
+  & \textbf{baseline} & \textbf{SUBJ} & \textbf{WIKI} & \textbf{MB} & \textbf{WNC} & \textbf{ALL}\\
  \hline
  \hline
- \textbf{BABE} & 0.777 & \textbf{0.782} & 0.734 & 0.772 & 0.578 & 0.756 \\
+ \textbf{Pretraining + Finetuning} & 0.7835 & 0.7875 & 0.7797 & 0.7702 & 0.7825 & \textbf{0.7878} \\
  \hline
- \textbf{CWNC} & 0.735 & \textbf{0.765} & 0.730 & 0.719 & 0.593 & 0.732 \\
+ \textbf{Pretraining + Evaluating} & - & 0.5542 & 0.6344 & 0.4631 & \textbf{0.6697} & 0.6423 \\
 \end{tabular}
 \end{ctucolortab}
 \caption{F1 scores of baseline fine-tuning. Best scores for each dataset are highlighted.}
-\label{table:3}
+\label{table:4}
 }
 \end{table}

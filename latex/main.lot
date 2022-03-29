@@ -18,10 +18,12 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Example of biased and unbiased sentences from \textbf {BABE}\relax }}{7}{table.3.1}%
-\contentsline {table}{\numberline {3.2}{\ignorespaces Comparison of all bias related datasets collected\relax }}{9}{table.3.2}%
+\contentsline {table}{\numberline {3.1}{\ignorespaces Example of biased and unbiased sentences from \textbf {BABE}\relax }}{10}{table.3.1}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Comparison of all bias related datasets collected\relax }}{12}{table.3.2}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Example of pairs of biased sentences and their rewritten neutral form\relax }}{17}{table.4.1}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Example of pairs of biased sentences and their rewritten neutral form\relax }}{14}{table.5.1}%
-\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces F1 scores of baseline fine-tuning. Best scores for each dataset are highlighted.\relax }}{24}{table.6.1}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces F1 scores of baseline fine-tuning. Best scores for each dataset are highlighted.\relax }}{26}{table.6.2}%
 \addvspace {10\p@ }

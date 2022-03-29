@@ -28,7 +28,7 @@ For translation of datasets I chose \textbf{DeepL} translator, which is purely\f
 \section{Processing}\label{processing}
 For convenience, every dataset has been processed into "sentence,label" format, where $label \in \{0,1\}$ stands for \textbf{unbiased} and \textbf{biased}, respectively. Using this simplified data format makes merging and combining several datasets convenient.
     
-Moreover, all sentences, which were originally cased were not lower-cased, since I used transformer models that can deal with cased tokens.
+Moreover, all sentences, which were originally cased were \textbf{not} lower-cased.
 
 \newpage
 \section{Translated data}
@@ -48,7 +48,7 @@ I share all listed datasets on HugginFace\footnote{\url{https://huggingface.co/}
     \item WNC-large-CS\footnote{additional \textit{large} is added for distinction between large translated WNC and czech version of WNC}
 \end{itemize}
 
-Together, approximately 400k of bias labelled translated sentences were collected. A distribution of the datasets can be seen in figure \ref{fig:cz_data}. The WNC is not included in the plot because it represents 87% of all data. 
+Together, approximately 400k of bias-labeled translated sentences were collected. A distribution of the datasets can be seen in figure \ref{fig:cz_data}. The WNC is not included in the plot because it represents 87\% of all data. 
 
 
 \begin{figure}
@@ -61,7 +61,7 @@ Together, approximately 400k of bias labelled translated sentences were collecte
 
 
 \section{Czech Wiki Neutrality Corpus}
-Finally, I present two novel parallel corpora extracted directly from Czech Wikipedia. To the best of my knowledge, this is the only original Czech dataset related to media bias and subjectivity detection. The only partially relevant dataset is \textbf{SubLex}\cite{11858/00-097C-0000-0022-FF60-B} which is a subjectivity lexicon mainly focused on sentiment. However, lexicon-based approaches are nowadays outperformed by neural models.
+Finally, I present two novel parallel corpora extracted directly from Czech Wikipedia. To the best of my knowledge, this is the only original Czech dataset related to media bias detection. The only partially relevant dataset is \textbf{SubLex}\cite{11858/00-097C-0000-0022-FF60-B} which is a subjectivity lexicon mainly focused on sentiment. However, lexicon-based approaches are nowadays outperformed by neural models.
 
 I followed two main existing approaches, both of them relying on the extraction of revisions that includes the \{\{NPOV\}\} tag or its variation. The NPOV tag has also its Czech version \Gls{nup}. However, the Czech version is practically not used and so for the extraction, the English variations were used.
 

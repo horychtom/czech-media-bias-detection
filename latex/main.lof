@@ -18,8 +18,10 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Data collection and annotation pipeline of \textbf {BABE}, reprinted from \cite {Spinde2021f}\relax }}{7}{figure.3.1}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Data collection and annotation pipeline of \textbf {BABE}, reprinted from \cite {Spinde2021f}\relax }}{10}{figure.3.1}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Dataset distribution in czech collection of data (Without WNC)\relax }}{15}{figure.4.1}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Transformer model architecture, preprinted reprinted from \cite {vaswani2017attention}\relax }}{20}{figure.5.1}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -1,19 +1,19 @@
 \chapter{Datasets} \label{datasets}
 Due to the complex nature of bias, different datasets try to capture different aspects of it. In this section, I present a collection of \textbf{all} datasets related to biased writing and subjectivity detection available and later leveraged their bias information to augment smaller ground truth datasets. For details see experiment section \ref{experiments}.
 
-As stated before, this work only focuses on sentence level classification, thus article level data were not considered. I divided dataset into 3 main families: 
+As stated before, this work only focuses on sentence level classification, thus article level data were not considered. I divided the datasets into 3 main families: 
 \begin{itemize}
     \item Subjectivity bias
-    \item WikiPedia bias
+    \item Wikipedia bias
     \item Media bias
 \end{itemize}
-Wikipedia bias is also form of subjective bias but the data comes from same distribution \footnote{some are even different samples from same larger corpora}. and environment, hence I find it reasonable to put them together.
+Wikipedia bias is also a form of subjective bias, but all the Wiki data come from the same distribution \footnote{some are even different samples from same larger corpora}. and environment, hence I find it reasonable to put them together.
 
 
 \section{Subjectivity Datasets}
 
 \subsection{SUBJ}
-It is reasonable to include datasets that focus on the detection of subjectivity, since it's one of the media bias features. The Subjectivity dataset (SUBJ) \cite{Pang+Lee:04a} consists of 10000 sentences gathered from movie review sites. Sentences are labeled as subjective and objective with 1:1 ratio. 
+It is reasonable to include datasets that focus on the detection of subjectivity, since it's one of the media bias characteristics. The Subjectivity dataset (SUBJ) \cite{Pang+Lee:04a} consists of 10000 sentences gathered from movie review sites. Sentences are labeled as subjective and objective with 1:1 ratio. 
 
 The data were collected in an automatic way. The authors made an assumption that all reviews from Rottentomatoes\footnote{https://www.rottentomatoes.com/} are subjective and all plot summaries from IMBD\footnote{ www.imdb.com} are objective. Thus, the labels can be assumed to be noisy. For each class, 5k sentences were sampled \textbf{randomly}.
 
@@ -103,7 +103,7 @@ This dataset plays a pivotal role in my approach to media bias detection and is 
 
 
 
-\section{Wikipedia NPOV datasets}\label{wiki-npov}
+\section{Wikipedia datasets}\label{wiki-npov}
 Due to annotation costs and the overall lack of large-scale datasets in the media bias setting, many researches \cite{pryzant2020automatically,recasens2013linguistic,hube2019neural} used Wikipedia's \Gls{npov} policy\footnote{\url{https://en.wikipedia.org/wiki/Wikipedia:Neutral_point_of_view}} to construct large-scale corpora automatically. 
 
 Wikipedia's NPOV policy is a set of rules which aim to preserve neutrality in Wikipedia articles. Some examples of NPOV principles are:

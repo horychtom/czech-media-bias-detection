@@ -2,44 +2,43 @@
 This is an introduction to my thesis, motivation. taky něco o nlp
 
 \section{Outline and Motivation}
-In this work, I focus on the automatic binary classification of the presence of the \textbf{media bias} in statements (sentences), using state-of-the-art language models, and applying the classifier to the Czech News. I gather all resources feasible for Czech language, training, Czech models and evaluation on Czech news corpora. I hope my work will kickstart the research of media bias in Czech environment and so I present several future research propositions.
+In this work, I focus on automatic binary classification of the presence of \textbf{media bias} in statements (sentences), using state-of-the-art language models and applying the classifier to Czech News. I gather all feasible resources for the Czech language, training, Czech models, and evaluation on Czech news corpora. I hope that my work will kickstart the research on media bias in the Czech environment, and so I present several future research proposals.
 
-Before I turned all of my attention to media bias, I have examined several other relevant bias detection topics. In the beginning of my research, I studied the possibilities of applying gender bias detection to Czech News. Hence, I dedicate a small section \ref{gender} to my results, an examination of one gender-focused dataset, and potential use cases.
+Before turning all my attention to media bias, I have examined several other relevant bias detection topics. At the beginning of my research, I studied the possibilities of applying gender bias detection to Czech News. Therefore, I dedicate a small section \ref{gender} to my results, an examination of one gender-focused dataset, and potential use cases.
 
 
 \section{Bias}
-Defining the word \textbf{bias} can be a bit tricky, because with different settings and different goals the definition also shifts. A lot of work done in bias also lacks the proper definition and often includes vague descriptions of their goals \cite{blodgett2020language}. 
+Defining the word \textbf{bias} can be a bit tricky, because with different settings and different goals the definition also shifts. Much of the work done with bias also lacks a proper definition and often includes vague descriptions of its objectives \cite{blodgett2020language}. 
 
-In terms of \Gls{ml}, bias usually means a tilt, prejudice, or tendency that, during the training, gets into the model and may subsequently lead to potentially unfair decisions. The bias is typically skewed towards some group of people, e.g., \textbf{racial bias}, \textbf{gender bias}, etc. 
+In terms of \Gls{ml}, bias usually means a tilt, prejudice, or tendency that, during training, enters the model and may subsequently lead to potentially unfair decisions. The bias is typically skewed towards some group of people, for example \textbf{racial bias}, \textbf{gender bias}, etc. 
 
-To put things into perspective, one infamous example is when Microsofts AI chatbot has picked up a racist rhetoric from large racially biased data\footnote{\url{https://futurism.com/delphi-ai-ethics-racist}}. Another example is when large pretrained language models exhibit stereotypical bias. Language models are often used to generate text and such a biased model can then generate statements that contain social stereotypes \cite{nadeem2021stereoset}.
+To put things into perspective, an infamous example is when Microsoft AI chatbot has picked up racist rhetoric from large racially biased data\footnote{\url{https://futurism.com/delphi-ai-ethics-racist}}. Another example is when large pre-trained language models exhibit stereotypical bias. Language models are often used to generate text and such a biased model may generate harmful statements that contain social stereotypes \cite{nadeem2021stereoset}.
 
-Nowadays, these systems are used for making decisions in essential areas such as in hiring, loans, and even justice. Therefore, a detection of possible \textbf{unfairness} of \Gls{ml} models and subsequent mitigation of such biases has been broadly studied \cite{blodgett2020language}.
+Nowadays, these systems are used for decision making in essential areas such as in hiring, loans, and even justice. Therefore, the detection of potential \textbf{unfairness} of \Gls{ml} models and subsequent mitigation of such biases have been widely studied \cite{blodgett2020language}.
 
 However, besides the study of the models that reflect the biased nature of the data, one can focus on the origin of the bias introduced by the human in the first place.
-Whether it is the presence of gender, stereotypical or subjective bias, this 
+Whether it is the presence of gender, stereotypical, or subjective bias, this 
 kind of biased writing, especially in the news, can have a significant influence on people who consume it.
 
-\newpage
 \subsection{Media Bias}
-The need to address bias in media emerges from the ever-increasing social polarization. News that exhibit \textbf{media bias} can sway opinions and alter readers beliefs. In this work I refer to Allsides\footnote{\url{https://www.allsides.com/} is a company that focuses on non-automatic classification of news outlets with respect to their bias} definition\footnote{\url{https://www.allsides.com/blog/what-media-bias}} of media bias:
+The need to address bias in the media arises from the ever increasing social polarization. News that exhibit \textbf{media bias} can sway opinions and alter readers beliefs. In this work I refer to Allsides\footnote{\url{https://www.allsides.com/} is a company that focuses on non-automatic classification of news outlets with respect to their bias} definition\footnote{\url{https://www.allsides.com/blog/what-media-bias}} of the media bias:
 
 \vbox{
 \blockquote{
-\textbf{Media Bias} - \textit{noun}. The tendency of news media to report in a way that reinforces a viewpoint, worldview, preference, political ideology, corporate or financial interests, moral framework, or policy inclination, instead of reporting in an objective way (simply desricing the facts). A media outlet may reveal bias in how it reports specific news stories or which stories they choose to cover, ie., deem more important than others to cover or emphasize.
+\textbf{Media Bias} - \textit{noun}. The tendency of news media to report in a way that reinforces a viewpoint, worldview, preference, political ideology, corporate or financial interests, moral framework, or policy inclination, instead of reporting in an objective way (simply describing the facts). A media outlet may reveal bias in how it reports specific news stories or which stories they choose to cover, ie., deem more important than others to cover or emphasize.
 }}
 \noindent
-Such bias can be decomposed to several features\footnote{\url{https://www.allsides.com/media-bias/how-to-spot-types-of-media-bias}}. To name a few:
+Such bias can be decomposed into several features\footnote{\url{https://www.allsides.com/media-bias/how-to-spot-types-of-media-bias}}. To name a few:
 \begin{itemize}
     \item \textbf{Sensationalism/Emotionalism} - Explicit sentiment in statement
-    \item \textbf{Subjective Qualifying Adjectives} - Adjectives like \textit{extreme, awkward, serious,..}
+    \item \textbf{Subjective Qualifying Adjectives} - Adjectives such as \textit{extreme, awkward, serious,..}
     \item \textbf{Mudslinging/Ad Hominem} - Personal attacks, insulting, etc.
 \end{itemize}
 
-The diversity of these features shows how complex and subtle the overall bias information can be. Therefore, simple subjectivity or sentiment analysis is not sufficient. Most of the features are of a lexical nature, on the other hand, there are other features that are practically not possible to detect automatically or would require different approaches, eg. bias by \textbf{ommiting information}, where it strongly depends on an outter context. In section \ref{mediabias} I refer to the family of these kinds of features as \textbf{informational bias}.
+The diversity of these characteristics shows how complex and subtle the overall bias information can be. Therefore, a simple subjectivity or sentiment analysis is not sufficient. Most of the features are of a lexical nature; on the other hand, there are other features that are practically not possible to detect automatically or would require different approaches, e.g. bias by \textbf{ommiting information}, where it strongly depends on an outer context. In section \ref{mediabias} I refer to the family of these kinds of features as \textbf{informational bias}.
 
 
-Yet, the presence of media bias does not always imply a malicious intent. It is in human nature to draw on experience, thus one can simply not be aware of their implicit bias. As the authors of Allsides state, it might be even desirable. For example the \textit{Commentary} format article often contains more bias, but it is its purpose to put forward an opinion, and there is nothing wrong with that. The trouble begins when a reader is not aware of it and anticipates an objective journalism.
+However, the presence of media bias does not always imply malicious intent. It is in human nature to draw on experience; thus, one can simply not be aware of their implicit bias. As the authors of Allsides suggest, it might even be desirable. For example, the \textit{Commentary} format article often contains more bias, but its purpose is to present an opinion, and there is nothing wrong with that. Trouble begins when the reader is not aware of it and anticipates or assumes objective journalism.
 
 
 

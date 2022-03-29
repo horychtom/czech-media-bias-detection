@@ -20,53 +20,62 @@
 \babel@toc {english}{}
 \babel@toc {english}{}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Motivation}{1}{section.1.1}%
-\contentsline {section}{\numberline {1.2}My contribution}{1}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Outline}{1}{section.1.3}%
-\contentsline {chapter}{\numberline {2}State of the art}{2}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Bias}{2}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Gender bias}{2}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Media bias detection}{3}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Informational vs Lexical}{3}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Methodology (SOTA)}{3}{subsection.2.3.2}%
-\contentsline {chapter}{\numberline {3}Datasets}{4}{chapter.3}%
-\contentsline {subsection}{\numberline {3.0.1}SUBJ}{4}{subsection.3.0.1}%
-\contentsline {subsection}{\numberline {3.0.2}MPQA}{4}{subsection.3.0.2}%
-\contentsline {subsection}{\numberline {3.0.3}BASIL}{5}{subsection.3.0.3}%
-\contentsline {subsection}{\numberline {3.0.4}Ukraine Crisis Dataset}{5}{subsection.3.0.4}%
-\contentsline {subsection}{\numberline {3.0.5}NFNJ}{6}{subsection.3.0.5}%
-\contentsline {subsection}{\numberline {3.0.6}BABE}{6}{subsection.3.0.6}%
-\contentsline {section}{\numberline {3.1}Wikipedia NPOV datasets}{7}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Wiki Neutrality Corpus}{8}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}CW-HARD}{8}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}WikiBias}{8}{subsection.3.1.3}%
-\contentsline {section}{\numberline {3.2}Unused datasets}{9}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Datasets summary}{9}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Theoretical background}{10}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Text classification}{10}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Neural Networks }{10}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Attention and transformers}{10}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Transfer learning}{10}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Czech datasets}{11}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Machine Translation}{12}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Processing}{12}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Translated data}{13}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Czech Wiki Neutrality Corpus}{13}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}CWNC-noisy}{14}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}CWNC}{14}{subsection.5.4.2}%
-\contentsline {section}{\numberline {5.5}Not translated}{15}{section.5.5}%
-\contentsline {chapter}{\numberline {6}Experiments}{16}{chapter.6}%
-\contentsline {subsection}{\numberline {6.0.1}Czech models}{16}{subsection.6.0.1}%
-\contentsline {subsection}{\numberline {6.0.2}Multi-lingual models}{16}{subsection.6.0.2}%
-\contentsline {section}{\numberline {6.1}Baseline setup}{17}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Hyperparameter tuning}{17}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Combining Datasets}{17}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Pretraining on English WNC}{17}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}Subjectivity pretraining}{17}{subsection.6.3.2}%
-\contentsline {subsection}{\numberline {6.3.3}Media Bias Pretraining}{17}{subsection.6.3.3}%
-\contentsline {subsection}{\numberline {6.3.4}Combining all datasets together Without WNC}{17}{subsection.6.3.4}%
-\contentsline {section}{\numberline {6.4}Inference on Czech News Samples}{17}{section.6.4}%
-\contentsline {section}{\numberline {6.5}Multi-Task learning approach}{18}{section.6.5}%
-\contentsline {chapter}{\numberline {7}Conclusion}{19}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Summary of work done}{19}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Future perspective}{19}{section.7.2}%
+\contentsline {section}{\numberline {1.1}Outline and Motivation}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Bias}{1}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Media Bias}{2}{subsection.1.2.1}%
+\contentsline {chapter}{\numberline {2}State of the art}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Gender bias detection}{4}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Media bias detection}{5}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Datasets}{6}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Subjectivity Datasets}{6}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}SUBJ}{6}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}MPQA}{7}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Media Bias datasets}{8}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}BASIL}{8}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Ukraine Crisis Dataset}{8}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}NFNJ}{9}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}BABE}{9}{subsection.3.2.4}%
+\contentsline {section}{\numberline {3.3}Wikipedia datasets}{10}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Wiki Neutrality Corpus}{11}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}CW-HARD}{11}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}WikiBias}{11}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Unused datasets}{12}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Summary}{12}{section.3.5}%
+\contentsline {chapter}{\numberline {4}Czech datasets}{13}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Machine Translation}{14}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Processing}{14}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Translated data}{15}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Czech Wiki Neutrality Corpus}{15}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}CWNC-noisy}{16}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}CWNC}{16}{subsection.4.4.2}%
+\contentsline {section}{\numberline {4.5}Not translated}{17}{section.4.5}%
+\contentsline {chapter}{\numberline {5}Theoretical background}{18}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Text representation}{18}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Neural Networks}{19}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Encoder-Decoder}{19}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Transformers}{19}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Attention}{20}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Transformer architecture}{20}{subsection.5.4.2}%
+\contentsline {section}{\numberline {5.5}Text classification}{21}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Metrics}{21}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Transformers for text classification}{21}{subsection.5.5.2}%
+\contentsline {section}{\numberline {5.6}Transfer learning}{22}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Multi-Task learning}{22}{section.5.7}%
+\contentsline {chapter}{\numberline {6}Experiments}{23}{chapter.6}%
+\contentsline {subsection}{\numberline {6.0.1}Czech monolingual models}{23}{subsection.6.0.1}%
+\contentsline {subsection}{\numberline {6.0.2}Multi-lingual models}{23}{subsection.6.0.2}%
+\contentsline {section}{\numberline {6.1}On Instability of fine-tuning}{24}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Experimental setup}{24}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Baseline setup}{24}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Hyperparameter tuning}{25}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Combining Datasets}{25}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Trained on Datasets, evaluated on BABE}{25}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}Pretrianing Combinations}{25}{subsection.6.5.2}%
+\contentsline {section}{\numberline {6.6}Final training}{26}{section.6.6}%
+\contentsline {section}{\numberline {6.7}Self-Training}{26}{section.6.7}%
+\contentsline {section}{\numberline {6.8}Notes on experiments}{26}{section.6.8}%
+\contentsline {section}{\numberline {6.9}Inference on Czech News Samples}{26}{section.6.9}%
+\contentsline {chapter}{\numberline {7}Conclusion}{27}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Summary of work done}{27}{section.7.1}%
+\contentsline {section}{\numberline {7.2}What hasnt make it into this work}{27}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Future perspective}{27}{section.7.3}%
