@@ -339,3 +339,8 @@ notebooks/media/whole_process/checkpoint-1000/tokenizer_config.json
 notebooks/media/whole_process/checkpoint-1000/trainer_state.json
 notebooks/media/whole_process/checkpoint-1000/training_args.bin
 notebooks/media/whole_process/checkpoint-1000/vocab.txt
+notebooks/media/whole_process/.ipynb_checkpoints/text-checkpoint.txt
+notebooks/media/baseline/.ipynb_checkpoints/baseline-10fold-checkpoint.ipynb
+notebooks/media/variance/.ipynb_checkpoints/Variance-study-checkpoint.ipynb
+src/models/trained/final_classifier.pth
+notebooks/media/whole_process/text.txt
