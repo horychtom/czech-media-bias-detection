@@ -1,7 +1,7 @@
 \chapter{Experiments}\label{experiments}
 In this section I present experiments on text classification over collected datasets. The main \textbf{target} dataset for evaluations is BABE, due to its high quality and properties.
 
-Due to the novelty of CWNC I also perform a baseline evaluation on this dataset, but furthermore it is not tuned.
+Because of novelty of the CWNC I also perform a baseline evaluation on this dataset, but furthermore it is not tuned anymore, nor evaluated.
 I follow the current standard approaches and use pretrained transformers for further pretraining and fine-tuning. 
 
 A brief summary of the models tested can be found in the following:
@@ -11,10 +11,10 @@ A brief summary of the models tested can be found in the following:
 
 \subsection{Czech monolingual models}
 \begin{itemize}
-    \item \textbf{RobeCzech} \cite{strakarobeczech} - RoBERTa-based model with 125M parameters. Just as its original counterpart, it is trained with MLM (Masked Language Modeling) task, on 4,917M tokens of czech corpora.
-    \item \textbf{Czert} \cite{sido-etal-2021-czert} - BERT-based model with 110M parameters, trained with MLM and NSP (Next Sentence Prediction) tasks. All Together trained on 37GB of text. 
-    \item \textbf{FERNET-C5} \cite{lehevcka2021comparison} - BERT-based model trained with the MLM and NSP task on 93GB of text from the Common Crawl project.
-    \item \textbf{FERNET-News} \cite{lehevcka2021comparison} - RoBERTa-based model trained with MLM task on 20GB of Czech News text.
+    \item \textbf{RobeCzech} \cite{strakarobeczech} - RoBERTa-based model with 125M parameters. Just as its original counterpart, it is trained with \gls{mlm} task, on 4,917M tokens of Czech corpora.
+    \item \textbf{Czert} \cite{sido-etal-2021-czert} - BERT-based model with 110M parameters, trained with \gls{nsp} tasks. All Together trained on 37GB of text. 
+    \item \textbf{FERNET-C5} \cite{lehevcka2021comparison} - BERT-based model trained with the \gls{mlm} and \gls{nsp} task on 93GB of text from the Common Crawl project.
+    \item \textbf{FERNET-News} \cite{lehevcka2021comparison} - RoBERTa-based model trained with \gls{mlm} task on 20GB of Czech News text.
 \end{itemize}
 
 
@@ -29,6 +29,9 @@ A brief summary of the models tested can be found in the following:
 \end{itemize}
 
 
+
+
+
 \section{On Instability of fine-tuning}
 bla bla. Cross validace , ukazalo 10x menší variance. -> 10fold cross validace
 In turned out that different initializations perform differently on different splits. Therefore increasing number of folds in cross validation reduced the variance 10 times.
@@ -37,20 +40,22 @@ In turned out that different initializations perform differently on different sp
 
 \section{Experimental setup}
 All models are fetched, trained, and evaluated using the HuggingFace API. The maximum sequence length is set to 128 tokens. All the parameters can be seen in the Appendix.
-Everything is evaluated using 5-fold cross-validation with fixed seed. The evaluation metric for all experiments is F1 score with macro averaging. A small portion ( 15\%) of the target dataset is left aside as a \textbf{test set} at the beginning and used only for the final evaluation to ensure that there are no data leaks.
+Everything is evaluated using 10-fold cross-validation. The evaluation metric for all experiments is F1 score with macro averaging\footnote{The score is averaged over all (2) classes.}. 
 
-First, the baseline models are evaluated, and the best model is selected for further compact hyperparameter tuning. Then experiments on different combinations of datasets are then performed.
-All training has been done on a single GPU on RCI cluster.
+A small portion (15\%) of the target dataset is left aside as a \textbf{test set} at the beginning and used only for the final evaluation to ensure that there are no test data leaks into training procedure.
 
+All training has been done on a RCI cluster node with 4 x NVIDIA Tesla V100 with 32GB GPU graphic memory.
 
 
 
 
  \section{Baseline setup}
- As a baseline, all Czech models are fine-tuned on BABE and evaluated using 5-fold stratified cross-validation. Hyperparameters were the same as those used by the authors \cite{Spinde2021MBIC}. However, the authors used early stopping together with cross-validation and used the validation split inside CV to early stop, which is not ideal since the split should be used only for evaluation. This way the model can "see" the data before evaluation; hence I did not use early stopping with CV at all and fixed the number of epochs to 3, as authors of BERT suggest \cite{devlin2019bert} . 
- All other hyperaparemeters remained unchanged. AdamW optimizer is used with an initial learning rate 5e-5. 
+ As a baseline, all Czech models are fine-tuned on BABE and evaluated using 10-fold stratified cross-validation. Used hyperparameters are the same as those used by the authors of the BABE \cite{Spinde2021MBIC}. However, the authors used early stopping together with cross-validation and used the validation split inside CV to early stop, which allows the model to "see" the test during the tuning, before the evaluation. 
  
- Baseline evaluation of all the Czech models used can be seen in table \ref{table:3}. The final F1 score is averaged across all folds. For further experiments and tuning, I chose the model that performed best on average between the two datasets, which is \textbf{RobeCzech}.
+ Using early stopping would require another split for validation, but at this point the size of the training data is already shrinked significantly. Hence I did not use early stopping with CV at all and fixed the number of epochs to 3, as authors of BERT suggest \cite{devlin2019bert} . 
+ All other hyperaparemeters remained unchanged. AdamW optimizer is used with an initial learning rate 5e-5 and batch size is 64.
+ 
+ Baseline evaluation of all the Czech models used can be seen in table \ref{table:3}. The final F1 score is averaged across all folds. For further experiments and tuning. For further tuning the best model, \textbf{FERNET-C5} is chosen.
  
 
  
@@ -62,7 +67,7 @@ All training has been done on a single GPU on RCI cluster.
  
  
  \section{Hyperparameter tuning}
-I restricted the search space only to the combination of:
+I restricted the search space only to the combinations of:
  \begin{itemize}
      \item \textbf{Batch size} $\in \{16,32\}$
      \item \textbf{Learning rate} $\in $ \{2e-5,3e-5,5e-5\}
@@ -71,61 +76,45 @@ I restricted the search space only to the combination of:
  
  As the authors of the original BERT paper suggest.  After running the grid search, the overall best parameters were:
  \begin{center}
-      \{learning\_rate = 2e-5,batch\_size = 16, epochs=3\}
+      \{learning\_rate = 3e-5,batch\_size = 32, epochs=3\}
  \end{center}
+ 
+ Model with the best parameters achieved 0.784 F1 score ($\sim$0.4\% improvement against baseline).
 
 
  
  
- 
+  \input{my_modules/tables/all_trained}
+
  \section{Combining Datasets}
-This section is dedicated to the study of the influence of pre-training and training with different combination of datasets. Trying all combinations would result in training of 128 models, which is obviously infeasible. Therefore, few arbitrary combinations of the datasets with respect to their bias information were sampled and evaluated.
+This section is dedicated to the study of the influence of pre-training combination of datasets. Trying all combinations would result in training of 128 models, which is obviously infeasible. Therefore, I decided to pretrain on 5 combinations with regards to the bias information:
+\begin{itemize}
+    \item \textbf{SUBJ} - is a combination of SUBJ and MPQA dataset, which both focus on explicit subjective bias.
+    \item \textbf{MB} - is a combination of NJNJ,UA-crisis and BASIL dataset which are all from the media bias family.
+    \item \textbf{WIKI} - are all datasets gather from wikipedia, with respect to NPOV violations. It consists of CW-hard, WikiBias and CWNC.
+    \item \textbf{ALL} - This one is simply combination of all datasets except the WNC.
+    \item \textbf{WNC} - WNC is almost 90\% of all data, I therefore perform experiments on this dataset seperately.
+\end{itemize}
  
- 
- 
- 
- 
- \subsection{Trained on Datasets, evaluated on BABE}
- As a starting point, I trained a model on each of the datasets and evaluated their performance on BABE and CWNC, to see, which datasets provide the most relevant bias annotations with respect to the targets. Data from wikipedia family perform comparably better, mainly because their bias information is more straightforward. On the other hand, low quality of MB datasets proves to be problematic. In most cases, pretraining on small dataset only hurts the performance. Only in case of WNC which is large-scale dataset, pretraining outperformed baseline of CWNC. That is because both data come from the same distribution.
- 
- 
- 
- 
- 
- \subsection{Pretrianing Combinations}
- \begin{itemize}
-     \item \textbf{All datasets} -  I pretrained all to see which are generally best. Trained all and evaluated on babe, to see what is the most relevant. On the same valid splits. Low quality of media bias data really doesnt work out. Too small to learn bias embeddings.
-     Pretrained odchylka is too little, it has no impact at all. Wiki works very good.
-     On average variance between all tasks was so low that they bbasically performed tall the same. Thus pretaining on these smaller datasets made no improvement.
-     \item \textbf{Subjective Bias} - pretraining had no effect. Subj achieved good performance. Subj did actually quite good.
-     \item \textbf{Media Bias}
-     \item \textbf{Wiki Bias} 
-     \item \textbf{WNC} - Since this is the only large dataset I decided to evaluate it seperately.
-     \item \textbf{All together} - To learn bias embeddings properly.
- \end{itemize}
- 
- conclusion: pretraining had no effect,Finetuning on small datasets is very unstable ~ weight inicializations are bad.
- 
- Training wiki, freezing parameters nad only training classification layer.
- Freezing encoder havent worked out yet!
- 
- \ref{table:4}
- \input{my_modules/tables/all_trained}
- 
-\section{Final training}
- 
-\section{Self-Training}
-WikiBias uses selftraining. I use selftraining, stonks.
-I use intuition behind early stopping procedure and extrapolate it to the training. The model is contually 
-I experimented with few datasets. Self-Training is usually performed on arbitrary corpora of text. I decided to incorporate the translated datasets, because they were manually selected as a representative sample of the class, I believe that using regular news corpora would include too many neutral examples, thus would be less efficient.
+While pretraining, small validation set was used for each combination to decide the optimal number of epochs for pretraining. Convergence of validation losses can be seen in figure \ref{fig:all_losses}.
+\begin{figure}
+  \includegraphics[scale=0.5]{my_modules/multimedia/all_losses.png}
+  \caption{Convergence of validation loss over different dataset combinations}
+  \label{fig:all_losses}
+\end{figure}
+
+Furhermore, I also evaluated pretrained models on babe without fine-tuniing. All results can be seen in \ref{table:4}
+The best model out of box was trained on WNC. bla bla All best, however subj good, and subj biggest nad all is mostly subj, mb very bad. wiki bad. interesting subj cant go brr. why because subj is trivial it can help mb with trivials but cant go further. wiki is somewhat balance between triv and hard.
+
+\section{Final evaluation and training}
+Final model has been trained with optimal parameters and pretrained on all datasets combined. It achieved F1 score of \textbf{0.804} on a test set. Then for a final model used for inference, the whole dataset has been used.
+
+\section{Conclusion}
+The final score on test set is not representative, because of its size. For better evaluation a nested cross-validation should be used. However, the computational demand would be too large. 
+
+A full study with more models could be performed, but that would require enormous umber of trained models. Essentially these results show that there was a very little gain over the baseline (\textbf{+0.7\%}). I suppose that to boost hte performance, novel dataset focused solely on Czech media bias is needed.
 
 
-
-\section{Notes on experiments}
-
-For better evaluation nested cross-validation should be used. However, the computational demand would be too large. Random seed was not enough. PyTorch backend brought in some inner randomness.
-  A full study with more models could be performed, but that would require enormous number of trained models thus i perform all experiments on RobeCzech.
-  
   
 
 \section{Inference on Czech News Samples}

@@ -22,7 +22,7 @@ The current standard representation of words are word \textbf{embeddings}. Embed
 \section{Neural Networks}
 An \Gls{ann} is a model developed in the early 1940s. The smallest unit of a \Gls{nn} is a perceptron:
 \begin{equation}
-    f(x) = \phi(w^Tx)
+    f(x) = \phi(w^Tx + b)
 \end{equation}
 Where \textbf{weight} vector $w$ and \textbf{bias} term $b$ are learnable parameters, $x$ is an input feature vector and $\phi$ is an \textbf{activation function}. Activation functions are used for introducing non-linearities into the \Gls{nn}. In case of perceptron, it is a simple threshold function. Although the definition of \Gls{mlp} is loose, it can be understood as a simplest form of neural network with multiple connected perceptrons and a threshold activation function. In general, \Gls{nn}s usually use other activation functions such as sigmoid, ReLu, Tanh, LeakyReLu, etc.
 
@@ -117,8 +117,6 @@ Usually, one or two dense layers with activation function are sufficient as a cl
 \section{Transfer learning}
 Nowadays the true power of transformers lies in \textbf{transfer learning}. Transfer is a process when some knowledge is not learned from scratch but transfered from previously trained model. Since large language models such as BERT or RoBERTa has millions of parameters, it would be extremely costly to train them from scratch. 
 
-Such large models are usually pretrained on a very large corpus of data. There are several common \textbf{unsupervised} pre-training tasks, that allow these models to learn contextual representations of words without supervision. For instance \gls{mlm} is a task, where random sample of tokens in input sequence is replaced with [MASK] token and model learns to predict the original token.
+Such large models are usually pretrained on a very large corpus of data. There are several common \textbf{unsupervised} pre-training tasks, that allow these models to learn contextual representations of words without supervision. For instance \gls{mlm} is a task, where random sample of tokens in input sequence is replaced with [MASK] token and model learns to predict the original token. Or \gls{nsp} which is self-explanatory.
 
 Having such pre-trained model, one can then easily train a task specific head on top of pre-trained representations. Although process of \textbf{fine-tuning} where all parameter of model are tuned, is more often adopted.
-
-\section{Multi-Task learning}
