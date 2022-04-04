@@ -399,5 +399,10 @@ notebooks/media/full_pipeline/Pre-training/logs/.ipynb_checkpoints/subj-checkpoi
 notebooks/media/full_pipeline/Pre-training/logs/.ipynb_checkpoints/subj2-checkpoint.loss
 notebooks/media/full_pipeline/Pre-training/logs/.ipynb_checkpoints/wncs-checkpoint.loss
 src/data/__pycache__/NFNJ.cpython-38.pyc
+<<<<<<< HEAD
 demo/.ipynb_checkpoints/app-checkpoint.py
 demo/.ipynb_checkpoints/Untitled-checkpoint.ipynb
+=======
+notebooks/media/full_pipeline/.ipynb_checkpoints/inference_experiments-checkpoint.ipynb
+notebooks/media/full_pipeline/.ipynb_checkpoints/model_fit-checkpoint.png
+>>>>>>> d1329f59b9a3fee852e1d906d683227022aad16d
