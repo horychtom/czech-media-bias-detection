@@ -3,11 +3,12 @@ import torch
 import torch.nn.functional as F
 import numpy as np
 from corpy.morphodita import Tokenizer
+from nltk import sent_tokenize
 
 import transformers
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
-model_checkpoint = 'ufal/robeczech-base'
+model_checkpoint = 'fav-kky/FERNET-C5'
 device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 transformers.logging.set_verbosity(transformers.logging.ERROR)
 
@@ -21,15 +22,8 @@ def classify_sentence(sent:str):
     return F.softmax(output.logits,dim=1).argmax(dim=1)
     
 def classify_text(text:str):
-    tokenizer_morphodita = Tokenizer("czech")
-
-    all = []
-    for sentence in tokenizer_morphodita.tokenize(text, sents=True):
-        all.append(sentence)
-
-    sentences = np.array([' '.join(x) for x in all])
-    annotations = np.array(list(map(classify_sentence,sentences)))
-    
+    sentences = sent_tokenize(text)
+    annotations = np.array(list(map(classify_sentence,sentences)))    
     return annotations
     
 def classify_text_wrapper(text:str):
@@ -43,15 +37,8 @@ def classify_text_wrapper(text:str):
     
 def interpret_bias(text:str):
     result = classify_text(text)
-    
-    tokenizer_morphodita = Tokenizer("czech")
-
+    sentences = sent_tokenize(text)
     interpretation = []
-    all = []
-    for sentence in tokenizer_morphodita.tokenize(text, sents=True):
-        all.append(sentence)
-    
-    sentences = np.array([' '.join(x) for x in all])
     
     for idx,sentence in enumerate(sentences):
         score = 0
@@ -66,7 +53,7 @@ def interpret_bias(text:str):
     return interpretation
     
 tokenizer = AutoTokenizer.from_pretrained(model_checkpoint)
-model = AutoModelForSequenceClassification.from_pretrained("sagittariusA/media_bias_classifier_cs")
+model = AutoModelForSequenceClassification.from_pretrained("horychtom/czech_media_bias_classifier")
 model.eval()
 
 label = gr.outputs.Label(num_top_classes=2)
@@ -76,4 +63,3 @@ app = gr.Interface(fn=classify_text_wrapper,title='Bias classifier',theme='defau
                     ,interpretation=interpret_bias)
 
 app.launch(inbrowser=True)
-

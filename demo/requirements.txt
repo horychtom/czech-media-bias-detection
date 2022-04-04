@@ -3,4 +3,4 @@ torch
 numpy
 corpy
 transformers
-
+nltk
