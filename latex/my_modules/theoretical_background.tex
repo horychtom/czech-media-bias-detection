@@ -1,5 +1,5 @@
 \chapter{Theoretical background}
-In this section, I briefly introduce state-of-the-art methods and models used in experiment section. Many of the problems in NLP are tasks of mapping one sequence to another, therefore modern architectures were designed to tackle this very problem |\textbf{efficiently}.
+In this section, I briefly introduce state-of-the-art methods and models used in experiment section. Many of the problems in NLP are tasks of mapping one sequence to another, therefore modern architectures were designed to tackle this very problem \textbf{efficiently}.
 
 
 
@@ -59,11 +59,15 @@ Attention \cite{bahdanau2014neural,luongeffective} is essentially a mechanism th
 \end{figure}
 
 \subsection{Transformer architecture}
-Scheme of the original architecture can be seen in \ref{fig:transformer}. Just as previous seq2seq models, transformer also consists of Encoder and Decoder modules. Precisely, each module is a stack of $n$ identical encoder or decoder layers.
+Scheme of the original architecture can be seen in \ref{fig:transformer}. The bottom of the architecture consists of embedding layer enriched with \textbf{positional embeddings} which encode the ordering information in the sequence.
 
-Each encoder layer 
+Just as previous seq2seq models, transformer also consists of Encoder and Decoder modules. Precisely, each module is a stack of $n$ identical encoder or decoder layers. Each encoder layer consists of two main layers: \textbf{self-attention} layer and \textbf{feed forward} layer.
 
-Instead of working on each token sequentially (as conventional Encoder-Decoder did), transformer builds hidden state representations for all tokens in sequence in \textbf{parallel}.
+Self-attention layer uses attention mechanism to incorporate other words from the sequence into each particular word representation. The transformer architecture perform this self-attention computation 8 times allowing the the model to learn different relationships between words. This is what a term \textbf{Multi-Head} attention refers to. Resulting representations from these heads are then concatenated and reduced in dimension to obtain the final representation to feed to feed forward network. 
+
+The Decoder modules work essentially the same only it has extra attentive layer that performs the attention computation over the output of the encoder stack. For more details i refer the reader to original transformer paper \cite{vaswani2017attention}.
+
+Although the computation of self-attention is dependent on other tokens, the forward pass of feed forward network can be done completely in parallel over the input seuqnce. This design therefore offer significant computational speedup against the \gls{rnn} based Encdoer-Decoder.
 
 
 

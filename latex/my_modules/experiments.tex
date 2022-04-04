@@ -31,20 +31,14 @@ A brief summary of the models tested can be found in the following:
 
 
 
-
-\section{On Instability of fine-tuning}
-bla bla. Cross validace , ukazalo 10x menší variance. -> 10fold cross validace
-In turned out that different initializations perform differently on different splits. Therefore increasing number of folds in cross validation reduced the variance 10 times.
-
-
-
 \section{Experimental setup}
 All models are fetched, trained, and evaluated using the HuggingFace API. The maximum sequence length is set to 128 tokens. All the parameters can be seen in the Appendix.
 Everything is evaluated using 10-fold cross-validation. The evaluation metric for all experiments is F1 score with macro averaging\footnote{The score is averaged over all (2) classes.}. 
 
-A small portion (15\%) of the target dataset is left aside as a \textbf{test set} at the beginning and used only for the final evaluation to ensure that there are no test data leaks into training procedure.
+A small portion (15\%) of the target dataset is left aside as a \textbf{test set} at the beginning and used only for the final evaluation to ensure that no test data leak into training procedure.
 
 All training has been done on a RCI cluster node with 4 x NVIDIA Tesla V100 with 32GB GPU graphic memory.
+
 
 
 
@@ -55,7 +49,7 @@ All training has been done on a RCI cluster node with 4 x NVIDIA Tesla V100 with
  Using early stopping would require another split for validation, but at this point the size of the training data is already shrinked significantly. Hence I did not use early stopping with CV at all and fixed the number of epochs to 3, as authors of BERT suggest \cite{devlin2019bert} . 
  All other hyperaparemeters remained unchanged. AdamW optimizer is used with an initial learning rate 5e-5 and batch size is 64.
  
- Baseline evaluation of all the Czech models used can be seen in table \ref{table:3}. The final F1 score is averaged across all folds. For further experiments and tuning. For further tuning the best model, \textbf{FERNET-C5} is chosen.
+ Baseline evaluation of all the Czech models used can be seen in table \ref{table:3}. The final F1 score is averaged across all folds. For further tuning the best model, \textbf{FERNET-C5}, is chosen.
  
 
  
@@ -65,7 +59,8 @@ All training has been done on a RCI cluster node with 4 x NVIDIA Tesla V100 with
  
  
  
- 
+\newpage
+
  \section{Hyperparameter tuning}
 I restricted the search space only to the combinations of:
  \begin{itemize}
@@ -84,45 +79,70 @@ I restricted the search space only to the combinations of:
 
  
  
-  \input{my_modules/tables/all_trained}
+\input{my_modules/tables/all_trained}
 
- \section{Combining Datasets}
-This section is dedicated to the study of the influence of pre-training combination of datasets. Trying all combinations would result in training of 128 models, which is obviously infeasible. Therefore, I decided to pretrain on 5 combinations with regards to the bias information:
+
+
+
+
+\section{Combining Datasets}
+This section is dedicated to the study of the influence of pre-training on combinations of datasets. Trying all combinations would result in training 128 models, which is obviously infeasible. Therefore, I decided to pretrain on 5 splits with regard to the bias information:
 \begin{itemize}
-    \item \textbf{SUBJ} - is a combination of SUBJ and MPQA dataset, which both focus on explicit subjective bias.
-    \item \textbf{MB} - is a combination of NJNJ,UA-crisis and BASIL dataset which are all from the media bias family.
+    \item \textbf{SUBJe} - is a combination of SUBJ and MPQA dataset, which both focus on explicit subjective bias.
+    \item \textbf{MB} - is a combination of NJNJ, UA-crisis and BASIL dataset which are all from the media bias family.
     \item \textbf{WIKI} - are all datasets gather from wikipedia, with respect to NPOV violations. It consists of CW-hard, WikiBias and CWNC.
     \item \textbf{ALL} - This one is simply combination of all datasets except the WNC.
     \item \textbf{WNC} - WNC is almost 90\% of all data, I therefore perform experiments on this dataset seperately.
 \end{itemize}
  
-While pretraining, small validation set was used for each combination to decide the optimal number of epochs for pretraining. Convergence of validation losses can be seen in figure \ref{fig:all_losses}.
+Every split has been downsampled so the classes were balanced. A small validation set was used for each combination to decide the optimal number of epochs for pre-training. Convergence of validation losses can be seen in figure \ref{fig:all_losses}.
 \begin{figure}
   \includegraphics[scale=0.5]{my_modules/multimedia/all_losses.png}
   \caption{Convergence of validation loss over different dataset combinations}
   \label{fig:all_losses}
 \end{figure}
 
-Furhermore, I also evaluated pretrained models on babe without fine-tuniing. All results can be seen in \ref{table:4}
-The best model out of box was trained on WNC. bla bla All best, however subj good, and subj biggest nad all is mostly subj, mb very bad. wiki bad. interesting subj cant go brr. why because subj is trivial it can help mb with trivials but cant go further. wiki is somewhat balance between triv and hard.
+Furhermore, I also evaluated pre-trained models on BABE without further fine-tuniing, to gain the insight of relatedness to BABE. All results can be seen in \ref{table:4}.
 
-\section{Final evaluation and training}
-Final model has been trained with optimal parameters and pretrained on all datasets combined. It achieved F1 score of \textbf{0.804} on a test set. Then for a final model used for inference, the whole dataset has been used.
+Pre-training on \textbf{ALL} datasets combined resulted in the best performace, however, virtually equal performance achieved the model trained on \textbf{SUBJe} combination. Importantly, the SUBJ split represents almost half of the all data (see \ref{fig:cz_data}). Therefore, I assume the performance of ALL split be high due to the presence of SUBJe.
 
-\section{Conclusion}
-The final score on test set is not representative, because of its size. For better evaluation a nested cross-validation should be used. However, the computational demand would be too large. 
+Pre-training on the other splits hurt the performance. This is particularly because the model had struggled to learn the pre-training tasks in the first place. For example, during pre-training on \textbf{MB}, on validation set only F1 $\sim40\%$ has been achieved. As opposed to \textbf{SUBJe}, where model was able to achieve F1 $\sim90\%$ in first few iterations.
 
-A full study with more models could be performed, but that would require enormous umber of trained models. Essentially these results show that there was a very little gain over the baseline (\textbf{+0.7\%}). I suppose that to boost hte performance, novel dataset focused solely on Czech media bias is needed.
+
+The Subjectivity Bias opposed to Media Bias is a bit more explicit and simpler. Therefore it can help to classify Media Bias but not the other way round, since pre-trained SUBJe model achieved only 55\% on BABE. This supports the premise that media bias is composed of many simpler linguistic features \ref{features}. However, these results are still greatly influenced by overall small sizes and low quality of the datasets.
+
+
+
+
+\section{Results}
+Final model for evaluation has been trained with the optimal parameters and pre-trained on all datasets combined. It achieved F1 score of \textbf{0.804} on a \textbf{test} set. Afterwards, for final model that I share on huggingface, the test set has also been included in training. Additionally I provide a simple web demo for reader to experiment with\footnote{\url{https://huggingface.co/spaces/horychtom/czech_media_bias_detection}}. Usage of the demo can be seen in \ref{fig:demodemo}
+
+\begin{figure}
+\makebox[\textwidth][c]{
+  \includegraphics[scale=0.38]{my_modules/multimedia/demodemo.png}
+  \caption{Example of the bias classifier demo usage.}
+  \label{fig:demodemo}
+  }
+\end{figure}
+
+
+Despite the relatively high performance, the final score on test set is not representative because of its size. Test set consists of $\sim$500 sentences therefore may not represent all the bias information properly. For better evaluation I propose usage of a nested cross-validation. However, the computational demand would be very high. 
+
+Also a full study with more models could be performed, but that would require enormous number of trained models. Essentially these results show that there was a very little gain over the baseline (\textbf{+0.7\%}).
+
+I suppose that to boost the performance, either novel dataset focused solely on Czech media bias is needed. Or possibly, exploration of the Multi-Task setting and gathering bias related sub tasks (sentiment analysis, subjectivity, insult detection) of sufficient quality.
 
 
   
 
 \section{Inference on Czech News Samples}
+
 \begin{itemize}
-    \item Analysis and statistics
-    \item Few words Article level
+    \item korelovat bias abstraktu (nebo headline) a textu pro jedno medium
+    \item vyplotit vyvoj biasu v čase pro jedno medium
+    \item vyplotit bias mezi pár mediama
+    \item vyplotit bias mezi tématama (bydlení atd)
+    \item komentáře jsou skrze "section" ! super
+    \item bias není 50\% ! bud je to hodně nebo malo. Bimodal distribution!
+    \item use probability of headline bias as a prior
 \end{itemize}
-
-
-%\section{LIME analysis and demo}
-%\section{Multi-Task learning approach}\label{mtl}
