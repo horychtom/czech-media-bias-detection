@@ -1,45 +1,70 @@
 \chapter{Introduction}
-This is an introduction to my thesis, motivation. taky něco o nlp
+Consumption of media of all kinds rises with people being more and more engaged in the online world. We usually learn about the events happening in the world through the online news media of our choice, therefore it is important that media present fair, unbiased, reliable information. Even though, there is a huge effort in pointing out potentially \textbf{biased} sources of information by human, we still fail to classify media in broad, comprehensive manner. Automatic, machine classification of news texts may help human on this journey towards more reliable news environment.
 
-\section{Outline and Motivation}
-In this work, I focus on automatic binary classification of the presence of \textbf{media bias} in statements (sentences), using state-of-the-art language models and applying the classifier to Czech News. I gather all feasible resources for the Czech language, training, Czech models, and evaluation on Czech news corpora. I hope that my work will kickstart the research on media bias in the Czech environment, and so I present several future research proposals.
-
-Before turning all my attention to media bias, I have examined several other relevant bias detection topics. At the beginning of my research, I studied the possibilities of applying gender bias detection to Czech News. Therefore, I dedicate a small section \ref{gender} to my results, an examination of one gender-focused dataset, and potential use cases.
+\gls{nlp} is a set of methods that works with text and aim to bring understanding of textual data leveraging machine learning algorithms. Using \gls{nlp} on classifying news text has some limits for low-resource languages such as Czech language. In this work I focus on exploring and applying currrent \gls{sota} on automatic detection of bias in Czech news.
 
 
 \section{Bias}
-Defining the word \textbf{bias} can be a bit tricky, because with different settings and different goals the definition also shifts. Much of the work done with bias also lacks a proper definition and often includes vague descriptions of its objectives \cite{blodgett2020language}. 
+Defining the word \textbf{bias} can be a bit tricky, because with different settings and different goals the definition also changes. Much of the work done in \gls{ml} reseach focused on \textbf{bias} also lacks a proper definition and often includes vague descriptions of its objectives \cite{blodgett2020language}. 
 
-In terms of \Gls{ml}, bias usually means a tilt, prejudice, or tendency that, during training, enters the model and may subsequently lead to potentially unfair decisions. The bias is typically skewed towards some group of people, for example \textbf{racial bias}, \textbf{gender bias}, etc. 
+In terms of \Gls{ml}, bias generally means a tilt, prejudice, or tendency that, during training, slips into the model and may subsequently lead to potentially unfair decisions. The bias is typically skewed towards some group of people, for example, based on their race, gender, etc. 
 
-To put things into perspective, an infamous example is when Microsoft AI chatbot has picked up racist rhetoric from large racially biased data\footnote{\url{https://futurism.com/delphi-ai-ethics-racist}}. Another example is when large pre-trained language models exhibit stereotypical bias. Language models are often used to generate text and such a biased model may generate harmful statements that contain social stereotypes \cite{nadeem2021stereoset}.
+To put things into perspective, an infamous example is Microsofts AI chatbot that has picked up racist rhetoric from large racially biased data\footnote{\url{https://futurism.com/delphi-ai-ethics-racist}}. Another example is when large pre-trained language models exhibit stereotypical bias. Language models are often used to generate text and such a biased model may generate harmful statements that contain social stereotypes \cite{nadeem2021stereoset}.
 
-Nowadays, these systems are used for decision making in essential areas such as in hiring, loans, and even justice. Therefore, the detection of potential \textbf{unfairness} of \Gls{ml} models and subsequent mitigation of such biases have been widely studied \cite{blodgett2020language}.
+Nowadays, these systems are used for decision making in essential areas such as in hiring, loans, and even justice. Therefore, the detection of this bias of \Gls{ml} models and subsequent mitigation of it have been widely studied \cite{blodgett2020language}. This are of \gls{ml} bias research is often refered to as \textbf{unfairness in machine learning}.
 
-However, besides the study of the models that reflect the biased nature of the data, one can focus on the origin of the bias introduced by the human in the first place.
-Whether it is the presence of gender, stereotypical, or subjective bias, this 
-kind of biased writing, especially in the news, can have a significant influence on people who consume it.
+However, as outlined before, besides the study of the models that reflect the biased nature of the data, one can focus on the origin of the bias introduced by the human in the first place. In other words, the bias of the writer that is reflected in a text. This work focuses on the detection of bias in the czech \textbf{news}, thus from now on I refer to bias as a property of text, that can be potentially detected and classified.
+
+
+
 
 \subsection{Media Bias}
-The need to address bias in the media arises from the ever increasing social polarization. News that exhibit \textbf{media bias} can sway opinions and alter readers beliefs. In this work I refer to Allsides\footnote{\url{https://www.allsides.com/} is a company that focuses on non-automatic classification of news outlets with respect to their bias} definition\footnote{\url{https://www.allsides.com/blog/what-media-bias}} of the media bias:
+The need to address bias in media articles arises from the ever increasing social polarization. News that exhibit \textbf{\gls{mb}} can sway opinions and alter readers beliefs. In this work I refer to Allsides\footnote{\url{https://www.allsides.com/} is a company that focuses on non-automatic classification of news outlets with respect to their bias} definition\footnote{\url{https://www.allsides.com/blog/what-media-bias}} of the media bias:
 
 \vbox{
 \blockquote{
 \textbf{Media Bias} - \textit{noun}. The tendency of news media to report in a way that reinforces a viewpoint, worldview, preference, political ideology, corporate or financial interests, moral framework, or policy inclination, instead of reporting in an objective way (simply describing the facts). A media outlet may reveal bias in how it reports specific news stories or which stories they choose to cover, ie., deem more important than others to cover or emphasize.
 }}
 \noindent
-Such bias can be decomposed into several features\footnote{\url{https://www.allsides.com/media-bias/how-to-spot-types-of-media-bias}}. To name a few:
+An example of sentences, from allsides.com, that exhibit explicit \gls{mb} are as follow:
+
+\vbox{
+\blockquote{
+\textit{The World Health Organization is the world’s best hope for fighting pandemics.}
+
+\textit{Our leaders are cowards when we need them to be brave.}
+
+\textit{Our justice system is a blight on our nation and makes a mockery of our ideals.}
+
+\textit{The legislation never resulted in meaningful action.}
+}}
+
+In these examples there is a clear evidence of an authors opinion or state, to particular problem, inprinted into the statement. Although the definition is a bit too abstract, according to Allsides, \gls{mb} can be decomposed into several features\footnote{\url{https://www.allsides.com/media-bias/how-to-spot-types-of-media-bias}}. To name a few:
 \begin{itemize}\label{features}
     \item \textbf{Sensationalism/Emotionalism} - Explicit sentiment in statement
     \item \textbf{Subjective Qualifying Adjectives} - Adjectives such as \textit{extreme, awkward, serious,..}
     \item \textbf{Mudslinging/Ad Hominem} - Personal attacks, insulting, etc.
 \end{itemize}
 
-The diversity of these characteristics shows how complex and subtle the overall bias information can be. Therefore, a simple subjectivity or sentiment analysis is not sufficient. Most of the features are of a lexical nature; on the other hand, there are other features that are practically not possible to detect automatically or would require different approaches, e.g. bias by \textbf{ommiting information}, where it strongly depends on an outer context. In section \ref{mediabias} I refer to the family of these kinds of features as \textbf{informational bias}.
+The diversity of these characteristics shows how complex and subtle the overall bias information can be. Therefore, a simple subjectivity or sentiment analysis would not be sufficient for cracking the \gls{mb} detection. 
+
+Most of the features are of a lexical nature; on the other hand, there are other features that are practically not possible to detect automatically without a context, e.g., bias by \textbf{ommiting information}, where it strongly depends on an outer context. In section \ref{mediabias} I refer to the family of these kinds of features as \textbf{informational bias}.
 
 
-However, the presence of media bias does not always imply malicious intent. It is in human nature to draw on experience; thus, one can simply not be aware of their implicit bias. As the authors of Allsides suggest, it might even be desirable. For example, the \textit{Commentary} format article often contains more bias, but its purpose is to present an opinion, and there is nothing wrong with that. Trouble begins when the reader is not aware of it and anticipates or assumes objective journalism.
+Previous examples show, how the statements that contain \gls{mb} may be manipulative or persuasive to some extend. However, the presence of \gls{mb} does not always imply malicious intent. It is in human nature to draw on experience, to express something that we \textit{believe} to be truth in a factual way. Thus, one can simply not be aware of their implicit bias. As the authors of Allsides suggest, it might even be desirable. For example, the \textit{Commentary} format article often contains more bias (see \ref{experiments}), but its purpose is to present an opinion, and there is nothing wrong with that.
 
+
+\section{Outline and problem definition}
+There are potentially serveral ways of defining news text classification as \gls{nlp} problem.
+In this work, I focus on automatic \textbf{binary classification} of the \textbf{media bias}, on a statement (sentence) level, in Czech language.
+
+To do so, I firstly research and gather all useful data and use machine translation to create their parallel \textbf{czech} versions. Furthermore I presnent one, automatically created \textbf{new} czech dataset. 
+
+Then, using state-of-the-art language models I experiment with different dataset settings and train a czech \gls{mb} classifier. To evaluate the results a gold-standard dataset from \gls{mbg}\footnote{\url{https://media-bias-research.org}} is selected as a target dataset. The work of \gls{mbg} has been a huge inspiration to the application of \gls{mb} detection to czech news and future collaboration on \gls{mb} detection research has been established.
+
+Finally a trained classifier is applied to provided czech news corpora and results of the real-world \gls{mb} classification are presented.
+
+Before turning my attention to media bias, I have examined several other relevant bias detection topics. At the beginning of my research, I studied the possibilities of applying gender bias detection to Czech News. Therefore, I dedicate a small section \ref{gender} to my results and examination of one of the gender-focused datasets.
 
 
 

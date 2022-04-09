@@ -16,9 +16,9 @@ Czech language is a so-called \textbf{low resource language}, which, in the mach
 \section{Machine Translation}\label{DeepL}
 Since translation of large datasets by human translators would be too costly and from a time perspective practically impossible, automatic machine translation systems are used. In recent years, machine translation, as other fields of \Gls{nlp}, has experienced a massive boost in performance, due to the rise of attention mechanism and complex transformer architectures \ref{att_transformers}.
 
-Modern machine translation models use the \textbf{encoder-decoder} architecture (usually more encoders and decoders stacked on top of each other \ref{att_transformers}), where the encoder part distils (encodes) the information from the input sequence and the decoder part is responsible for decoding this distilled information and mapping it to a sequence in the target language.
+Modern machine translation models use the \textbf{encoder-decoder} architecture (usually more encoders and decoders stacked on top of each other \ref{att_transformers}), where the encoder part distils (encodes) the information from the input sequence and the decoder part is responsible for decoding this distilled information and mapping it to a sequence in the target language. For more details see \ref{theory}.
 
-For translation of datasets I chose \textbf{DeepL} translator, which is purely\footnote{For example Google combines \Gls{nmt} with statistical approaches, other systems incorporates hardcoded rules, etc.} \Gls{nmt} based system which outperforms other translation systems by a large margin.
+For the translation of the datasets I chose \textbf{DeepL} translator, which is purely\footnote{For example Google combines \Gls{nmt} with statistical approaches, other systems incorporates hardcoded rules, etc.} \Gls{nmt} based system which outperforms other translation systems by a large margin.
 
 
 
@@ -26,15 +26,12 @@ For translation of datasets I chose \textbf{DeepL} translator, which is purely\f
 
 
 \section{Processing}\label{processing}
-For convenience, every dataset has been processed into "sentence,label" format, where $label \in \{0,1\}$ stands for \textbf{unbiased} and \textbf{biased}, respectively. Using this simplified data format makes merging and combining several datasets convenient.
-    
-Moreover, all sentences, which were originally cased were \textbf{not} lower-cased.
+For convenience, every dataset has been processed into "sentence,label" format, where $label \in \{0,1\}$ stands for \textbf{unbiased} and \textbf{biased}, respectively. Using this simplified data format makes merging and combining several datasets convenient. Also, all sentences, which were originally cased were \textbf{not} lower-cased. No general preprocessing was further used.
 
-\newpage
 \section{Translated data}
 All translated datasets are listed below. I hope this collection will serve as a good starting point for future research of media bias in Czech News.
 
-I share all listed datasets on HugginFace\footnote{\url{https://huggingface.co/}} hub.
+I will share all listed datasets on HuggingFace\footnote{\url{https://huggingface.co/}} hub.
 
 \begin{itemize}
     \item BABE-CS
@@ -102,4 +99,4 @@ In total, 5766 sentences. The neutral corpus,which contains only neutral sentenc
 
 
 \section{Not translated}
-Due to a big size of some data, I was not able to translate more than one large-scale dataset. For this reason NewsB dataset has not been translated, since it is one of the few datasets that doesn't focus on the very same task.
+Due to a big size of some data, I was not able to translate more than one large-scale dataset. For this reason, NewsB dataset has not been translated, since it is one of the few datasets that does not focus on the very same task.

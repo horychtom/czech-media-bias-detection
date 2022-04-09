@@ -1,17 +1,13 @@
 \chapter{Conclusion}
-\section{Summary of work done}
-In this work I collected and analyzed all the literature and resource for studying state-of-the-art media bias detection. I present new czech parallel corpus derived from wikipedia and in addition 9 parallel translated czech datasets for tackling the media bias detection in Czech language.
+In this work I collected and analyzed all the literature and resource for studying state-of-the-art media bias detection and performed a minor experiment focused on gender bias detection as well. I presented new czech parallel dataset derived from Wikipedia and, in addition, 9 parallel translated czech datasets for tackling the media bias detection in \textbf{Czech language}, one of them large scale (360k sentences).
 
-I trained and tuned the state-of-the-art language models to achiave F1\% score of ... on target dataset, which is comparable to current SOTA in English.
+I trained and tuned the BERT-based czech language model and achieved an F1 score of 80.4 \% on a small test subset of a target dataset. I performed experiments on combining different datasets for pre-training the model, to push the performance on validation set. Pre-training on Subjectivity detection datasets performed the best, however, all tuning performed has had generally very low effect on performance +0.7\%. 
 
-Finally, the final classifier has been used to build a demo and to analyze a sample of articles from cesky rozhlas throughout the history. Results of this study showed interesting information about progression of media slant in Czech news.
+Finally, the final classifier has been used to build a publicly available demo and to analyze a sample of articles from "INSERT SOURCE" throughout the 2002 - 2018 period of time. Results of this study showed a trend in progression of media bias in time and suggested/revelaed a positive correlation between bias of the headline and the average bias of the article.
 
-I hope my work will kickstart the research of media bias in Czech news and will motivate future researchers to build up on this work and potentially build larger and better corpora.
 
-\section{What hasnt make it into this work}
-Even though \Gls{mtl} approach seems promising, it would require a lot of work on task selection and task evaluation, which is not focus of this thesis.analysis of decisions, creation of ground-truth dataset. 
 
 \section{Future perspective}
-My experiments suggest that self-training can improve performance on low resource language with small size dataset. There are more sophisticated methods of sampling which could be used.
+Even though \Gls{mtl} approach seems promising, it would require a lot of work on task selection and task evaluation, which is not focus of this thesis.analysis of decisions, creation of ground-truth dataset. 
 
 As discussed in the experiments section, reasearch suggests that multitask learning increases classification accuracy significantly ref. Multitask model environment requires a lot of tasks \cite{aribandi2021ext5} to perform better than single task models. Therefore, for czech language setting, one of the future research possibilities would be to leverage multi-task learning for current classifier improvement. 
