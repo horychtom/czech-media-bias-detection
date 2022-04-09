@@ -89,7 +89,7 @@ I restricted the search space only to the combinations of:
 This section is dedicated to the study of the influence of pre-training on combinations of datasets. Trying all combinations would result in training 128 models, which is obviously infeasible. Therefore, I decided to pretrain on 5 splits with regard to the bias information:
 \begin{itemize}
     \item \textbf{SUBJe} - is a combination of SUBJ and MPQA dataset, which both focus on explicit subjective bias.
-    \item \textbf{MB} - is a combination of NJNJ, UA-crisis and BASIL dataset which are all from the media bias family.
+    \item \textbf{MB} - is a combination of NJNJ, UA-crisis and BASIL dataset which are all from the \gls{mb} family.
     \item \textbf{WIKI} - are all datasets gather from wikipedia, with respect to NPOV violations. It consists of CW-hard, WikiBias and CWNC.
     \item \textbf{ALL} - This one is simply combination of all datasets except the WNC.
     \item \textbf{WNC} - WNC is almost 90\% of all data, I therefore perform experiments on this dataset seperately.
@@ -109,36 +109,37 @@ Pre-training on \textbf{ALL} datasets combined resulted in the best performace, 
 Pre-training on the other splits hurt the performance. This is particularly because the model had struggled to learn the pre-training tasks in the first place. For example, during pre-training on \textbf{MB}, on validation set only F1 $\sim40\%$ has been achieved. As opposed to \textbf{SUBJe}, where model was able to achieve F1 $\sim90\%$ in first few iterations.
 
 
-The Subjectivity Bias opposed to Media Bias is a bit more explicit and simpler. Therefore it can help to classify Media Bias but not the other way round, since pre-trained SUBJe model achieved only 55\% on BABE. This supports the premise that media bias is composed of many simpler linguistic features \ref{features}. However, these results are still greatly influenced by overall small sizes and low quality of the datasets.
+The Subjectivity Bias opposed to \gls{mb} is a bit more explicit and simpler. Therefore it can help to classify \gls{mb} but not the other way round, since pre-trained SUBJe model achieved only 55\% on BABE. This supports the premise that \gls{mb} is composed of many simpler linguistic features \ref{features}. However, these results are still greatly influenced by overall small sizes and low quality of the datasets.
 
 
 
 
 \section{Results}
-
-\subsection{Demo}
-bla bla huggingface api, Interpret, bla bla.
-Final model for evaluation has been trained with the optimal parameters and pre-trained on all datasets combined. It achieved F1 score of \textbf{0.804} on a \textbf{test} set. Afterwards, for final model that I share on huggingface, the test set has also been included in training. Additionally I provide a simple web demo for reader to experiment with\footnote{\url{https://huggingface.co/spaces/horychtom/czech_media_bias_detection}}. Usage of the demo can be seen in \ref{fig:demodemo}
-
-\begin{figure}
-\makebox[\textwidth][c]{
-  \includegraphics[scale=0.3]{my_modules/multimedia/bias.jpg}
-  \caption{Example of the bias classifier demo usage. Red color represent biased sentence nad blue neutral.}
-  \label{fig:demodemo}
-  }
-\end{figure}
+Final model for evaluation has been trained with the optimal parameters and pre-trained on all datasets combined. It achieved F1 score of \textbf{0.804} on a \textbf{test} set. Afterwards, for final model that I share on huggingface, the test set has also been included in training.
 
 
 Despite the relatively high performance, the final score on test set is not representative because of its size. Test set consists of $\sim$500 sentences therefore may not represent all the bias information properly. For better evaluation I propose usage of a nested cross-validation. However, the computational demand would be very high. 
 
 Also a full study with more models could be performed, but that would require enormous number of trained models. Essentially these results show that there was a very little gain over the baseline (\textbf{+0.7\%}).
 
-I suppose that to boost the performance, either novel dataset focused solely on Czech media bias is needed. Or possibly, exploration of the Multi-Task setting and gathering bias related sub tasks (sentiment analysis, subjectivity, insult detection) of sufficient quality.
+\begin{figure}
+\makebox[\textwidth][c]{
+  \includegraphics[scale=0.3]{my_modules/multimedia/bias.jpg}
+  \caption{Example of the bias classifier demo usage. Red and blue color represent the biased and unbiased annotation respectively.}
+  \label{fig:demodemo}
+  }
+\end{figure}
+
+
+\subsection{Demo}
+Additionally I provide a simple web demo for reader to experiment with\footnote{\url{https://huggingface.co/spaces/horychtom/czech_media_bias_detection}}. Usage of the demo can be seen in \ref{fig:demodemo}. The backend runs on a \textbf{HuggingFaces spaces} which is a free hosting service for demonstration of \gls{ml} applications. 
+
+The user can insert arbitrary text in Czech language, text is then split into sentences and classified individually. The average percentage bias score of the text is then displayed. An \textit{interpret} button allows user to further inspect the classification.
 
 
   
 
-\section{Inference on Czech News Samples}
+\section{Inference on Czech News Samples}\label{inference}
 
 \begin{itemize}
     \item korelovat bias abstraktu (nebo headline) a textu pro jedno medium

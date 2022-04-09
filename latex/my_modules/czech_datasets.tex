@@ -14,9 +14,9 @@ Czech language is a so-called \textbf{low resource language}, which, in the mach
  
  
 \section{Machine Translation}\label{DeepL}
-Since translation of large datasets by human translators would be too costly and from a time perspective practically impossible, automatic machine translation systems are used. In recent years, machine translation, as other fields of \Gls{nlp}, has experienced a massive boost in performance, due to the rise of attention mechanism and complex transformer architectures \ref{att_transformers}.
+Since translation of large datasets by human translators would be too costly and from a time perspective practically impossible, automatic machine translation systems are used. In recent years, machine translation, as other fields of \Gls{nlp}, has experienced a great boost in performance, due to the rise of attention mechanism and complex transformer architectures \ref{att_transformers}.
 
-Modern machine translation models use the \textbf{encoder-decoder} architecture (usually more encoders and decoders stacked on top of each other \ref{att_transformers}), where the encoder part distils (encodes) the information from the input sequence and the decoder part is responsible for decoding this distilled information and mapping it to a sequence in the target language. For more details see \ref{theory}.
+Modern machine translation models use the \textbf{encoder-decoder} where the encoder part distils (encodes) the information from the input sequence and the decoder part is responsible for decoding this distilled information and mapping it to a sequence in the target language. For more details see \ref{theory}.
 
 For the translation of the datasets I chose \textbf{DeepL} translator, which is purely\footnote{For example Google combines \Gls{nmt} with statistical approaches, other systems incorporates hardcoded rules, etc.} \Gls{nmt} based system which outperforms other translation systems by a large margin.
 
@@ -26,7 +26,7 @@ For the translation of the datasets I chose \textbf{DeepL} translator, which is 
 
 
 \section{Processing}\label{processing}
-For convenience, every dataset has been processed into "sentence,label" format, where $label \in \{0,1\}$ stands for \textbf{unbiased} and \textbf{biased}, respectively. Using this simplified data format makes merging and combining several datasets convenient. Also, all sentences, which were originally cased were \textbf{not} lower-cased. No general preprocessing was further used.
+Every dataset has been processed into "sentence,label" format, where $label \in \{0,1\}$ stands for \textbf{unbiased} and \textbf{biased}, respectively. Using this simplified data format makes merging and combining several datasets convenient. All sentences, which were originally cased were \textbf{not} lower-cased and uring the training of a classifier, maximum sentence length was set to 128 tokens. No other preprocessing was further used.
 
 \section{Translated data}
 All translated datasets are listed below. I hope this collection will serve as a good starting point for future research of media bias in Czech News.
@@ -67,8 +67,8 @@ I followed two main existing approaches, both of them relying on the extraction 
 
 
 \subsection{CWNC-noisy}
-I closely followed the \cite{aleksandrova2019multilingual} approach and used their script. Firstly, a file with all pages and its complete edit history is downloaded from the wiki dump\footnote{\url{https://dumps.wikimedia.org/cswiki/}}. I used the \textbf{20220201} version. Then the edits containing one of the NPOV related tags are extracted and then the process of sentence extraction follows.
-This approach yields 15k sentences, however, it uses a rather trivial assumption that when NPOV tag is removed, \textbf{all} removed sentences are biased and all added are unbiased. This annotating strategy led to poor results and for this reason, I excluded this dataset from further experiments entirely.
+I closely followed the \cite{aleksandrova2019multilingual} approach and used their publicly available script. Firstly, a file with all pages and its complete edit history is downloaded from the wiki dump\footnote{\url{https://dumps.wikimedia.org/cswiki/}}. I used the \textbf{20220201} version. Then the pages with edits containing one of the NPOV related tags are filtered and the process of sentence extraction follows.
+This approach yielded 15k sentences, however, it uses a rather trivial assumption that when NPOV tag is removed, \textbf{all} removed sentences are biased and all added are unbiased. This annotating strategy led to a very noisy dataset and subsequently poor classification results and for this reason, I excluded this dataset from further experiments entirely.
 
 
 
@@ -92,11 +92,11 @@ The final dataset consists of:
 \input{my_modules/tables/cwnc_example_table}
 
 
-In total, 5766 sentences. The neutral corpus,which contains only neutral sentences, is saved for a potential need of oversampling. Two examples of CWNC sentence pairs can be seen in \ref{table:cwnc_example}
+In total, 5766 sentences. The neutral corpus, which contains only neutral sentences, is saved for a potential need of oversampling. Two examples of CWNC sentence pairs can be seen in \ref{table:cwnc_example}
 
 
 
 
 
 \section{Not translated}
-Due to a big size of some data, I was not able to translate more than one large-scale dataset. For this reason, NewsB dataset has not been translated, since it is one of the few datasets that does not focus on the very same task.
+Due to a big size of some datasets, I was not able to translate more than one large-scale dataset. For this reason, NewsB dataset has not been translated, since it is one of the few datasets that does not focus on the very same task.

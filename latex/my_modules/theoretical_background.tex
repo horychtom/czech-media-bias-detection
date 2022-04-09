@@ -5,13 +5,13 @@ In this section, I briefly introduce state-of-the-art methods and models used in
 
 
 \section{Text representation}
-The NLP models operate on text on a \textbf{token} level. A token can be understood as the smallest unit of text and is a product of a process called \textbf{tokenization} (transforming text into set of tokens).
+In order to process text, NLP models operate on text on a \textbf{token} level. A token can be understood as the smallest unit of text and is a product of a process called \textbf{tokenization} (transforming text into set of tokens).
 
 A common token unit is a word; however, tokens can be as small as a single byte. Currently, standard way of tokenization is using WordPiece tokens, which is a balance between word level and byte level tokenization.
 
 After the tokenization, a numerical representation for the tokens has to be obtained. A naive way is to use mapping for every word to an index in predefined/obtained vocabulary. Such an approach suffers from the explicit ordering of the words, which may negatively influence the model. Another possible representation is the \textbf{one-hot-encoding} where each word is represented by a vector that has $1$ in a single row and zeros everywhere else. The size of such an encoding is proportional to the size of the vocabulary, making the feature space very sparse. 
 
-The current standard representation of words are word \textbf{embeddings}. Embeddings are fixed-size feature vectors. The dimension of the embeddings is a hyperparameter, usually with the value between 100 and 1000. Embeddings are usually learned along the particular task, in an Embedding layer. But there are also precomputed representations available, such as word2vec, Glove or ELmo.
+The current standard representation of words are word \textbf{embeddings}. Embeddings are fixed-size feature vectors. The dimension of the embeddings is a hyperparameter, usually with the value between 100 and 1000. Embeddings can be learned along the particular task, in an Embedding layer. Or it is possible to use available precomputed representations, such as word2vec, Glove or ELmo.
 \newpage
 
 
@@ -49,7 +49,7 @@ Current \gls{sota} language models, such as GPT-3, BERT, RoBERTa all use this ar
 
 
 \subsection{Attention}
-Attention \cite{bahdanau2014neural,luongeffective} is essentially a mechanism that alows the unit (either it is on the decoder or the encoder side) to learn to focus on some segments of input sequence more than the others. This mechanism has been motivated by the problem of "forgetting" of information in a long sequences mentioned before. This way, parts of the sequences that potentially drives the decision are represented more in hidden states than other parts.
+Attention \cite{bahdanau2014neural,luongeffective} is essentially a mechanism that alows the unit (either it is on the decoder or the encoder side) to learn to focus on some segments of input sequence more than the others. This mechanism has been motivated by the problem of "forgetting" the information in a long sequences. This way, parts of the sequences that potentially drives the decision are represented more in hidden states than other, less relevant parts.
 
 \begin{figure}
   \includegraphics[scale=0.5]{my_modules/multimedia/atalyned.png}
@@ -62,11 +62,11 @@ Scheme of the original architecture can be seen in \ref{fig:transformer}. The bo
 
 Just as previous seq2seq models, transformer also consists of Encoder and Decoder modules. Precisely, each module is a stack of $n$ identical encoder or decoder layers. Each encoder layer consists of two main layers: \textbf{self-attention} layer and \textbf{feed forward} layer.
 
-Self-attention layer uses attention mechanism to incorporate other words from the sequence into each particular word representation. The transformer architecture perform this self-attention computation 8 times allowing the the model to learn different relationships between words. This is what a term \textbf{Multi-Head} attention refers to. Resulting representations from these heads are then concatenated and reduced in dimension to obtain the final representation to be fed to feed forward network. 
+As particular words/tokens flow through the stack of encoders, the model gradually builds up their representation. Self-attention layer uses attention mechanism to incorporate other words from the sequence into each particular word representation. The original transformer architecture performs this self-attention computation 8 times allowing the the model to learn different relationships between words. This is what a term \textbf{Multi-Head} attention refers to. Resulting representations from these heads are then concatenated and reduced in dimension to obtain the final representation to be fed to feed forward network. 
 
-The Decoder modules work essentially the same only it has extra attentive layer that performs the attention computation over the output of the encoder stack. For more details i refer the reader to original transformer paper \cite{vaswani2017attention}.
+The Decoder modules work essentially the same only it has extra attentive layer that performs the attention computation over the output of the encoder stack. Since in this work I only utilize the encoder part for more details i refer the reader to original transformer paper \cite{vaswani2017attention}.
 
-Although the computation of self-attention is dependent on other tokens, the forward pass of feed forward network can be done completely in parallel over the input seuqnce. This design therefore offers significant computational speedup against the \gls{rnn} based Encdoer-Decoder.
+Although the computation of self-attention is dependent on other tokens, the forward pass of a feed forward network can be done completely in parallel over the input seuqnce. This design therefore offers significant computational speedup against the \gls{rnn} based Encdoer-Decoder.
 
 
 
@@ -102,13 +102,13 @@ can be understood as "how precisely the model predicts a positive class", wherea
     Rrecall = \frac{TP}{TP+FN}
 \end{equation}
 can be understood as "how much of a positive class can model predict".
-Scores for each class are then averaged to obtain the final score.
+Scores for each class are then averaged to obtain the final score. This is often refered to as "macro" averaging.
 
 
 
 
 \subsection{Transformers for text classification}
-Predictive power of transformers is behind every \gls{sota} result and text classification is no exception. For classification, usually only the Encoder part of a transformer is used, although some define the classification problem as a sequence-to-sequence and incorporate the decoder too \cite{raffel2019exploring}.
+Predictive power of transformers is behind every \gls{sota} result and text classification is no exception. For classification, usually only the Encoder part of a transformer is utilized, although some define the classification problem as a sequence-to-sequence and incorporate the decoder too \cite{raffel2019exploring}.
 
 During tokenization,a special [CLS] token is prepended to a sentence. The token has its own embedding and flows through the stack of encoders just as any other token, with a difference, that when the forward pass reaches the classification layer, only [CLS] token is passed as an input. [CLS] token can therefore be understood as a sort of sentence embedding.
 
@@ -118,8 +118,16 @@ Usually, one or two dense layers with activation function are sufficient as a cl
 
 
 \section{Transfer learning}
-Nowadays the true power of transformers lies in \textbf{transfer learning}. Transfer is a process when some knowledge is not learned from scratch but transfered from previously trained model. Since large language models such as BERT or RoBERTa has millions of parameters, it would be extremely costly to train them from scratch. 
+Nowadays the true power of transformers lies in \textbf{transfer learning}. Transfer is a process when some knowledge is not learned from scratch but transfered from previously trained model. Since large transformer models such as BERT or RoBERTa has millions of parameters, it would be extremely costly to train them from scratch. 
 
-Such large models are usually pretrained on a very large corpus of data. There are several common \textbf{unsupervised} pre-training tasks, that allow these models to learn contextual representations of words without supervision. For instance \gls{mlm} is a task, where random sample of tokens in input sequence is replaced with [MASK] token and model learns to predict the original token. Or \gls{nsp} which is self-explanatory.
+Such large models are usually pretrained on a very large corpus of data. There are several common \textbf{unsupervised} pre-training tasks, that allow these models to learn contextual representations of words without supervision. For instance \gls{mlm} is a task, where random sample of tokens in input sequence is replaced with [MASK] token and model learns to predict the original token. Another unsupervised pre-training task is a \gls{nsp} which is self-explanatory.
 
-Having such pre-trained model, one can then easily train a task specific head on top of pre-trained representations. Although process of \textbf{fine-tuning} where all parameter of model are tuned, is more often adopted.
+Having such pre-trained model, one can then easily train a task specific head on top of pre-trained representations. Although process of \textbf{fine-tuning} is more often adopted. During the fine-tuning, the whole model with \textbf{all} its parameters is trained, as well as the task-specific head.
+
+\section{Notes on Multi-Task learning}
+When talking about training a neural network, usually we talk about fitting a network to one particular task. However, fine-tuning language models on small datasets often results in overfitting. Multi-Task learning serves as a good generalization technique and potential solution to this problem.
+
+In essence \gls{mtl} means learning multiple tasks together within one model,thus representations for all tasks are learned together. Tasks do not have to share loss functions, they can have their own task-specific heads on top of the shared model.
+
+There are two approaches to training an \gls{mtl} model.
+\textbf{Hard-paramater sharing} where all parameters of the network, except the task specific heads, are shared among the tasks. On the other hand, with \textbf{Soft-parameter sharing}, each task has their version of parameters but they are encouraged to lower the distance between the parameters through constraints.

@@ -8,6 +8,6 @@ Finally, the final classifier has been used to build a publicly available demo a
 
 
 \section{Future perspective}
-Even though \Gls{mtl} approach seems promising, it would require a lot of work on task selection and task evaluation, which is not focus of this thesis.analysis of decisions, creation of ground-truth dataset. 
+As outlined in the introduction media bias seems to be a combination of several potentially independent tasks such as sentiment, agression or subjective analysis. In this thesis this hypothesis has been also somewhat supported by the result that pre-training on subjectivity task had the best influence on detection of \gls{mb} but a single-task model for subjectivity detection eventually performed worse than others. Therefore, as Spinde et. al \cite{spindeexploiting} suggest, multi-task approach could be used to enhance the classification ability of the current czech classifier.
 
-As discussed in the experiments section, reasearch suggests that multitask learning increases classification accuracy significantly ref. Multitask model environment requires a lot of tasks \cite{aribandi2021ext5} to perform better than single task models. Therefore, for czech language setting, one of the future research possibilities would be to leverage multi-task learning for current classifier improvement. 
+Yet, the current czech classifier relies heavily on translated datasets, therefore I suggest that for the future improvement a construction of an original gold-standard czech dataset is essential.
