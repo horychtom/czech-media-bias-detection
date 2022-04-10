@@ -108,7 +108,7 @@ Scores for each class are then averaged to obtain the final score. This is often
 
 
 \subsection{Transformers for text classification}
-Predictive power of transformers is behind every \gls{sota} result and text classification is no exception. For classification, usually only the Encoder part of a transformer is utilized, although some define the classification problem as a sequence-to-sequence and incorporate the decoder too \cite{raffel2019exploring}.
+Predictive power of transformers is behind many \gls{sota} results and text classification is no exception. For classification, usually only the Encoder part of a transformer is utilized, although some define the classification problem as a sequence-to-sequence and incorporate the decoder too \cite{raffel2019exploring}.
 
 During tokenization,a special [CLS] token is prepended to a sentence. The token has its own embedding and flows through the stack of encoders just as any other token, with a difference, that when the forward pass reaches the classification layer, only [CLS] token is passed as an input. [CLS] token can therefore be understood as a sort of sentence embedding.
 

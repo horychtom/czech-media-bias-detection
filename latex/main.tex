@@ -46,8 +46,8 @@
 	subfieldofstudy-english = {Artificial Intelligence and Computer Science},
 	fieldofstudy-czech = {Matematcké inženýrství},
 	subfieldofstudy-czech = {Matematické modelování},
-	keywords-czech = {bias detekce, transformers, text classification},
-	keywords-english = {bias detection, transformers, text classification},
+	keywords-czech = {zpracování přirozeného jazyka, detekce zaujatosti, mediální bias, detekce subjektivity, klasifikace textu},
+	keywords-english = {natural language processing, bias detection, media bias,subjectivity detection, text classification},
 	day = 10,
 	month = 2,
 	year = 2022,
@@ -110,36 +110,37 @@
 
 % Abstract in Czech
 \begin{abstract-czech}
+Automatická detekce zaujatosti v médiích představuje možnou cestu k objektivnějšímu a faktičtějšímu psaní. Tato práce se zaměřuje na zaujatost médií a zabývá se problémem binární klasifikace zaujatosti médií v českém zpravodajském prostředí. Je zde proveden přehled literatury a metodiky pro různé aspekty zaujatosti. Následně je shromážděn a analyzován soubor dat týkajících se zajuatosti médií. S využitím strojového překladu je prezentováno osm paralelních českých datasetů, přičemž jeden z nich je rozsáhlý dataset o 360 tisících větách. Kromě toho je z wikipedie automaticky extrahován nový český dataset CWNC (Czech Wiki Neutrality Corpus) pro detekci zaujatosti, s 5 766 větami. Následné experimenty pak ukazují vliv předtrénování na kombinacích aktuálních dostupných doménových datasetů a naznačují pozitivní vliv předtrénování na datasetech zaměřených na subjektivitu. Český BERT model s nejlepšími parametry a nastavením pak dosahuje skóre F1 \textbf{80,2\%} na vybraném testovacím dataset. Nakonec je natrénovaný klasifikátor využit ke klasifikaci reálných dat z různých zpravodajských zdrojů.
 
-Tento mánuál představuje \LaTeX ovou třídu ctuthesis, její použití, požadavky na systém atd.
 \end{abstract-czech}
 
 % Abstract in English
 \begin{abstract-english}
-This manual shows how to use the ctuthesis \LaTeX\ class, what are the requirements, etc.
+Automatic detection of bias in media represents a possible way to more objective and factual writing. This work focuses on \textbf{media bias} and adresses the problem of binary classification of media bias in the czech news environment. A literature and methodology for different aspects of bias is reviewed. Then a set of datasets related to media bias is collected and analyzed. Utilizing the machine translation, eight parallel czech datasets are presented with one being a large-scale dataset of 360k sentences. Additionally, a novel Czech dataset CWNC (Czech Wiki Neutrality Corpus) for bias detection with 5,766 sentences is automatically extracted from wikipedia. Following experiments then show effects of pre-training on combinations of current in-domain datasets, suggesting a positive effect of pre-training on subjective datasets. Czech BERT-based model with best parameters and setting then achieves F1 score of \textbf{80.2\%} on a selected target dataset. Finally a trained classifier is utilized to classify real-world data from various news sources.
+
 \end{abstract-english}
 
 % Acknowledgements / Podekovani
 \begin{thanks}
-We thank the CTU in Prague for being a~very good \emph{alma mater}.
+I thank to my supervisor, Jan Drchal, for the guidance through the Machine Learning and NLP methodology and for supporting my research interests. I would also like to thank to my family, who always supported me during my studies and throughout the process of work on this thesis.
 \end{thanks}
 
 % Declaration / Prohlaseni
 \begin{declaration}
-I declare that this work is all my own work and I have cited all sources I have
-used in the bibliography.
+I declare that the presented work
+was developed independently and that
+I have listed all sources of information
+used within it in accordance with the
+methodical instructions for observing
+the ethical principles in the preparation
+of university theses.
 
 \medskip
 
-Prague, \monthinlanguage{title} \ctufield{day}, \ctufield{year}
-
-\vspace*{2cm}
-
-Prohlašuji, že jsem předloženou práci vypracoval samostatně, a že jsem uvedl veškerou použitou literaturu.
+In Prague, \monthinlanguage{title} \ctufield{day}, \ctufield{year}
 
 \medskip
 
-V Praze, \ctufield{day}.~\monthinlanguage{second}~\ctufield{year}
 \end{declaration}
 
 \usepackage{url}
