@@ -1,7 +1,7 @@
 \chapter{Datasets} \label{datasets}
 Due to the complex nature of \gls{mb}, different datasets try to capture different aspects of it. In this section, I present a collection of \textbf{all} datasets related to biased writing and subjectivity detection available and later leverage their bias information to augment smaller ground truth datasets. For details see experiment section \ref{experiments}.
 
-As stated before, this work only focuses on sentence level classification, thus article level data were not considered.
+As stated before, this work only focuses on sentence-level classification; thus article-level data were not considered.
 
 I divided the available datasets into 3 main families: 
 \begin{itemize}
@@ -9,15 +9,15 @@ I divided the available datasets into 3 main families:
     \item Wikipedia bias
     \item Media bias
 \end{itemize}
-Wikipedia bias is also a form of subjective bias, but all the Wiki data come from the same distribution \footnote{some are even different samples from the same larger corpora}. and environment, hence I find it reasonable to put them together.
+Wikipedia bias is also a form of subjective bias, but all the Wiki data come from the same distribution \footnote{some are even different samples from the same larger corpora}. and environment; hence I find it reasonable to put them together.
 
 
 \section{Subjectivity Datasets}
 
 \subsection{SUBJ}
-It is reasonable to include datasets that focus on the detection of subjectivity, since it is one of the \gls{mb} characteristics. The Subjectivity dataset (SUBJ) \cite{Pang+Lee:04a} consists of 10000 sentences gathered from movie review sites. Sentences are labeled as subjective and objective with 1:1 ratio. 
+It is reasonable to include datasets that focus on the detection of subjectivity since it is one of the \gls{mb} characteristics. The Subjectivity dataset (SUBJ) \cite{Pang+Lee:04a} consists of 10000 sentences gathered from movie review sites. Sentences are labeled as subjective and objective with 1:1 ratio. 
 
-The data were collected in an automatic way. The authors made an assumption that all reviews from Rottentomatoes\footnote{https://www.rottentomatoes.com/} are subjective and all plot summaries from IMBD\footnote{ www.imdb.com} are objective. For each class, 5k sentences were sampled \textbf{randomly}.
+The data were collected in an automatic way. The authors made an assumption that all reviews from Rottentomatoes\footnote{https://www.rottentomatoes.com/} are subjective, and all plot summaries from IMBD\footnote{ www.imdb.com} are objective. For each class, 5k sentences were sampled \textbf{randomly}.
 
 
 
@@ -32,7 +32,7 @@ To extract the bias information, I focused on two types of annotations:
     \item Direct subjective
     \item Expressive subjective
 \end{itemize}
-Which were present if any form of subjectivity was suspected by the annotator. Each annotation consists of indices of span in the text and properties. For each sentence in corpus, I extracted labels as follows:
+These annotations were present if any form of subjectivity was suspected by the annotator. Each annotation consists of indices of span in the text and properties. For each sentence in the corpus, I extracted labels as follows:
 
 If there was at least one annotation \textbf{direct\_subjective} or \textbf{expressive\_subjectivity} with span inside the sentence and the intensity tag was not $low$, the sentence was labelled as \textit{subjective $\sim$ biased}. All other sentences were extracted as \textit{objective $\sim$ unbiased}.
 
@@ -47,13 +47,13 @@ BASIL dataset \cite{fan2019plain} comprises 300 articles with 1727 sentence leve
 
 The annotations were performed by two experts and further resolution discussions have later led to 0.56 and 0.7 \Gls{iaa} score for lexical and informational bias, respectively.
 
-Even though BASIL brings the sufficient annotation quality, most of the labelling resulted in informational bias annotations, leaving only 478 sentences for the lexical bias class. Informational bias requires a different approach to detection \cite{van2020context} and usually depends dramatically on the context. Therefore, I extracted all sentences with the informational label as a neutral class.
+Even though BASIL brings sufficient annotation quality, most of the labeling resulted in informational bias annotations, leaving only 478 sentences for the lexical bias class. Informational bias requires a different approach to detection \cite{van2020context} and usually depends dramatically on the context. Therefore, I extracted all sentences with the informational label as a neutral class.
 
 
 
 
 \subsection{Ukraine Crisis Dataset}
-This dataset \cite{farber2020multidimensional} offers 2057 sentences with binary media bias labels. All sentences are related to one topic - Ukraine-Russian crisis. Data were gathered from 90 news sources.
+This dataset \cite{farber2020multidimensional} offers 2057 sentences with binary media bias labels. All sentences are related to one topic - the Ukraine-Russian crisis. Data were gathered from 90 news sources.
 
 The authors introduce rich annotations for each sentence. Each of them looks at the bias from a different perspective, called \textit{bias dimensions}:
 \begin{enumerate}
@@ -67,7 +67,7 @@ Even though this dataset encompasses comprehensive bias information, it also suf
 
 
 \subsection{NFNJ}
-The NFNJ\footnote{\cite{farber2020multidimensional} refer to this dataset as NFNJ, however in the original paper the name is not presented.} dataset provides 966 sentences from 46 articles with annotations on a fine-grained level.
+The NFNJ\footnote{\cite{farber2020multidimensional} refers to this dataset as NFNJ, however, in the original paper the name is not presented.} dataset provides 966 sentences from 46 articles with annotations on a fine-grained level.
 
 Authors share the dataset for research purposes; however, the public version differs from the one described in the original paper. Therefore, while extracting the final dataset, I made a few assumptions:
 
@@ -89,7 +89,7 @@ The Fleiss Kappa \Gls{iaa} score averaged at zero, making it practically unusabl
 
 BABE contains 3700 sentences. 1700 sentences are from MBIC, which were extracted from 1000 news articles, and in addition extended by 2000 more sentences, altogether covering 12 topics, annotated with binary bias indications. In addition, the annotations were enriched with a list of biased words. However, the presence of biased words does not always result in an overall biased sentence label. See \ref{table:2} for examples.
 
-It has been annotated by 8 experts resulting in \gls{iaa} Krippendorfs $\alpha = 0.39$, which exceeds other media bias datasets by a significant margin. It also provides detailed information about the annotator background, making it a \textbf{reliable} source of information. The pipeline of the collection of BABE can be seen in \ref{fig:babe-data}.
+It has been annotated by eight experts resulting in \gls{iaa} Krippendorfs $\alpha = 0.39$, which exceeds other media bias datasets by a significant margin. It also provides detailed information about the annotator background, making it a \textbf{reliable} source of information. The pipeline of the collection of BABE can be seen in \ref{fig:babe-data}.
 
 This dataset plays a pivotal role in my approach to media bias detection and is selected as a target for tuning and evaluating language models in chapter \ref{experiments}. Examples of BABE data points can be seen in 
 \ref{table:2}
@@ -115,9 +115,9 @@ Wikipedia's NPOV policy is a set of rules that aim to preserve neutrality in Wik
     \item Prefer nonjudgmental language.
 \end{itemize}
 
-When neutrality is contested, a Wikipedia article can be moved to NPOV dispute by tagging it with \{\{NPOV\}\} or \{\{POV\}\}\footnote{Other POV related variations are ofthen used.} template. Debate on specific details of neutrality violations is then initialized among editors and eventually resolved, leading to the removal of the tag.
+When neutrality is contested, a Wikipedia article can be moved to NPOV dispute by tagging it with \{\{NPOV\}\} or \{\{POV\}\}\footnote{Other POV related variations are often used.} template. Debate on specific details of neutrality violations is then initialized among editors and eventually resolved, leading to the removal of the tag.
 
-This editorial information can be leveraged to extract parts of the text that violate the NPOV and their unbiased counterparts. However, it has been shown \cite{hube2019neural,zhong-etal-2021-wikibias-detecting} that such automatic extraction can suffer from noisy labeling. In some cases \cite{hube2019neural} up to 60\% of data points from positive class were actually neutral.
+This editorial information can be leveraged to extract parts of the text that violate the NPOV and their unbiased counterparts. However, it has been shown \cite{hube2019neural,zhong-etal-2021-wikibias-detecting} that such automatic extraction can suffer from noisy labeling. In some cases \cite{hube2019neural} up to 60\% of data points from the positive class were actually neutral.
 
 Even though these datasets introduce a large number of samples that are highly related to media bias, they are all sampled from Wikipedia's environment, which can be very different from the news environment. For this reason, a dataset based \textbf{only} on Wikipedia should not be used for training a final classifier of the \textbf{news text}.
 
@@ -125,17 +125,17 @@ Even though these datasets introduce a large number of samples that are highly r
 
 
 \subsection{Wiki Neutrality Corpus}\label{wiki}
-\Gls{wnc} \cite{pryzant2020automatically} is a parallel corpus of 180k pairs of biased and unbiased sentences. For the collection of the data, \ref{wiki-npov} approach was adopted. The authors crawled revisions from 2014 - 2019. Each revision has been processed to check if it contains any variation of \textit{POV} related tag inside. This approach yielded 180k pairs such that the sentence before edit is considered biased and the modified/added sentence after edit is considered neutral/unbiased.
+\Gls{wnc} \cite{pryzant2020automatically} is a parallel corpus of 180k pairs of biased and unbiased sentences. For the collection of the data, \ref{wiki-npov} approach was adopted. The authors crawled revisions from 2014 to 2019. Each revision has been processed to check if it contains any variation of \textit{POV} related tag inside. This approach yielded 180k pairs such that the sentence before edit is considered biased and the modified/added sentence after edit is considered neutral/unbiased.
     
-In addition to WNC, 385k of sentences which have not been changed during the NPOV dispute were extracted as neutral and for word-level classification purposes, a subset of WNC corpus, where only one word is changed in the biased-unbiased pair, were added.
+In addition to WNC, 385k of sentences that have not been changed during the NPOV dispute were extracted as neutral and for word-level classification purposes, a subset of the WNC corpus, where only one word is changed in the biased-unbiased pair, were added.
 
 
 
 
 \subsection{CW-HARD}
-Hube et al. \cite{hube2019neural} constructed a dataset based on NPOV, where only revisions with one sentence diff were filtered. However, because of the potentially noisy outcome, 5000 sentences were sampled and annotated using crouwdsourcing. Yet, the Krippendorffs Alpha agreement score measured only $\alpha = 0.124$ which is generally considered low. 
+Hube et al. \cite{hube2019neural} constructed a dataset based on NPOV, where only revisions with one sentence diff were filtered. However, because of the potentially noisy outcome, 5000 sentences were sampled and annotated using crowdsourcing. However, the Krippendorff's Alpha agreement score measured only $\alpha = 0.124$, which is generally considered low. 
 
-After filtering out sentences which annotators labeled with "I dont know" option, the final dataset consists of 1843 statements labeled as biased and 3109 labeled as neutral, a total of 4953 sentences.
+After filtering out sentences that annotators labeled with the "I don't know" option, the final dataset consists of 1843 statements labeled as biased and 3109 labeled as neutral, a total of 4953 sentences.
 
 
 
@@ -149,15 +149,15 @@ To achieve a higher quality corpus, 4099 sentence pairs were randomly sampled an
 
 
 \section{Unused datasets}
- Some datasets focus on a slightly different task, yet still carry potentially useful information. Such data can be useful in a \gls{mtl} setting \ref{mtl}. To name a few, which are focused on a detection of ideology:
+ Some datasets focus on a slightly different task yet still carry potentially useful information. Such data can be useful in a \gls{mtl} setting \ref{mtl}. To name a few which are focused on the detection of ideology:
 \begin{itemize}
 \item \textbf{NewsB} - 
-Consists of labels capturing authors political ideology (liberal, conservative) Labeled through distant supervision.
-\item \textbf{IBC} - Also focuses on ideology detection, however, it is not publicly available.
+Consists of labels capturing the authors political ideology (liberal, conservative) Labeled through distant supervision.
+\item \textbf{IBC} - Also focuses on ideology detection; however, it is not publicly available.
 \end{itemize}
 
 
 \section{Summary}
 In the previous section, I introduced all resources that are potentially useful for media bias analysis and are publicly available. The overview of all datasets and its properties can be seen in figure \ref{table:1}.
 
-BABE dataset is generally a good benchmark and its translated parallel version will be used for evaluation in this work. Training a classifier on combinations of different datasets is studied in \ref{experiments}. Unfortunately, a lot of the data suffer from noisy labeling and low \gls{iaa} greatly. Therefore, its usability is considerably limited.
+BABE dataset is generally a good benchmark, and its translated parallel version will be used for evaluation in this work. Training a classifier on combinations of different datasets is studied in \ref{experiments}. Unfortunately, a lot of the data suffer from noisy labeling and low \gls{iaa} greatly. Therefore, its usability is considerably limited.
