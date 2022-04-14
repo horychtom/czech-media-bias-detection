@@ -125,7 +125,7 @@ Such large models are usually pre-trained on an extensive corpus of data. There 
 Having such pre-trained model, one can then easily train a task specific head on top of pre-trained representations. Although the process of \textbf{fine-tuning} is more often adopted. During fine-tuning, the whole model with \textbf{all} its parameters is trained, as well as the task-specific head.
 
 \section{Notes on Multi-Task learning}
-When talking about training a neural network, we usually talk about fitting a network to one particular task. However, fine-tuning language models on small datasets often results in overfitting. Multi-Task learning serves as a good generalization technique and a potential solution to this problem.
+When talking about training a neural network, we usually talk about fitting a network to one particular task. However, fine-tuning language models on small datasets often results in overfitting. Multi-Task learning serves as a good \textbf{generalization} technique and a potential solution to this problem.
 
 In essence, \gls{mtl} means learning multiple tasks together within one model; thus, representations for all tasks are learned together. Tasks do not have to share loss functions; they can have their own task-specific heads on top of the shared model.
 

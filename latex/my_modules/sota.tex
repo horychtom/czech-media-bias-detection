@@ -1,8 +1,8 @@
-\chapter{State of the art}
+\chapter{Bias Detection}
 
 %______________________________GENDER______________________________________________%
 \section{Gender bias detection}\label{gender}
-Most of the work on gender bias aims to study gender bias embedded in models and other methods to measure, clarify and possibly mitigate it.
+Most of the work on gender bias aims to study gender bias embedded in models and other methods to measure, clarify, and possibly mitigate it.
 
 There is clear evidence that current language models possess implicit gender bias. Whether it means, in terms of learning biased embeddings \cite{bolukbasi2016man}, or simply underrepresentation of a particular gender in the data \cite{sun-peng-2021-men}. 
 
@@ -22,7 +22,8 @@ To measure this kind of bias over all three dimensions, a large-scale dataset \t
 To transfer the results of the paper mentioned above to the Czech environment, I sampled 150k sentences from across all datasets with an \textit{ABOUT} dimension label and translated them via \textbf{DeepL} machine translator (more on machine translation in section \ref{DeepL}). Then I managed to train a RoBERTa based model that achieved an F1 score of 80\% on the small gold-labeled evaluation dataset. 
 Unfortunately, the results are not comparable to the original English experiments because I took a \textbf{single-task} approach and omitted other dimensions completely. I share the trained model together with translated data on HuggingFace\footnote{\url{https://huggingface.co/}} hub, and I also present a demo. An example of the demo can be seen in the Appendix \ref{gender_results}.
 
-The gender classifier, such as this one, can be used to determine what percentage of a particular article in the Czech news environment is about men, women, or is completely genderless. This statistical indicator could help to keep the writing more balanced or provide an insight into already published writing.
+The gender classifier, such as this one, can be used to determine what percentage of a particular article in the Czech news environment is about men, women, or is completely genderless. This statistical indicator could help to keep the writing more balanced or provide insight into already published writing.
+
 
 
 
@@ -34,10 +35,12 @@ When it comes to automatic detection of media bias, the standard is to use super
 
 The majority of current research focuses on \textbf{sentence level} classification \cite{sinha2021determining,Spinde2021MBIC,lee2021unifying,hube2019neural}, however, there has also been an effort to lift the classification to \textbf{article level}.
 
-Article-level classification is usually more difficult since it is inconvenient to put the whole article through the neural network. Even though such things as document embeddings exist, bottom-up solutions are usually used. A simple approach would be to classify all sentences and simply count the frequency. Eventually, I used this approach when applying the classifier to Czech news corpora in section \ref{inference}.
+Article-level classification is usually more difficult since it is inconvenient to put the whole article through the neural network. Even though such things as document embeddings exist, bottom-up solutions are usually used. A simple approach would be to classify all sentences and count the frequency. Eventually, I used this approach when applying the classifier to Czech news corpora in section \ref{inference}.
 
 However, additional high-level features such as the position of bias, the frequency, or the ordering, have been studied and proved to be effective in article level classification.\cite{chen2020detecting,chen-etal-2020-analyzing}.
 
 As I outlined in the previous section, \gls{mb} can be divided into two classes, where one depends on the outer context, and the other does not. This is commonly referred to as \textbf{informational} and \textbf{lexical} bias. There have been efforts to classify informational bias with varying context sizes \cite{van2020context}, although a majority of the work focuses on lexical bias, and I follow this standard as well.
 
 Various pre-training and fine-tuning strategies have been studied regarding sentence classification. However, one of the most promising approaches is using an \Gls{mtl} to tackle the problem. Although there are already some results of applying \Gls{mtl} to the detection of \gls{mb} \cite{lee2021unifying,spindeexploiting}, empirical studies suggest that a large number of tasks has to be used to allow \Gls{mtl} to shine. For more details about \gls{mtl} see \ref{theory} section.
+
+\let\cleardoublepage\clearpage
