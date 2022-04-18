@@ -20,19 +20,17 @@ A brief summary of the models tested can be found in the following:
 
 
 
-
-
 \subsection{Multi-lingual models}
 \begin{itemize}
     \item \textbf{SlavicBert} \cite{arkhipov2019tuning} - BERT-based model with 179M parameters, trained on four languages: Russian, Bulgarian, Czech, and Polish. The model is trained on all 4 languages at once. The model is not trained from scratch, but it is a fine-tuned version of mBERT.
-    \item \textbf{mBERT} - BERT-based model with 179M parameters trained on corpora of 104 languages, including Czech, with MLM task.
+    \item \textbf{mBERT} \cite{devlin2019bert} - BERT-based model with 179M parameters trained on corpora of 104 languages, including Czech, with MLM task.
 \end{itemize}
 
 
 
 
 \section{Experimental setup}
-All models are fetched, trained, and evaluated using the HuggingFace API. The maximum sequence length is set to 128 tokens. All the parameters can be seen in the Appendix.
+All models are fetched, trained, and evaluated using the HuggingFace API\footnote{\url{https://huggingface.co/docs}}. The maximum sequence length is set to 128 tokens. All the parameters can be seen in the Appendix.
 Everything is evaluated using 10-fold cross-validation. The evaluation metric for all experiments is the F1 score with macro averaging\footnote{The score is averaged over all (2) classes.}. 
 
 A small portion (15\%) of the target dataset is left aside as a \textbf{test set} at the beginning and used only for the final evaluation to ensure that no test data leak into the training data.
@@ -86,7 +84,7 @@ I restricted the search space only to the combinations of:
 
 
 \section{Combining Datasets}
-This section is dedicated to the study of the influence of pre-training on combinations of datasets. Trying all combinations would result in training 128 models, which is obviously infeasible. Therefore, I decided to pre-train on five splits with regard to the bias information:
+This section is dedicated to the study of the influence of pre-training on combinations of datasets. Trying all combinations would result in training 511\footnote{Given a set of $n$ elements, number of subsets is $2^n$. Here we have set of 9 datasets resulting in 512 combinations. 511 without empty set.} models, which is obviously infeasible. Therefore, I decided to pre-train on five splits with regard to the bias information:
 \begin{itemize}
     \item \textbf{SUBJe} - is a combination of SUBJ and MPQA dataset, which both focus on explicit subjective bias.
     \item \textbf{MB} - is a combination of NJNJ, UA-crisis and BASIL dataset which are all from the \gls{mb} family.
@@ -131,12 +129,6 @@ Possibly, a complete study with more models could be performed, but that would r
 \end{figure}
 
 
-\subsection{Demo}
-Additionally, I provide a simple web demo for the reader to experiment with\footnote{\url{https://huggingface.co/spaces/horychtom/czech_media_bias_detection}}. The use of the demo can be seen in \ref{fig:demodemo}. The backend runs on a \textbf{HuggingFaces spaces} which is a free hosting service for demonstration of \gls{ml} applications. 
-
-The user can insert arbitrary text in Czech language; text is then split into sentences and classified individually. Then the average percentage bias score of the text is displayed. An \textit{interpret} button allows the user to further inspect the classification.
-
-
   
 
 \section{Inference on Czech News Samples}\label{inference}
@@ -146,7 +138,10 @@ The user can insert arbitrary text in Czech language; text is then split into se
     \item vyplotit vyvoj biasu v čase pro jedno medium
     \item vyplotit bias mezi pár mediama
     \item vyplotit bias mezi tématama (bydlení atd)
-    \item komentáře jsou skrze "section" ! super
-    \item bias není 50\% ! bud je to hodně nebo malo. Bimodal distribution!
-    \item use probability of headline bias as a prior
+    \item komentáře jsou skrze "section" super
 \end{itemize}
+
+\subsection{Demo}
+Additionally, I provide a simple web demo for the reader to experiment with\footnote{\url{https://huggingface.co/spaces/horychtom/czech_media_bias_detection}}. The use of the demo can be seen in \ref{fig:demodemo}. The backend runs on HuggingFace's spaces\footnote{\url{https://huggingface.co/spaces}} which is a free hosting service for demonstration of \gls{ml} applications. 
+
+The user can insert arbitrary text in Czech language; text is then split into sentences and classified individually. Then the average percentage bias score of the text is displayed. An \textit{interpret} button allows the user to further inspect the classification.

@@ -1,5 +1,5 @@
 \chapter{Theoretical background}\label{theory}
-In this section, I briefly introduce \gls{sota} methods and models used in the experiment section. Many of the problems in NLP are tasks of mapping one sequence to another; therefore, modern architectures were designed to tackle this very problem \textbf{efficiently}.
+In this section, I briefly introduce \gls{sota} methods and models used in the experiment section \ref{experiments}. Many of the problems in NLP are tasks of mapping one sequence to another; therefore, modern architectures were designed to tackle this very problem \textbf{efficiently}.
 
 
 
@@ -19,7 +19,7 @@ The current standard representations of words are word \textbf{embeddings}. Embe
 
 
 \section{Neural Networks}
-An \Gls{ann} is a model developed in the early 1940s. The smallest unit of a \Gls{nn} is a perceptron:
+An \Gls{ann} is a model developed in the early 1940s \cite{mcculloch1943logical}. The smallest unit of a \Gls{nn} is a perceptron:
 \begin{equation}
     f(x) = \phi(w^Tx + b)
 \end{equation}
@@ -44,7 +44,7 @@ There are several problems with this architecture. Firstly, when a long sequence
 \section{Transformers}\label{att_transformers}
 Transformers is a family of deep neural architectures that has revolutionized the field of \gls{nlp}. The \textbf{attention} mechanism is a core principle behind transformer architecture and solves some of the problems mentioned in the previous section.
 
-Current \gls{sota} language models, such as GPT-3, BERT, RoBERTa, all use this architecture with different modifications (e.g., BERT only uses the encoder side, etc.). For the detection of \gls{mb}, I have eventually also narrowed the choice of models to transformers rather than other neural architectures.
+Current \gls{sota} language models, such as GPT-3, BERT, RoBERTa, all use the transformer architecture. Although their architecture can vary from the original one; for example BERT only uses the Encoder module. For the detection of \gls{mb}, I have eventually also narrowed the choice of models to transformers rather than other neural architectures.
 
 
 
@@ -75,7 +75,7 @@ Although the computation of self-attention is dependent on other tokens, the for
 Text classification is a supervised learning task of assigning a particular text (word, sentence, or document) a category to which it belongs. A standard loss for classification is a Cross-Entropy loss. In case of binary classification:
 
 \begin{equation}
-    L_{BCE} = \frac{1}{n} \sum_{i=1}^n ( y_i \cdot \log\hat{y_i} + (1-y_i)\cdot(1-\hat{y_i}))
+    L_{BCE} = \frac{1}{n} \sum_{i=1}^n ( y_i \cdot \log\hat{y_i} + (1-y_i)\cdot\log(1-\hat{y_i}))
 \end{equation}
 
 Where $y_i$ denotes the ground-truth label, $\hat{y_i}$ the probability predicted by the model, and $n$ is a number of samples.
@@ -99,7 +99,7 @@ where precision
 \end{equation}
 can be understood as "how precisely the model predicts a positive class", whereas recall
 \begin{equation}
-    Rrecall = \frac{TP}{TP+FN}
+    Recall = \frac{TP}{TP+FN}
 \end{equation}
 can be understood as "how much of a positive class can model predict".
 The scores for each class are then averaged to obtain the final score. This is often referred to as "macro" averaging.
@@ -125,9 +125,9 @@ Such large models are usually pre-trained on an extensive corpus of data. There 
 Having such pre-trained model, one can then easily train a task specific head on top of pre-trained representations. Although the process of \textbf{fine-tuning} is more often adopted. During fine-tuning, the whole model with \textbf{all} its parameters is trained, as well as the task-specific head.
 
 \section{Notes on Multi-Task learning}
-When talking about training a neural network, we usually talk about fitting a network to one particular task. However, fine-tuning language models on small datasets often results in overfitting. Multi-Task learning serves as a good \textbf{generalization} technique and a potential solution to this problem.
+When talking about training a neural network, we usually talk about fitting a network to one particular task. However, fine-tuning language models on small datasets often results in overfitting. Multi-Task learning \cite{caruana1997multitask} serves as a good \textbf{generalization} technique and a potential solution to this problem.
 
 In essence, \gls{mtl} means learning multiple tasks together within one model; thus, representations for all tasks are learned together. Tasks do not have to share loss functions; they can have their own task-specific heads on top of the shared model.
 
-There are two approaches to training an \gls{mtl} model.
+In terms of optimizing (training) an \gls{mtl} model, there are two approaches in leveraging an \gls{mtl} paradigm \cite{ruder2017overview}.
 \textbf{Hard-paramater sharing} where all parameters of the network, except the tasks-specific heads, are shared among tasks. On the other hand, with \textbf{Soft-parameter sharing}, each task has its own version of parameters, but they are encouraged to reduce the distance between the parameters through constraints.
