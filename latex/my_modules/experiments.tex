@@ -2,14 +2,31 @@
 In this section, I present experiments on text classification on collected datasets. The main \textbf{target} dataset for evaluations is the BABE dataset due to its high quality and properties.
 
 Because of novelty of the CWNC I also perform a baseline evaluation on this dataset, but furthermore it is not tuned anymore, nor evaluated.
-I follow the current standard approaches and use pre-trained transformers for further pre-training and fine-tuning. 
+I follow the current standard approaches and use pre-trained transformers for further \textbf{pre-training} and \textbf{fine-tuning}.
 
-A brief summary of the models tested can be found in the following:
+To train a model for the classification of \gls{mb}, a pre-trained transformer language model, either trained on Czech data solely or on multiple languages jointly is used. Then a classiffier consisted of one dense\footnote{Also often to as fully-connected layer.} layer is appended to the output of the model, to perform the binary classification task. A scheme of used architecture can be seen in \ref{fig:classifier}.
+
+In this context, the \textbf{fine-tuning} is performed on the BABE dataset. Both the parameters of the base language model, eg. BERT, and the parameters of the classifier are updated jointly. Weights of the classification layer are initialized randomly and trained from scratch; however, pre-trained language model already contains meaningul linguistic features so it's parameters are \textbf{fine-tuned} for bias specific representations.
+
+I also experiment with further \textbf{pre-training} on in-domain datasets collected. Which means that before fine-tuning, additional step is performed. The model with the architecture mentioned above, is \textbf{further pre-trained} on one or more bias related datasets. This secondary pre-training aims to learn meaningful \textbf{bias representations} and therefore help with subsequent fine-tuning on the target BABE dataset.
+
+
+
+\begin{figure}
+\makebox[\textwidth][c]{
+  \includegraphics[scale=0.3]{my_modules/multimedia/final_colored.png}
+  \caption{Scheme of a text classification architecture.}
+  \label{fig:classifier}
+  }
+\end{figure}
+
+As opposed to English language, there is relatively low number of Czech pre-trained transformer models. A list and a brief summary of all the models tested in the experiments can be found in the following:
 
 
 
 
 \subsection{Czech monolingual models}
+Models trained solely on Czech data.
 \begin{itemize}
     \item \textbf{RobeCzech} \cite{strakarobeczech} - RoBERTa-based model with 125M parameters. Like its original counterpart, it is trained with the \gls{mlm} task, on 4,917M tokens of Czech corpora.
     \item \textbf{Czert} \cite{sido-etal-2021-czert} - BERT-based model with 110M parameters, trained with \gls{nsp} tasks. All Together trained on 37GB of text. 
@@ -21,6 +38,7 @@ A brief summary of the models tested can be found in the following:
 
 
 \subsection{Multi-lingual models}
+Models trained jointly on multiple languages.
 \begin{itemize}
     \item \textbf{SlavicBert} \cite{arkhipov2019tuning} - BERT-based model with 179M parameters, trained on four languages: Russian, Bulgarian, Czech, and Polish. The model is trained on all 4 languages at once. The model is not trained from scratch, but it is a fine-tuned version of mBERT.
     \item \textbf{mBERT} \cite{devlin2019bert} - BERT-based model with 179M parameters trained on corpora of 104 languages, including Czech, with MLM task.
@@ -69,7 +87,7 @@ I restricted the search space only to the combinations of:
  
  As the authors of the original BERT paper suggest.  After running the grid search, the overall best parameters were:
  \begin{center}
-      \{learning\_rate = 3e-5,batch\_size = 32, epochs=3\}
+      \{learning\_rate = 3e-5,batch\_size = 32, epochs=3\}\label{hyperparams}
  \end{center}
  
  The model with the best parameters achieved a 0.784 F1 score ($\sim$0.4\% improvement against baseline).
@@ -84,7 +102,7 @@ I restricted the search space only to the combinations of:
 
 
 \section{Combining Datasets}
-This section is dedicated to the study of the influence of pre-training on combinations of datasets. Trying all combinations would result in training 511\footnote{Given a set of $n$ elements, number of subsets is $2^n$. Here we have set of 9 datasets resulting in 512 combinations. 511 without empty set.} models, which is obviously infeasible. Therefore, I decided to pre-train on five splits with regard to the bias information:
+This section is dedicated to the study of the influence of pre-training on combinations of datasets. Trying all combinations would result in training 511 models\footnote{Given a set of $n$ elements, number of subsets is $2^n$. Here we have set of 9 datasets resulting in 512 combinations. 511 without empty set.}, which is obviously infeasible. Therefore, I decided to experiment with pre-training on five sets of datasets with regard to their bias information:
 \begin{itemize}
     \item \textbf{SUBJe} - is a combination of SUBJ and MPQA dataset, which both focus on explicit subjective bias.
     \item \textbf{MB} - is a combination of NJNJ, UA-crisis and BASIL dataset which are all from the \gls{mb} family.
@@ -102,6 +120,8 @@ Every split has been downsampled so the classes were balanced. A small validatio
 
 Furthermore, I also evaluated pre-trained models on BABE without further fine-tuning, to gain the insight of relatedness to BABE. All results can be seen in \ref{table:4}.
 
+
+
 Pre-training on \textbf{ALL} datasets combined resulted in the best performance; however, virtually the same performance was achieved by the model trained on the \textbf{SUBJe} combination. Notably, the SUBJ split represents almost half of all the data (see \ref{fig:cz_data}). Therefore, I assume that the performance of ALL split is high due to the presence of SUBJe.
 
 Pre-training on the other splits hurt the performance. This is mainly because the model had struggled to learn the pre-training tasks in the first place. For example, during pre-training on \textbf{MB}, in the validation set only F1 $\sim40\%$ has been achieved. As opposed to \textbf{SUBJe}, where the model was able to achieve F1 $\sim90\%$ in the first few iterations.
@@ -113,20 +133,13 @@ The subjectivity bias as opposed to \gls{mb} is a bit more explicit and more str
 
 
 \section{Results}
-The final model for evaluation has been trained with the optimal parameters and pre-trained on all datasets combined. It achieved an F1 score of \textbf{0.804} on a \textbf{test} set. Afterward, for the final model that I share on huggingface, the test set has also been included in the training.
+The final model for evaluation has been pre-trained with \textbf{ALL} datasets combination and fine-tuned with optimal parameters (\ref{hyperparams}) on BABE target dataset. Finally, on a \textbf{test} set it achieved an F1 score of \textbf{0.804}. Afterward, for the final model that I share on huggingface and which is used for inference experiments, the whole BABE dataset, including test set, is used for the training.
 
 
 Despite the relatively high performance, the final score in the test set is not representative due to its size. The test set consists of $\sim$ 500 sentences and, therefore, may not adequately represent all bias information. For better evaluation, I propose using a nested cross-validation. However, the computational demand would be very high. 
 
 Possibly, a complete study with more models could be performed, but that would require an enormous number of trained models. Essentially, these results show that there was a minimal gain over the baseline (\textbf{+0.7\%}).
 
-\begin{figure}
-\makebox[\textwidth][c]{
-  \includegraphics[scale=0.3]{my_modules/multimedia/bias.jpg}
-  \caption{Example of the bias classifier demo usage. Red and blue color represent the biased and unbiased annotation respectively.}
-  \label{fig:demodemo}
-  }
-\end{figure}
 
 
   
@@ -145,3 +158,11 @@ Possibly, a complete study with more models could be performed, but that would r
 Additionally, I provide a simple web demo for the reader to experiment with\footnote{\url{https://huggingface.co/spaces/horychtom/czech_media_bias_detection}}. The use of the demo can be seen in \ref{fig:demodemo}. The backend runs on HuggingFace's spaces\footnote{\url{https://huggingface.co/spaces}} which is a free hosting service for demonstration of \gls{ml} applications. 
 
 The user can insert arbitrary text in Czech language; text is then split into sentences and classified individually. Then the average percentage bias score of the text is displayed. An \textit{interpret} button allows the user to further inspect the classification.
+
+\begin{figure}
+\makebox[\textwidth][c]{
+  \includegraphics[scale=0.3]{my_modules/multimedia/bias.jpg}
+  \caption{Example of the bias classifier demo usage. Red and blue color represent the biased and unbiased annotation respectively.}
+  \label{fig:demodemo}
+  }
+\end{figure}
