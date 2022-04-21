@@ -18,7 +18,7 @@ However, as outlined before, besides the study of the models that reflect the bi
 
 
 
-\subsection{Media Bias}
+\subsection{Media Bias}\label{mb_intro}
 The need to address bias in media articles arises from the ever-increasing social polarization. News that exhibit \textbf{\gls{mb}} can sway opinions and alter readers' beliefs. In this work, I refer to Allsides\footnote{\url{https://www.allsides.com/} is a company that focuses on the non-automatic classification of news outlets with respect to their bias} definition\footnote{\url{https://www.allsides.com/blog/what-media-bias}} of the media bias:
 
 \vbox{
@@ -58,6 +58,7 @@ Previous examples show how the statements that contain \gls{mb} may be manipulat
 There are potentially several ways of defining news text classification as \gls{nlp} problem.
 In this work, I focus on automatic \textbf{binary classification} of \textbf{media bias}, on a statement level (sentence), in the Czech language.
 
+%--------------------------official
 To do so, I firstly research and gather all useful data and use machine translation to create their parallel \textbf{Czech} versions. Furthermore I presnent one, automatically created \textbf{new} Czech dataset. 
 
 Then, using state-of-the-art language models, I experiment with different dataset settings and train a Czech \gls{mb} classifier. To evaluate the results, a gold standard dataset from \gls{mbg}\footnote{\url{https://media-bias-research.org}} is selected as a target dataset. The work of \gls{mbg} has been a great inspiration for the application of \gls{mb} detection to Czech news and I follow their methodology of using transformer models for \gls{mb} sentence classification. Furthermore, future collaboration on \gls{mb} detection research has been established.
@@ -66,6 +67,7 @@ Finally, a trained classifier is applied to provided Czech news corpora, and the
 
 Before turning my attention to media bias, I have examined several other relevant bias detection topics. At the beginning of my research, I studied the possibilities of applying gender bias detection to Czech News. Therefore, I dedicate a small section \ref{gender} to my results and examination of one of the gender-focused datasets.
 
+%-------------------- alternativa
 
 
 \let\cleardoublepage\clearpage

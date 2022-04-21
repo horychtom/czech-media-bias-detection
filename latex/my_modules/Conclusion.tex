@@ -1,15 +1,22 @@
 \chapter{Conclusion}
-In this work, I collected and analyzed the literature and resources for studying state-of-the-art media bias detection and also performed a minor experiment focused on gender bias detection. I presented a new Czech parallel dataset derived from Wikipedia and, in addition, nine parallel translated Czech datasets to tackle the detection of media bias in \textbf{Czech language}, one of them large-scale (360k sentences).
+In this work, I collected and analyzed the literature and resources to study state-of-the-art media bias detection and also performed a minor experiment focused on gender bias detection. I presented a new Czech parallel dataset derived from Wikipedia and, in addition, nine parallel translated Czech datasets to tackle the detection of media bias in \textbf{Czech language}, one of them large-scale (360k sentences).
 
-I trained and tuned the BERT-based FERNET-C5 language model and achieved an F1 score of 80.4 \% on a small test subset of a target dataset. I performed experiments on combining different datasets for pre-training the model to push the performance on the validation set. Pre-training on the subjectivity detection datasets performed the best; however, all the tuning performed generally had a very low effect on performance +0.7\%. 
+I trained and tuned the BERT-based FERNET-C5 language model for binary classification and achieved an F1 score of 0.804 on a small test subset of the BABE dataset. I performed experiments on combining different datasets for pre-training the model to push the performance on the validation set. The pre-training on the subjectivity detection datasets performed the best; however, all the tuning performed generally had a very low effect on performance, approximately +0.7\% gain over the baseline. 
 
-Finally, the final classifier has been used to build a publicly available demo and to analyze a sample of articles from "INSERT SOURCE" throughout the 2002 - 2018 period of time. The results of this study showed a trend in the progression of media bias in time and revealed a positive correlation between the headline bias and the average bias of the article.
+Finally, the final classifier has been used to build a publicly available demo and to analyze a sample of articles from "INSERT SOURCE" throughout the 2002 - 2018 period of time. The results of this study showed a trend in the progression of media bias over time and revealed a positive correlation between the headline bias and the average bias of the article.
 
 \section{Ethical Concerns}
-models decision often unclear, presence of some words always results in bias. Such model is not usable for people.
+\#TODO
+\begin{itemize}
+    \item interpretability
+    \item presence of some words always result in bias
+    \item not yet usable for real-world inference
+    \item F1 score is insufficient (empirical human-based evaluation?)
+\end{itemize}
 
 
 \section{Future perspective}
-As outlined in the introduction, media bias appears to be a combination of several potentially independent tasks, such as sentiment, agression, or subjective analysis. In this thesis, this hypothesis has also been somewhat supported by the result that pre-training on subjectivity task had the best influence on detection of \gls{mb} but a single-task model for subjectivity detection eventually performed worse than others. Therefore, as Spinde et al. \cite{spindeexploiting} suggest, the multi-task approach could be used to enhance the classification ability of the current Czech classifier.
+As outlined in the introduction (\ref{mb_intro}), according to allsides.com, media bias appears to be a combination of several potentially independent features, such as sentiment, agression, or subjectivity. In this thesis, this hypothesis has also been somewhat supported by the result that pre-training on subjectivity task had the best influence on detection of \gls{mb} but a single-task model for subjectivity detection eventually performed worse than others. Therefore, as Spinde et al. \cite{spindeexploiting} suggest, the multi-task approach could be used to enhance the classification ability of the current Czech classifier.
 
-Nevertheless, the current Czech classifier relies heavily on translated datasets, therefore, I suggest that for the future improvement, a construction of an original gold-standard Czech dataset is essential.
+
+Nevertheless, the current Czech classifier relies heavily on translated datasets; therefore, I suggest that, for future improvement, a construction of an original gold-standard Czech dataset is essential.
