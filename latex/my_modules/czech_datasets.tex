@@ -68,17 +68,14 @@ I followed two main existing approaches, both relying on the extraction of revis
 
 \subsection{CWNC-noisy}
 I closely followed the \cite{aleksandrova2019multilingual} approach and used their publicly available script. Firstly, a file with all pages and its complete edit history is downloaded from the wiki dump\footnote{\url{https://dumps.wikimedia.org/cswiki/}}. I used the \textbf{20220201} version. Then, the pages with edits containing one of the NPOV-related tags are filtered, and the process of sentence extraction follows.
-This approach yielded 15k sentences; however, it uses a rather trivial assumption that when the NPOV tag is removed, \textbf{all} removed sentences are biased and all added are unbiased. This annotating strategy led to a very noisy dataset and subsequently poor classification results, and for this reason, I excluded this dataset from further experiments entirely.
-
-
-
+This approach yielded 15k sentences; however, it uses a rather trivial assumption that when the NPOV tag is removed, \textbf{all} removed sentences are biased and all added are unbiased. This annotating strategy led to a very noisy dataset, and for this reason, I excluded this dataset from further experiments entirely.
 
 
 \subsection{CWNC}\label{wncs}
 This dataset was created following the \cite{pryzant2020automatically} approach. The process is the same as described in section \ref{wiki-npov}. I used \textbf{20220201} snapshot of Wikipedia dump, which was, at the time of dataset collection, the latest snapshot that included all necessary files.
 I used the script publicly available on Github\footnote{\url{https://github.com/rpryzant/neutralizing-bias}},with a few slight modifications so the processing fits the Czech language properties:
 \begin{enumerate}
-    \item Used Regex was extended to exclude czech words that contain "pov" inside eg. \underline{pov}stání, \underline{pov}lak etc.\footnote{Regular expression used to match npov related comments: }
+    \item Used Regex was extended to exclude czech words that contain "pov" inside eg. \underline{pov}stání, \underline{pov}lak etc.
     \item All cases has been preserved.
     \item Czech Morphodita tokenizer was used\footnote{\url{https://ufal.mff.cuni.cz/morphodita/users-manual}}
 \end{enumerate}
@@ -99,4 +96,4 @@ In total, 5766 sentences. The neutral corpus, which contains only neutral senten
 
 
 \section{Not translated}
-Due to a large size of some datasets, I was unable to translate more than one large-scale dataset. For this reason, the NewsB dataset has not been translated since it is one of the few datasets that does not focus on the very same task.
+Due to a large size of some datasets, I was unable to translate more than one large-scale dataset. For this reason, the NewsB dataset has not been translated.

@@ -1,7 +1,7 @@
 \chapter{Introduction}
 Consumption of media of all kinds increases as people become more and more engaged in the online world. We usually learn about the events happening in the world through the online news media of our choice; therefore, it is essential that media present fair, unbiased, reliable information. Although there is a huge effort in pointing out potentially \textbf{biased} sources of information by humans, we still fail to classify media in a broad and comprehensive manner. Automatic, machine classification of news texts may help humans on this journey toward a more reliable news environment.
 
-\gls{nlp} is a set of methods that works with text and aims to bring an understanding of textual data leveraging machine learning algorithms. Using the methods of \gls{nlp} to classify news text has some limits for low-resource languages such as the Czech language. In this work, I focus on exploring and applying current \gls{sota} on automatic detection of bias in Czech news.
+\gls{nlp} is a set of methods that works with text and aims to bring an understanding of textual data leveraging machine learning algorithms. Using the methods of \gls{nlp} to classify news text has some limits for low-resource languages such as the Czech language. In this work, I focus on exploring and applying current \gls{sota} methods on automatic detection of bias in Czech news.
 
 
 \section{Bias}
@@ -48,26 +48,34 @@ In these examples there is a clear evidence of an author's opinion or state, to 
 
 The diversity of these characteristics shows how complex and subtle the overall bias information can be. Therefore, a simple subjectivity or sentiment analysis would not be sufficient for cracking the \gls{mb} detection. 
 
-Most of the features are of a lexical nature; on the other hand, there are other features that are practically not possible to detect automatically without a context, e.g., bias by \textbf{ommiting information}, where it strongly depends on an outer context. In section \ref{mediabias} I refer to the family of these kinds of features as \textbf{informational bias}.
+Most of the features are of a lexical nature; on the other hand, there are other features that are practically not possible to detect automatically without a context, e.g., bias by \textbf{omitting information}, where it strongly depends on an outer context. In section \ref{mediabias} I refer to the family of these kinds of features as \textbf{informational bias}.
 
 
 Previous examples show how the statements that contain \gls{mb} may be manipulative or persuasive to some extent. However, the presence of \gls{mb} does not always imply malicious intent. It is in human nature to draw on experience, to express something, that we \textit{believe} to be the truth, in a factual way. Thus, one can simply not be aware of their implicit bias. As the authors of Allsides suggest, it might even be desirable. For example, the \textit{Commentary} format article often contains more bias (see \ref{experiments}), but its purpose is to present an opinion, and there is nothing wrong with that.
 
 
-\section{Outline and problem definition}
-There are potentially several ways of defining news text classification as \gls{nlp} problem.
-In this work, I focus on automatic \textbf{binary classification} of \textbf{media bias}, on a statement level (sentence), in the Czech language.
 
-%--------------------------official
-To do so, I firstly research and gather all useful data and use machine translation to create their parallel \textbf{Czech} versions. Furthermore I presnent one, automatically created \textbf{new} Czech dataset. 
+\section{Outline and problem definition}\label{problem_definition}
+In this work, my objective is to study the automatic \textbf{binary classification} of \textbf{media bias}, on a statement level (sentence), in the Czech language.
 
-Then, using state-of-the-art language models, I experiment with different dataset settings and train a Czech \gls{mb} classifier. To evaluate the results, a gold standard dataset from \gls{mbg}\footnote{\url{https://media-bias-research.org}} is selected as a target dataset. The work of \gls{mbg} has been a great inspiration for the application of \gls{mb} detection to Czech news and I follow their methodology of using transformer models for \gls{mb} sentence classification. Furthermore, future collaboration on \gls{mb} detection research has been established.
+ To do so, I break the task down into four research sub-tasks:
+ \begin{enumerate}
+     \item[] \colorbox{highlight}{\textbf{T1.}\label{T1}} Survey literature on automated media bias detection.
+     \item[] \colorbox{highlight}{\textbf{T2.}\label{T2}} Collect and inspect all datasets related to media bias.
+     \item[] \colorbox{highlight}{\textbf{T3.}\label{T3}} Investigate the possibilities of automatic creation of Czech datasets and create a unified collection of Czech datasets by translating the English ones.
+     \item[] \colorbox{highlight}{\textbf{T4.}\label{T4}} Experiment with collected datasets to train a Czech media bias classifier and evaluate the results on the target dataset.
+ \end{enumerate}
+ 
+\noindent And eventually aim to answer two research questions:
+\begin{itemize}
+    \item[] \colorbox{highlight}{\textbf{Q1.}\label{Q1}} How well do the models trained on \gls{mb}-related datasets generalize to the target dataset?
+    \item[] \colorbox{highlight}{\textbf{Q2.}\label{Q2}} Does a pre-training on \gls{mb}-related datasets help with media bias detection?
+\end{itemize}
 
-Finally, a trained classifier is applied to provided Czech news corpora, and the results of the real-world \gls{mb} classification are presented.
+As a target dataset, a translated version of BABE, from \gls{mbg}\footnote{\url{https://media-bias-research.org}}, is selected. The work of \gls{mbg} has been a great inspiration for the application of \gls{mb} detection to Czech news and I follow their methodology of using transformer models for \gls{mb} sentence classification. Furthermore, future collaboration on \gls{mb} detection research has been established.
+
+In addition, a trained classifier is applied to the Czech news corpora, and so the results of the real world \gls{mb} classification are presented.
 
 Before turning my attention to media bias, I have examined several other relevant bias detection topics. At the beginning of my research, I studied the possibilities of applying gender bias detection to Czech News. Therefore, I dedicate a small section \ref{gender} to my results and examination of one of the gender-focused datasets.
-
-%-------------------- alternativa
-
 
 \let\cleardoublepage\clearpage

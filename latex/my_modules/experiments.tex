@@ -1,16 +1,10 @@
 \chapter{Experiments}\label{experiments}
-In this section, I present experiments on text classification on collected datasets. The main \textbf{target} dataset for evaluations is the BABE dataset due to its high quality and properties.
+To complete the last research task proposed in the introduction \hyperref[problem_definition]{T4}, firstly I perform experiments on collected datasets to answer the two main research qusetions \hyperref[Q1]{Q1} and \hyperref[Q2]{Q2}. The main \textbf{target} dataset for evaluations is the BABE dataset due to its high quality and properties. Then using the optimal dataset combination and hyperparameters, a final Czech classifier is built and used for inference.
 
-Because of novelty of the CWNC I also perform a baseline evaluation on this dataset, but furthermore it is not tuned, nor evaluated.
+Because of novelty of the CWNC I also perform a baseline evaluation on this dataset, but furthermore it is not tuned nor evaluated.
 I follow the current standard approaches and use pre-trained transformers for further \textbf{pre-training} and \textbf{fine-tuning}.
 
-To train a model for the classification of \gls{mb}, a pre-trained transformer language model is used, either trained on Czech data solely or on multiple languages jointly. Then a classiffier consisting of one dense\footnote{Often referred to as fully-connected layer.} layer is appended to the model output to perform the binary classification task. A scheme of the architecture used can be seen in \ref{fig:classifier}.
-
-In this context, \textbf{fine-tuning} is the process of adapting the pre-trained language model as well as the classification head, to the BABE dataset. Both the parameters of the language model, e.g. BERT, and the parameters of the classifier are updated jointly. Weights of the classification layer are initialized randomly and trained from scratch; however, pre-trained language model already contains meaningful linguistic features so it's parameters are \textbf{fine-tuned} for bias-specific representations. This is especially convenient since the BABE dataset has only around 3700 sentences. Therefore, training from scratch would likely fail to learn general linguistic properties together with subtle bias features.
-
-I also experiment with further \textbf{pre-training} on in-domain datasets. This means that before fine-tuning, an extra step is performed. In this step, the model with the architecture mentioned above is further \textbf{pre-trained} on one or more bias datasets from the collection of Czech datasets presented in this work. This secondary pre-training aims to learn meaningful \textbf{bias representations} and therefore help with subsequent fine-tuning on the BABE.
-
-
+To train a model for the classification of \gls{mb}, a pre-trained transformer language model is used. Trained solely on Czech data or on multiple languages jointly. Then a classiffier consisting of a dense\footnote{Often referred to as fully-connected layer.} layer is attached to the model output to perform the binary classification task. A scheme of the architecture used can be seen in \ref{fig:classifier}.
 
 \begin{figure}
 \makebox[\textwidth][c]{
@@ -19,6 +13,13 @@ I also experiment with further \textbf{pre-training} on in-domain datasets. This
   \label{fig:classifier}
   }
 \end{figure}
+
+In this context, \textbf{fine-tuning} is the process of adapting the pre-trained language model as well as the classification head, to the BABE dataset. Both the parameters of the language model, e.g. BERT, and the parameters of the classifier are updated jointly. Weights of the classification layer are initialized randomly and trained from scratch; however, pre-trained language model already contains meaningful linguistic features so it's parameters are \textbf{fine-tuned} for bias-specific representations. This is especially convenient since the BABE dataset has only around 3700 sentences. Therefore, training from scratch would likely fail to learn general linguistic properties together with subtle bias features.
+
+I also experiment with further \textbf{pre-training} on in-domain datasets. This means that before fine-tuning, an extra step is performed. In this step, the model with the architecture mentioned above is further \textbf{pre-trained} on one or more bias datasets from the collection of Czech datasets presented in this work. This secondary pre-training aims to learn meaningful \textbf{bias representations} and therefore help with subsequent fine-tuning on the BABE.
+
+
+
 
 As opposed to English language, there is a relatively low number of Czech pre-trained transformer models available. A list and a brief summary of all the models tested in the experiments can be found in the following:
 

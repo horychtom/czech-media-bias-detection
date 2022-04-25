@@ -82,6 +82,9 @@
 \usepackage[autostyle]{csquotes} 
 \usepackage{subfig}
 \usepackage{svg}
+\usepackage{spverbatim}
+\usepackage{fancyvrb}
+\usepackage{fvextra}
 
 % glossary input
 \input{my_modules/gloss}
@@ -89,6 +92,9 @@
 \definecolor{unbiased_clr}{RGB}{183,235,198}
 \definecolor{biased_clr}{RGB}{236,189,189}
 \definecolor{biasedw_clr}{RGB}{225,130,130}
+
+\definecolor{highlight}{RGB}{198,220,240}
+
 
 \newcommand\indexmp[1]{{\sffamily\bfseries#1}}
 
@@ -149,6 +155,7 @@ In Prague, \monthinlanguage{title} \ctufield{day}, \ctufield{year}
 
 \usepackage{tabularx,array}
 \usepackage{mathtools,amssymb}
+\usepackage{amsmath,amsthm,enumitem}
 
 
 % A savebox for typesetting listings in the titles
