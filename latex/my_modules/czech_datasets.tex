@@ -3,7 +3,7 @@ Czech language is a so-called \textbf{low resource language}, which, in the mach
 
  In essence, three options are feasible to solve this problem. The most promising way is to annotate a new gold-standard dataset. However, media bias is a non-trivial, complex, and subtle linguistic feature; hence,a lot of effort must be put into annotator training and eventually filtering of implicitly biased annotations.
  
- Another way is to use an automatic approach. \textbf{Allsides}\footnote{\url{https://www.allsides.com/unbiased-balanced-news}}for example, provide annotations on source and article-level with expert annotation quality. However, since I focus on a statement level only, using such data leads to oversimplification and results in a very noisy dataset. Regardless, it can still be used for domain-specific pretraining \cite{Spinde2021f}. Unfortunately, there is no Czech site that would provide \textbf{useful} bias information on neither source nor article level. The server \Gls{nfnz} \footnote{https://www.nfnz.cz/} provides scoring for different news sources. Yet, only a fraction of their scoring is related to the actual linguistic aspect of the writing. Most of the scoring is based on meta-information such as transparency, proper citation, advertisement, etc.
+ Another way is to use an automatic approach. For example \textbf{Allsides}\footnote{\url{https://www.allsides.com/unbiased-balanced-news}} provide annotations on source and article-level with expert annotation quality. However, since I focus on a statement level only, using such data leads to oversimplification and results in a very noisy dataset. Regardless, it can still be used for domain-specific pretraining \cite{Spinde2021f}. Unfortunately, there is no Czech site that would provide \textbf{useful} bias information on neither source nor article level. The server \Gls{nfnz}\footnote{https://www.nfnz.cz/} provides scoring for different news sources. Yet, only a fraction of their scoring is related to the actual linguistic aspect of the writing. Most of the scoring is based on meta-information such as transparency, proper citation, advertisement, etc.
  
  Nonetheless, the automatic creation of a dataset can be done in a convenient way, as described in section \ref{wiki-npov}. Despite the limitation caused by the size of the particular Wikipedia, this approach is suitable for the Czech environment, as the Czech Wikipedia has a comparably large editor base\footnote{ \url{https://en.wikipedia.org/wiki/List_of_Wikipedias}} ranking \#26 in a number of edits worldwide. I took this approach and present a \textbf{new parallel corpus} for bias detection based on Czech Wikipedia \ref{wncs}.
  
@@ -26,7 +26,7 @@ For the translation of the datasets, I chose \textbf{DeepL} translator, which is
 
 
 \section{Processing}\label{processing}
-Every dataset has been processed into "sentence,label" format, where $label \in \{0,1\}$ stands for \textbf{unbiased} and \textbf{biased}, respectively. Using this simplified data format makes merging and combining several datasets convenient. All sentences that were originally cased were \textbf{not} lowercased, and during the training of the classifier, the maximum sentence length was set to 128 tokens. No other pre-processing was used.
+Every dataset has been processed into "sentence,label" format, where $label \in \{0,1\}$ stands for \textbf{unbiased} and \textbf{biased}, respectively. Using this simplified data format makes merging and combining several datasets convenient. All sentences that were originally cased were \textbf{not} lowercased, and during the training of the classifier, the maximum sentence length was set to 128 tokens. No other pre-processing was done.
 
 \section{Translated data}
 All translated datasets are listed below. I hope that this collection will serve as a good starting point for future \gls{mb} research in Czech News.
@@ -48,7 +48,7 @@ I will share all the listed datasets on HuggingFace\footnote{\url{https://huggin
 Together, approximately 400k bias-labeled translated sentences were collected. The distribution of the datasets can be seen in figure \ref{fig:cz_data}. The WNC is not included in the plot because it represents 87\% of all data. 
 
 
-\begin{figure}
+\begin{figure}[h]
   \includegraphics[scale=0.5]{my_modules/multimedia/withoutWNC.png}
   \caption{Dataset distribution in czech collection of data (Without WNC)}
   \label{fig:cz_data}
@@ -58,7 +58,7 @@ Together, approximately 400k bias-labeled translated sentences were collected. T
 
 
 \section{Czech Wiki Neutrality Corpus}
-Finally, I present two novel parallel corpora extracted directly from Czech Wikipedia. To the best of my knowledge, this is the only original Czech dataset related to media bias detection. The only partially relevant dataset is \textbf{SubLex}\cite{11858/00-097C-0000-0022-FF60-B} which is a subjectivity lexicon focusing mainly on sentiment. However, lexicon-based approaches are nowadays outperformed by neural models.
+Finally, I present two novel parallel corpora extracted directly from Czech Wikipedia. To the best of my knowledge, these are the only original Czech datasets related to media bias detection. The only partially relevant dataset is \textbf{SubLex}\cite{11858/00-097C-0000-0022-FF60-B} which is a subjectivity lexicon focusing mainly on sentiment. However, lexicon-based approaches are nowadays outperformed by neural models.
 
 I followed two main existing approaches, both relying on the extraction of revisions that includes the \{\{NPOV\}\} tag or its variation. The NPOV tag also has its Czech version \Gls{nup}. However, the Czech version is practically not used, and so for the extraction, the English variations were used.
 

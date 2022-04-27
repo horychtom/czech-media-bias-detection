@@ -1,5 +1,5 @@
 \chapter{Datasets} \label{datasets}
-Due to the complex nature of \gls{mb}, different datasets try to capture different aspects of it. In this section, I present a collection of \textbf{all} datasets related to biased writing and subjectivity detection available. Later this collection is used to study the proposed research questions \hyperref[Q1]{Q1} and \hyperref[Q2]{Q2} and to build a final classifier. For details see experiment section \ref{experiments}.
+Due to the complex nature of \gls{mb}, different datasets try to capture different aspects of it. In this section, I present a collection of all datasets related to biased writing and subjectivity detection available. Later this collection is used to study the proposed research questions \hyperref[Q1]{Q1} and \hyperref[Q2]{Q2} and to build a final classifier. For details see experiment section \ref{experiments}.
 
 As stated above, this work focuses only on sentence-level classification; thus, data annotated on article-level were not considered.
 
@@ -87,14 +87,14 @@ The Fleiss Kappa \Gls{iaa} score averaged at zero, making it practically unusabl
 \subsection{BABE}
 \textbf{B}ias \textbf{A}nnotations \textbf{B}y \textbf{E}xperts (BABE)\cite{spinde2021neural} is a key media bias dataset from \Gls{mbg}\footnote{\url{https://media-bias-research.org/}}, which is to the best of my knowledge, the highest quality media bias dataset to this day. It builds on top of MBIC \cite{Spinde2021MBIC} which is a smaller crowd-sourced dataset.
 
-BABE contains 3700 sentences. 1700 sentences are from MBIC, which were extracted from 1000 news articles, and in addition extended by 2000 more sentences, altogether covering 12 topics, annotated with binary bias indications. In addition, the annotations were enriched with a list of biased words. However, the presence of biased words does not always result in an overall biased sentence label. See \ref{table:2} for examples.
+BABE contains 3700 sentences. 1700 sentences are from MBIC, which were extracted from 1000 news articles, and in addition extended by 2000 more sentences, altogether covering 12 topics, annotated with binary bias indications. In addition, the annotations were enriched with a list of biased words. However, the presence of biased words does not always result in an overall biased sentence label. See \ref{table:babe_example2} for examples.
 
 It has been annotated by eight experts resulting in \gls{iaa} Krippendorfs $\alpha = 0.39$, which exceeds other media bias datasets by a significant margin. It also provides detailed information about the annotator background, making it a \textbf{reliable} source of information. The pipeline of the collection of BABE can be seen in \ref{fig:babe-data}.
 
 This dataset plays a pivotal role in my approach to media bias detection and is selected as a target for tuning and evaluating language models in chapter \ref{experiments}. Examples of BABE data points can be seen in 
-\ref{table:2}
+\ref{table:babe_example2}
 
-\input{my_modules/tables/babe_example_table}
+\input{my_modules/tables/babe_example2}
 
 
 \begin{figure}
@@ -119,8 +119,7 @@ When neutrality is contested, a Wikipedia article can be moved to NPOV dispute b
 
 This editorial information can be leveraged to extract parts of the text that violate the NPOV and their unbiased counterparts. However, it has been shown \cite{hube2019neural,zhong-etal-2021-wikibias-detecting} that such automatic extraction can suffer from noisy labeling. In some cases \cite{hube2019neural} up to 60\% of data points from the positive class were actually neutral.
 
-Even though these datasets introduce a large number of samples that are highly related to media bias, they are all sampled from Wikipedia's environment, which can be very different from the news environment. For this reason, a dataset based \textbf{only} on Wikipedia should not be used for training a final classifier of the \textbf{news text}.
-
+Even though these datasets introduce a large number of samples that are highly related to media bias, they are all sampled from Wikipedia's environment, which can be very different from the news environment.
 
 
 
@@ -149,15 +148,15 @@ To achieve a higher quality corpus, 4099 sentence pairs were randomly sampled an
 
 
 \section{Unused datasets}
- Some datasets focus on a slightly different task yet still carry potentially useful information. Such data can be useful in a \gls{mtl} setting \ref{mtl}. To name a few which are focused on the detection of ideology:
+ Some datasets focus on a slightly different task, yet still carry potentially useful information. Such data can be useful in a \gls{mtl} setting \ref{mtl}. To name a few that are focused on the detection of ideology:
 \begin{itemize}
 \item \textbf{NewsB} - 
 Consists of labels capturing the authors political ideology (liberal, conservative) Labeled through distant supervision.
-\item \textbf{IBC} - Also focuses on ideology detection; however, it is not publicly available.
+\item \textbf{IBC} - Also focuses on ideology detection; however, is not publicly available.
 \end{itemize}
 
 
 \section{Summary}
-In the previous section, I introduced all resources that are potentially useful for media bias analysis and are publicly available. The overview of all datasets and its properties can be seen in figure \ref{table:1}.
+In this chapter, I introduced all resources that are potentially useful for media bias analysis and are publicly available. The overview of all datasets and its properties can be seen in figure \ref{table:1}.
 
 BABE dataset is generally a good benchmark, and its translated parallel version will be used for evaluation in this work. Training a classifier on combinations of different datasets is studied in \ref{experiments}. Unfortunately, a lot of the data suffer from noisy labeling and low \gls{iaa} greatly. Therefore, its usability is considerably limited.
