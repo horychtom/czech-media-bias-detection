@@ -16,7 +16,7 @@ In this context, \textbf{fine-tuning} is essentially a process of adapting the l
 \begin{figure}
 \makebox[\textwidth][c]{
   \includegraphics[scale=0.3]{my_modules/multimedia/final_colored.png}
-  \caption{Scheme of a text classification architecture used in fine-tuning process.}
+  \caption{Scheme of a text classification architecture used in the fine-tuning process.}
   \label{fig:classifier}
   }
 \end{figure}
@@ -135,7 +135,7 @@ To answer the question \hyperref[Q1]{Q1}, the models pre-trained on the combinat
 
 There is clear evidence that models pre-trained on Wikipedia data, both \textbf{WIKI} and \textbf{WNC} perform relatively well compared to \textbf{MB} and \textbf{SUBJ}. This suggests that the bias distribution in WIKI datasets is the closest to BABE.
 
-During pre-training, the F1 score of the WIKI and the MB set both peaked around 70\% on a validation set; however, the model trained on MB generalized very poorly to BABE data as opposed to the WIKI model (0.46 against 0.67). I suspect that this result is due to the high size imbalance between the two sets.
+During pre-training, the F1 score of the WIKI and the MB set both peaked around 70\% on their validation sets; however, the model trained on MB generalized very poorly to BABE data as opposed to the WIKI model (0.46 against 0.67). I suspect that this result is due to the high size imbalance between the two sets.
 
 In conclusion, models that generalize to BABE the best are pre-trained on Wikipedia NPOV data.
 
@@ -157,13 +157,15 @@ The final FERNET-C5 model has been pre-trained with \textbf{ALL} datasets combin
 Subsequently, for the final model that I share\footnote{\url{https://huggingface.co/horychtom/czech_media_bias_classifier}} on huggingface and which is used for inference experiments, the entire BABE dataset, including the test set, is used for training.
 
 \section{Discussion}
-The results suggest that subjectivity bias as opposed to media bias appears to be a bit more explicit and straightforward, since pre-training on the subjectivity task helped with \gls{mb} detection, but without further fine-tuning proved insufficient (55\% on BABE). This supports the assumption that \gls{mb} is composed of many more superficial linguistic features \ref{features}.
+The results suggest that subjectivity bias as opposed to media bias appears to be a bit more explicit and straightforward, since pre-training on the subjectivity task helped with \gls{mb} detection, but proved insufficient without further fine-tuning (only 55\% on BABE). This supports the assumption that \gls{mb} is composed of many more superficial linguistic features \ref{features}.
 
 Also, despite the relatively high performance, the final score on the test set is not representative due to its size. The test set consists of $\sim$ 500 sentences and therefore, may not adequately represent all bias information. For a better evaluation, I propose using a nested \gls{cv}.
 
 The authors of the original paper that introduces BABE \cite{spinde2021neural} report an F1 score of $\sim$ 0.8 for fine-tuned transformer model. That is approximately 2\% higher score than I achieved on the Czech version. This may be caused either by the noise introduced into the data during machine translation, or by the possibly lower quality of the Czech pre-trained models.
 
-Possibly, a complete study with more models could be performed, but that would require an enormous number of trained models. Essentially, these results show that there was a minimal gain over the baseline (\textbf{+0.7\%}).
+Prehaps, a complete study with more models could be performed, but that would require an enormous number of trained models. Essentially, these results show that there was a minimal gain over the baseline (\textbf{+0.7\%}).
+
+The results indicate that the overall low quality and limited size of the available datasets make their use for media bias detection impractical.
 
 
 
@@ -183,6 +185,13 @@ Possibly, a complete study with more models could be performed, but that would r
     \item info about 'commentary' articles is presented! super
 \end{itemize}
 
+vhodný články
+\begin{enumerate}
+    \item \url{https://www.novinky.cz/domaci/clanek/jak-cist-volby-294694}
+    \item tahle je asi nej ta pod timhle
+    \item \url{https://www.novinky.cz/zahranicni/evropa/150611-v-rakouskych-volbach-podle-pruzkumu-triumfuji-pravicovi-populiste.html}
+\end{enumerate}
+
 \subsection{Demo}
 Additionally, I provide a simple web demo for the reader to experiment with\footnote{\url{https://huggingface.co/spaces/horychtom/czech_media_bias_detection}}. The use of the demo can be seen in \ref{fig:demodemo}. The backend runs on HuggingFace's spaces\footnote{\url{https://huggingface.co/spaces}} which is a free hosting service for demonstration of \gls{ml} applications. 
 
@@ -190,7 +199,7 @@ The user can insert arbitrary text in Czech language; text is then split into se
 
 \begin{figure}
 \makebox[\textwidth][c]{
-  \includegraphics[scale=0.3]{my_modules/multimedia/bias.jpg}
+  \includegraphics[scale=0.3]{my_modules/multimedia/bias.png}
   \caption{Example of the bias classifier demo usage. Red and blue color represent the biased and unbiased annotation respectively.}
   \label{fig:demodemo}
   }

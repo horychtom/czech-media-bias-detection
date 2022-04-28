@@ -22,10 +22,11 @@ To measure this kind of bias over all three dimensions, a large-scale dataset \t
 To transfer the results of the paper mentioned above to the Czech environment, I sampled 150k sentences from across all datasets with an \textit{ABOUT} dimension label and translated them via \textbf{DeepL} machine translator (more on machine translation in section \ref{DeepL}). Then I managed to train a RoBERTa based model that achieved an F1 score of 80\% on the small gold-labeled evaluation dataset. 
 Unfortunately, the results are not comparable to the original English experiments because I took a \textbf{single-task} approach and omitted other dimensions completely. I share the trained model together with translated data on HuggingFace\footnote{\url{https://huggingface.co/}} hub, and I also present a demo. An example of the demo can be seen in the Appendix \ref{gender_results}.
 
-The gender classifier, such as this one, can be used to determine what percentage of a particular article in the Czech news environment is about men, women, or is completely genderless. This statistical indicator could help to keep the writing more balanced or provide insight into already published writing.
 
+\subsection{Discussion}
+The gender classifier, such as this one, can be used to determine what percentage of a particular article in the Czech news environment is about men, women or is completely genderless. This statistical indicator could help to keep the writing more balanced or provide insight into already published writing.
 
-
+Moreover, gender bias could also be an interesting task choice in the \gls{mtl} setting, with respect to media bias. However, since this is just an initial experiment and is not further developed, I suggest that a clear-cut methodology and datasets review should be performed. 
 
 
 
