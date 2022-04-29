@@ -1,12 +1,12 @@
 \chapter{Experiments}\label{experiments}
 To complete the last research task proposed in the introduction \hyperref[problem_definition]{T4}, collected datasets are leveraged to built a media bias classifier which is subsequently used for inference over Czech News data. 
 
-Architecture-wise, a pre-trained transformer language model (\ref{att_transformers}) is used. The reviewed models were pre-trained solely on Czech data or on multiple languages jointly. A classifier consisting of a dense\footnote{Often referred to as fully-connected layer.} layer is attached to the language model output to perform the binary classification task. The scheme of the particular architecture used can be seen in \ref{fig:classifier}.
+Architecture-wise, a pre-trained transformer language model (\ref{att_transformers}) is used. The reviewed language models were pre-trained solely on Czech data or on multiple languages jointly. A classifier consisting of a dense\footnote{Often referred to as fully-connected layer.} layer is attached to the language model output to perform the binary classification task. The scheme of the particular architecture used can be seen in \ref{fig:classifier}.
 
 
 Despite the fact that there were eight other datasets collected, the final classifier is \textbf{fine-tuned} (and evaluated) only on the BABE dataset due to its high quality and properties. All other datasets serve as an auxiliary data only.
 
-In this context, \textbf{fine-tuning} is essentially a process of adapting the language model and the classification head to the BABE dataset. Both the parameters of the language model, e.g. BERT, and the parameters of the classifier are updated jointly. The weights of the classification layer are trained from scratch; on the other hand, the pre-trained language model already contains meaningful linguistic features, so in the process, its parameters are \textbf{fine-tuned} for bias-specific representations. This is especially convenient since the BABE dataset has only about 3700 sentences. Therefore, training from scratch would likely fail to learn general linguistic properties together with subtle bias features.
+In this context, \textbf{fine-tuning} is essentially a process of adapting the language model and the classification head to the BABE dataset. Both the parameters of the language model, e.g. BERT, and the parameters of the classifier are updated jointly. The weights of the classification layer are trained from scratch; on the other hand, the pre-trained language model already contains meaningful linguistic features, so in the process, its parameters are fine-tuned for bias-specific representations. This is especially convenient since the BABE dataset has only about 3700 sentences. Therefore, training from scratch would likely fail to learn general linguistic properties together with subtle bias features.
 
 
 
@@ -22,15 +22,21 @@ In this context, \textbf{fine-tuning} is essentially a process of adapting the l
 \end{figure}
 
 
-Morover, the effects of further \textbf{pre-training} are studied to answer the two main research questions, \hyperref[Q1]{Q1} and \hyperref[Q2]{Q2}. This means that before fine-tuning on BABE, the language model with the classifier is further pre-trained on a combination of auxiliary bias datasets. The purpose of secondary\footnote{Primary pre-training is the original unsupervised pre-training task executed by the authors of the particualr language model.} pre-training is to learn subtle \textbf{bias representations} and therefore help with subsequent fine-tuning on the BABE.
+Morover, the effects of further \textbf{pre-training} are studied to answer the two research questions, \hyperref[Q1]{Q1} and \hyperref[Q2]{Q2}. This means that before fine-tuning on BABE, the language model with the classifier is further pre-trained on a combination of auxiliary bias datasets. The purpose of secondary\footnote{Primary pre-training is the original unsupervised pre-training task executed by the authors of the particualr language model.} pre-training is to learn subtle bias representations and therefore help with subsequent fine-tuning on the BABE. The pre-trained models are then used 1) to evaluate on BABE directly 2) as an initialization for fine-tuning on BABE.
 
-A Scheme of the whole process pipeline can be seen in figure [fig].
+A Scheme of the whole process pipeline can be seen in figure \ref{fig:pipeline}.
 
+\newpage
 Because of novelty of the CWNC I also perform a baseline fine-tuning and evaluation on this dataset, no further experiments are carried out on CWNC.
 
 As opposed to English language, there is a relatively low number of Czech pre-trained transformer models available. A list and a brief summary of all the models tested in the experiments can be found in the following:
 
 
+\begin{figure}
+  \includegraphics[scale=0.5]{my_modules/multimedia/pipeline.png}
+  \caption{Scheme of experiments.}
+  \label{fig:pipeline}
+\end{figure}
 
 
 \subsection{Czech monolingual models}
@@ -44,7 +50,7 @@ Models trained solely on Czech data.
 
 
 
-
+\newpage
 \subsection{Multi-lingual models}
 Models trained jointly on multiple languages.
 \begin{itemize}
@@ -85,8 +91,6 @@ All training has been done on the RCI cluster node with 4 x NVIDIA Tesla V100 wi
  
  
  
-\newpage
-
  \section{Hyperparameter tuning}
 I restricted the search space of hyperparameters only to the combinations of:
  \begin{itemize}
@@ -112,7 +116,7 @@ I restricted the search space of hyperparameters only to the combinations of:
 
 
 \section{Combining Datasets}
-This section is dedicated to the study of the influence of pre-training on combinations of datasets. Trying all combinations would result in training 255 models\footnote{Given a set of $n$ elements, number of subsets is $2^n$. Here, we have a set of eight datasets, resulting in 256 subsets. 255 without an empty set.}, which is infeasible for obvious reasons. Therefore, I decided to experiment with pre-training on five subsets of datasets with regard to their bias information, to see which of them can serve as a good initialization for fine-tuning on BABE.
+This section is dedicated to the study of the influence of pre-training on combinations of datasets. Trying all combinations would result in training 511 models\footnote{Given a set of $n$ elements, number of subsets is $2^n$. Here, we have a set of nine datasets, resulting in 512 subsets. 511 without an empty set.}, which is infeasible for obvious reasons. Therefore, I decided to experiment with pre-training on five subsets of datasets with regard to their bias information, to see which of them can serve as a good initialization for fine-tuning on BABE.
 The combination sets are as follows:
 \begin{itemize}
     \item \textbf{SUBJe} - is a combination of SUBJ and MPQA dataset, which both focus on explicit subjective bias.
@@ -131,13 +135,16 @@ In every combination, the data were randomly mixed and subsequently downsampled,
 
 
 \subsection{Pre-training + Evaluating}
-To answer the question \hyperref[Q1]{Q1}, the models pre-trained on the combinations of bias datasets are evaluated in BABE without fine-tuning it. This way, it can be studied how well each model trained on each set can transfer knowledge to the detection of \gls{mb} in BABE. Thus, possibly unveils the relatedness to BABE. The results can be seen in table \ref{table:4}. In the table, this pre-training \textbf{without} further fine-tuning is referred to as \textbf{Pre-trained}.
+To answer the question \hyperref[Q1]{Q1}, the models pre-trained on the combinations of bias datasets are evaluated in BABE without any fine-tuning on it. This way, it can be studied how well each model trained on each set can transfer knowledge to the detection of \gls{mb} in BABE. Thus, possibly unveils the relatedness to BABE. The results can be seen in table \ref{table:4}. In the table, this pre-training \textbf{without} further fine-tuning is referred to as \textbf{Pre-trained}.
 
 There is clear evidence that models pre-trained on Wikipedia data, both \textbf{WIKI} and \textbf{WNC} perform relatively well compared to \textbf{MB} and \textbf{SUBJ}. This suggests that the bias distribution in WIKI datasets is the closest to BABE.
 
-During pre-training, the F1 score of the WIKI and the MB set both peaked around 70\% on their validation sets; however, the model trained on MB generalized very poorly to BABE data as opposed to the WIKI model (0.46 against 0.67). I suspect that this result is due to the high size imbalance between the two sets.
+During pre-training, the F1 score of the WIKI and the MB set both peaked around 70\% on their validation sets; however, the model trained on MB generalized very poorly to BABE data as opposed to the WIKI model (0.46 against 0.67). I suspect that the low quality of MB set and high size imbalance between the two sets played an important role in this result.
 
-In conclusion, models that generalize to BABE the best are pre-trained on Wikipedia NPOV data.
+\vspace{5mm}
+
+\noindent \textbf{Answer to \hyperref[Q1]{Q1}:}
+From the datasets reviewed, models that generalized to BABE the best were pre-trained on Wikipedia datasets.
 
 \subsection{Pre-training + Fine-tuning}
 Secondly, pre-trained models are used as a sort of weight initialization for fine-tuning on the BABE. The results can be seen in table \ref{table:4}. This process is referred to as \textbf{Pre-trained + Fine-tuned}.
@@ -146,7 +153,10 @@ Pre-training on \textbf{ALL} datasets combined resulted in the best performance;
 
 Pre-training on the other sets hurts the performance. Yet, the difference is very small. The lowest score is achieved by pre-training on MB set. I suspect this is mainly due to the small size (2500 sentences) of the balanced MB set that may have led to overfitting.
 
-In conclusion, pre-training on subjective bias datasets helped with \gls{mb} detection in BABE.
+\vspace{5mm}
+
+\noindent \textbf{Answer to \hyperref[Q2]{Q2}:}
+The pre-training on subjective bias datasets improved performance of \textbf{MB} detection on BABE.
 
 
 
@@ -183,6 +193,9 @@ The results indicate that the overall low quality and limited size of the availa
     \item plot the difference between domains
     \item plot the difference between topics
     \item info about 'commentary' articles is presented! super
+    \item length correlates with bias -> perhaps longer text leaves more space for bias
+    \item quoting has no correlation with bias
+    \item čím víc článků je, tím menší je bias.. :(
 \end{itemize}
 
 vhodný články
@@ -191,6 +204,20 @@ vhodný články
     \item tahle je asi nej ta pod timhle
     \item \url{https://www.novinky.cz/zahranicni/evropa/150611-v-rakouskych-volbach-podle-pruzkumu-triumfuji-pravicovi-populiste.html}
 \end{enumerate}
+
+ Potvrdí-li se první prognózy, budou populisté dohromady dokonce největší politickou silou v zemi.
+ Potvrdí-li se první prognózy, budou dohromady dokonce největší politickou silou v zemi.
+ Potvrdí-li se první prognózy, budou populisté dohromady největší politickou silou v zemi.
+
+An example of classified news article can be seen in figure \ref{fig:demoarticle}.
+
+\begin{figure}
+\makebox[\textwidth][c]{
+  \includegraphics[scale=0.5]{my_modules/multimedia/article_example.png}
+  \caption{Example of classified article.}
+  \label{fig:demoarticle}
+  }
+\end{figure}
 
 \subsection{Demo}
 Additionally, I provide a simple web demo for the reader to experiment with\footnote{\url{https://huggingface.co/spaces/horychtom/czech_media_bias_detection}}. The use of the demo can be seen in \ref{fig:demodemo}. The backend runs on HuggingFace's spaces\footnote{\url{https://huggingface.co/spaces}} which is a free hosting service for demonstration of \gls{ml} applications. 
