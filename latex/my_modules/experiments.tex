@@ -1,17 +1,22 @@
 \chapter{Experiments}\label{experiments}
-To complete the last research task proposed in the introduction \hyperref[problem_definition]{T4}, collected datasets are leveraged to built a media bias classifier which is subsequently used for inference over Czech News data. 
+To complete the last research task proposed in the introduction \hyperref[problem_definition]{T4}, a     \textbf{fine-tuning} (\ref{finetuning}) of a transformer model (\ref{att_transformers}) on the BABE dataset is utilized to build a media bias classifier.
 
-Architecture-wise, a pre-trained transformer language model (\ref{att_transformers}) is used. The reviewed language models were pre-trained solely on Czech data or on multiple languages jointly. A classifier consisting of a dense\footnote{Often referred to as fully-connected layer.} layer is attached to the language model output to perform the binary classification task. The scheme of the particular architecture used can be seen in \ref{fig:classifier}.
+Furthermore, the effects of a secondary\footnote{Primary pre-training is the original unsupervised pre-training task executed by the authors of the particualr language model.} pre-training are studied to answer the two research questions, \hyperref[Q1]{Q1} and \hyperref[Q2]{Q2}.
 
+A Scheme of the whole process pipeline can be seen in figure \ref{fig:pipeline}. Firstly a baseline fine-tuning is performed to select the suitable language model. Then a limited hyperparameter tuning of the model follows. Subsequently, the tuned model is then pre-trained on combinations of auxiliary datasets reviewed in section \ref{datasets}. The impact of the pre-training is studied through 1) direct evaluation on the BABE 2) fine-tuning and evaluation on the BABE.
 
-Despite the fact that there were eight other datasets collected, the final classifier is \textbf{fine-tuned} (and evaluated) only on the BABE dataset due to its high quality and properties. All other datasets serve as an auxiliary data only.
+Optimal pre-training strategy and hyperparameters are then used to build the final clasifier.
+ 
 
-In this context, \textbf{fine-tuning} is essentially a process of adapting the language model and the classification head to the BABE dataset. Both the parameters of the language model, e.g. BERT, and the parameters of the classifier are updated jointly. The weights of the classification layer are trained from scratch; on the other hand, the pre-trained language model already contains meaningful linguistic features, so in the process, its parameters are fine-tuned for bias-specific representations. This is especially convenient since the BABE dataset has only about 3700 sentences. Therefore, training from scratch would likely fail to learn general linguistic properties together with subtle bias features.
+Architecture-wise, a classifier consisting of a dense\footnote{Often referred to as fully-connected layer.} layer is attached to the pre-trained language model to perform the binary classification task. The tested language models were pre-trained either solely on Czech data (monolingual) or on multiple languages jointly (multilingual). The scheme of the particular architecture used can be seen in \ref{fig:classifier}.
 
+As opposed to English language, there is a relatively low number of Czech pre-trained language models available. A list and a brief summary of all the models tested can be found in the following:
 
-
-
-
+\begin{figure}
+  \includegraphics[scale=0.5]{my_modules/multimedia/pipeline.png}
+  \caption{Scheme of experiments.}
+  \label{fig:pipeline}
+\end{figure}
 
 \begin{figure}
 \makebox[\textwidth][c]{
@@ -22,38 +27,12 @@ In this context, \textbf{fine-tuning} is essentially a process of adapting the l
 \end{figure}
 
 
-Morover, the effects of further \textbf{pre-training} are studied to answer the two research questions, \hyperref[Q1]{Q1} and \hyperref[Q2]{Q2}. This means that before fine-tuning on BABE, the language model with the classifier is further pre-trained on a combination of auxiliary bias datasets. The purpose of secondary\footnote{Primary pre-training is the original unsupervised pre-training task executed by the authors of the particualr language model.} pre-training is to learn subtle bias representations and therefore help with subsequent fine-tuning on the BABE. The pre-trained models are then used 1) to evaluate on BABE directly 2) as an initialization for fine-tuning on BABE.
 
-A Scheme of the whole process pipeline can be seen in figure \ref{fig:pipeline}.
-
-\newpage
-Because of novelty of the CWNC I also perform a baseline fine-tuning and evaluation on this dataset, no further experiments are carried out on CWNC.
-
-As opposed to English language, there is a relatively low number of Czech pre-trained transformer models available. A list and a brief summary of all the models tested in the experiments can be found in the following:
-
-
-\begin{figure}
-  \includegraphics[scale=0.5]{my_modules/multimedia/pipeline.png}
-  \caption{Scheme of experiments.}
-  \label{fig:pipeline}
-\end{figure}
-
-
-\subsection{Czech monolingual models}
-Models trained solely on Czech data.
 \begin{itemize}
     \item \textbf{RobeCzech} \cite{strakarobeczech} - RoBERTa-based model with 125M parameters. Like its original counterpart, it is trained with the \gls{mlm} task, on 4,917M tokens of Czech corpora.
-    \item \textbf{Czert} \cite{sido-etal-2021-czert} - BERT-based model with 110M parameters, trained with \gls{nsp} tasks. All Together trained on 37GB of text. 
-    \item \textbf{FERNET-C5} \cite{lehevcka2021comparison} - BERT-based model trained with the \gls{mlm} and \gls{nsp} task on 93GB of text from the Common Crawl project.
+    \item \textbf{Czert} \cite{sido-etal-2021-czert} - BERT-based model with 110M parameters, trained with \gls{nsp} tasks. All Together trained on 37GB of Czech text. 
+    \item \textbf{FERNET-C5} \cite{lehevcka2021comparison} - BERT-based model trained with the \gls{mlm} and \gls{nsp} task on 93GB of Czech text from the Common Crawl project.
     \item \textbf{FERNET-News} \cite{lehevcka2021comparison} - RoBERTa-based model trained with \gls{mlm} task on 20GB of Czech News text.
-\end{itemize}
-
-
-
-\newpage
-\subsection{Multi-lingual models}
-Models trained jointly on multiple languages.
-\begin{itemize}
     \item \textbf{SlavicBert} \cite{arkhipov2019tuning} - BERT-based model with 179M parameters, trained on four languages: Russian, Bulgarian, Czech, and Polish. The model is trained on all 4 languages at once. The model is not trained from scratch, but it is a fine-tuned version of mBERT.
     \item \textbf{mBERT} \cite{devlin2019bert} - BERT-based model with 179M parameters trained on corpora of 104 languages, including Czech, with MLM task.
 \end{itemize}
@@ -61,8 +40,11 @@ Models trained jointly on multiple languages.
 
 
 
+
+
+
 \section{Experimental setup}
-All models are fetched, trained, and evaluated using the HuggingFace API\footnote{\url{https://huggingface.co/docs}}. The maximum sequence length is set to 128 tokens. All parameters can be seen in the Appendix \ref{all_parameters}.
+All models are fetched, trained, and evaluated using the HuggingFace API\footnote{\url{https://huggingface.co/docs}}. The maximum sequence length is set to 128 tokens. All training parameters can be seen in the Appendix \ref{all_parameters}.
 
 A small portion (15\%) of the target dataset is left aside as a \textbf{test set} at the beginning and is used only for the final evaluation to ensure that no test data leak into the training data.
 
@@ -74,8 +56,12 @@ All training has been done on the RCI cluster node with 4 x NVIDIA Tesla V100 wi
 
 
 
- \section{Baseline setup}
- As a baseline, all Czech and multilingual models are fine-tuned on BABE and evaluated using a 10-fold stratified \gls{cv}. The hyperparameters used are the same as those used by the authors of BABE \cite{Spinde2021MBIC}. However, the authors used early stopping together with \gls{cv} and used the validation split inside \gls{cv} to early stop. This allows the model to "see" the test data during the training. This condition may lead to too optimistic results.
+ \section{Baseline}
+ As a baseline, all Czech and multilingual models listed are fine-tuned on BABE and evaluated using a 10-fold stratified \gls{cv}. 
+ 
+ Because of novelty of the CWNC I also perform a baseline evaluation over this dataset.
+ 
+ The hyperparameters used are the same as those used by the authors of BABE \cite{Spinde2021MBIC}. However, the authors used early stopping together with \gls{cv} and used the validation split inside \gls{cv} to early stop. This allows the model to "see" the test data during the training. This condition may lead to too optimistic results.
  
  A solution to this problem would require another split for validation, but at this point, the size of the training data is already shrunk significantly. Therefore, I did not use the early stopping together with \gls{cv} at all. Instead, I fixed the number of epochs to 3 as suggested by the authors of BERT \cite{devlin2019bert} . 
  All other hyperaparemeters remained unchanged; AdamW optimizer is used with an initial learning rate of 5e-5 and a batch size of 64.
@@ -99,7 +85,7 @@ I restricted the search space of hyperparameters only to the combinations of:
      \item \textbf{Epochs} $\in \{2,3,4\}$
  \end{itemize}
  
- As the authors of the original BERT paper suggest. Then I ran a grid search with \gls{cv}. The overall best parameters were as follows:
+ As the authors of the original BERT paper suggest \cite{devlin2019bert}. Then I ran a grid search with \gls{cv}. The overall best parameters were as follows:
  \begin{center}
       \{learning\_rate = 3e-5,batch\_size = 32, epochs=3\}\label{hyperparams}
  \end{center}
@@ -109,7 +95,6 @@ I restricted the search space of hyperparameters only to the combinations of:
 
  
  
-\input{my_modules/tables/all_trained}
 
 
 
@@ -127,24 +112,29 @@ The combination sets are as follows:
 \end{itemize}
  
 In every combination, the data were randomly mixed and subsequently downsampled, so that classes were balanced. For each combination, 20\% of data were used as a validation set to decide the optimal number of epochs for pre-training. The convergence of validation losses can be seen in the figure \ref{fig:all_losses}. The number of epochs for pretraining were chosen as follows: 1, 3, 1, 2, 1 for SUBJe, MB, WIKI, ALL and WNC respectively.
+
+This procedure yields five pre-trained models for further experiments.
+
 \begin{figure}
   \includegraphics[scale=0.5]{my_modules/multimedia/all_losses.png}
   \caption{Convergence of validation loss over different dataset combinations}
   \label{fig:all_losses}
 \end{figure}
 
+\input{my_modules/tables/all_trained}
 
+\newpage
 \subsection{Pre-training + Evaluating}
-To answer the question \hyperref[Q1]{Q1}, the models pre-trained on the combinations of bias datasets are evaluated in BABE without any fine-tuning on it. This way, it can be studied how well each model trained on each set can transfer knowledge to the detection of \gls{mb} in BABE. Thus, possibly unveils the relatedness to BABE. The results can be seen in table \ref{table:4}. In the table, this pre-training \textbf{without} further fine-tuning is referred to as \textbf{Pre-trained}.
+To answer the question \hyperref[Q1]{Q1}, the pre-trained models from the previous section are evaluated on BABE without any fine-tuning on it. This way, it can be studied how well each model trained on each set can transfer knowledge to the detection of \gls{mb} in BABE. Thus, possibly unveils the relatedness to BABE. The results can be seen in table \ref{table:4}. In the table, this pre-training \textbf{without} further fine-tuning is referred to as \textbf{Pre-trained}.
 
-There is clear evidence that models pre-trained on Wikipedia data, both \textbf{WIKI} and \textbf{WNC} perform relatively well compared to \textbf{MB} and \textbf{SUBJ}. This suggests that the bias distribution in WIKI datasets is the closest to BABE.
+Models pre-trained on Wikipedia data, both \textbf{WIKI} and \textbf{WNC} perform relatively well compared to \textbf{MB} and \textbf{SUBJ}. This suggests that the bias distribution in WIKI datasets is the closest to BABE.
+
+The best performing model was pre-trained on the largest dataset, WNC. The model achieved an F1 score of 0.67 on the target dataset which is 21% more than model
+pre-trained on MB set
 
 During pre-training, the F1 score of the WIKI and the MB set both peaked around 70\% on their validation sets; however, the model trained on MB generalized very poorly to BABE data as opposed to the WIKI model (0.46 against 0.67). I suspect that the low quality of MB set and high size imbalance between the two sets played an important role in this result.
 
-\vspace{5mm}
-
-\noindent \textbf{Answer to \hyperref[Q1]{Q1}:}
-From the datasets reviewed, models that generalized to BABE the best were pre-trained on Wikipedia datasets.
+In conclusion, models that generalized to BABE the best were pre-trained on Wikipedia datasets.
 
 \subsection{Pre-training + Fine-tuning}
 Secondly, pre-trained models are used as a sort of weight initialization for fine-tuning on the BABE. The results can be seen in table \ref{table:4}. This process is referred to as \textbf{Pre-trained + Fine-tuned}.
@@ -153,16 +143,15 @@ Pre-training on \textbf{ALL} datasets combined resulted in the best performance;
 
 Pre-training on the other sets hurts the performance. Yet, the difference is very small. The lowest score is achieved by pre-training on MB set. I suspect this is mainly due to the small size (2500 sentences) of the balanced MB set that may have led to overfitting.
 
-\vspace{5mm}
-
-\noindent \textbf{Answer to \hyperref[Q2]{Q2}:}
-The pre-training on subjective bias datasets improved performance of \textbf{MB} detection on BABE.
+In conclusion, pre-training on the subjective bias datasets improved performance of \textbf{MB} detection on BABE.
 
 
 
 
-\section{Results}
+\section{Final evaluation}
 The final FERNET-C5 model has been pre-trained with \textbf{ALL} datasets combination and fine-tuned with the optimal parameters (\ref{hyperparams}) on BABE target dataset. Finally, on a \textbf{test} set it achieved an F1 score of \textbf{0.804}.
+
+ADD CF MAT
 
 Subsequently, for the final model that I share\footnote{\url{https://huggingface.co/horychtom/czech_media_bias_classifier}} on huggingface and which is used for inference experiments, the entire BABE dataset, including the test set, is used for training.
 
@@ -182,52 +171,3 @@ The results indicate that the overall low quality and limited size of the availa
 
 
 
-
-\newpage
-
-\section{Inference on Czech News Samples}\label{inference}
-
-\begin{itemize}
-    \item abstract,headline, text bias correlation
-    \item vbias progress over time for one domain
-    \item plot the difference between domains
-    \item plot the difference between topics
-    \item info about 'commentary' articles is presented! super
-    \item length correlates with bias -> perhaps longer text leaves more space for bias
-    \item quoting has no correlation with bias
-    \item čím víc článků je, tím menší je bias.. :(
-\end{itemize}
-
-vhodný články
-\begin{enumerate}
-    \item \url{https://www.novinky.cz/domaci/clanek/jak-cist-volby-294694}
-    \item tahle je asi nej ta pod timhle
-    \item \url{https://www.novinky.cz/zahranicni/evropa/150611-v-rakouskych-volbach-podle-pruzkumu-triumfuji-pravicovi-populiste.html}
-\end{enumerate}
-
- Potvrdí-li se první prognózy, budou populisté dohromady dokonce největší politickou silou v zemi.
- Potvrdí-li se první prognózy, budou dohromady dokonce největší politickou silou v zemi.
- Potvrdí-li se první prognózy, budou populisté dohromady největší politickou silou v zemi.
-
-An example of classified news article can be seen in figure \ref{fig:demoarticle}.
-
-\begin{figure}
-\makebox[\textwidth][c]{
-  \includegraphics[scale=0.5]{my_modules/multimedia/article_example.png}
-  \caption{Example of classified article.}
-  \label{fig:demoarticle}
-  }
-\end{figure}
-
-\subsection{Demo}
-Additionally, I provide a simple web demo for the reader to experiment with\footnote{\url{https://huggingface.co/spaces/horychtom/czech_media_bias_detection}}. The use of the demo can be seen in \ref{fig:demodemo}. The backend runs on HuggingFace's spaces\footnote{\url{https://huggingface.co/spaces}} which is a free hosting service for demonstration of \gls{ml} applications. 
-
-The user can insert arbitrary text in Czech language; text is then split into sentences and classified individually. Then the average percentage bias score of the text is displayed. An \textit{interpret} button allows the user to further inspect the classification.
-
-\begin{figure}
-\makebox[\textwidth][c]{
-  \includegraphics[scale=0.3]{my_modules/multimedia/bias.png}
-  \caption{Example of the bias classifier demo usage. Red and blue color represent the biased and unbiased annotation respectively.}
-  \label{fig:demodemo}
-  }
-\end{figure}

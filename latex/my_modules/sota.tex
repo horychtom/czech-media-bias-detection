@@ -1,4 +1,6 @@
 \chapter{Bias Detection}
+Before turning my attention to media bias, I have examined several other relevant bias detection topics. At the beginning of my research, I studied the possibilities of applying gender bias detection to Czech News. Therefore, following small section is dedicated to my results and examination of one of the gender-focused datasets.
+
 
 %______________________________GENDER______________________________________________%
 \section{Gender bias detection}\label{gender}
@@ -10,16 +12,18 @@ Yet, my work aspires to classify news texts; therefore, I examined the possibili
 
 I closely followed the approach of Dinan et al. \cite{dinan2020multi}. They define three dimensions of gender bias: bias when speaking \textit{ABOUT} someone, \textit{TO} someone or \textit{AS} someone. Target classes are \{masculine,feminine,neutral\}. 
 
-The word \textbf{bias} here simply means an aspect of the statement that implies the gender of a particular person along the dimensions. To make this definition more clear, for example, the authors further propose that an unbiased sentence would be a sentence in which a machine learning model would not be able to classify a gender because there would basically be no difference between the classes. Yet, in a real-world scenario, sentences \textbf{are} influenced by gender, and therefore such classification is possible.
+The \textit{bias} here simply means an aspect of the statement that implies the gender of a particular person along the dimensions. To make this definition more clear, for example, the authors further propose that an unbiased sentence would be a sentence in which a machine learning model would not be able to classify a gender because there would basically be no difference between the classes. Yet, in a real-world scenario, sentences \textbf{are} influenced by gender, and therefore such classification is possible.
 
 To measure this kind of bias over all three dimensions, a large-scale dataset \textbf{md\_gender}\footnote{\url{https://huggingface.co/datasets/md_gender_bias}} has been collected. The authors train a transformer model using \Gls{mtl}, to capture all three dimensions. However, only the \textit{ABOUT} dimension and a very small fraction of the \textit{AS} dimension are publicly available, so I focused only on the \textit{ABOUT} dimension.
+
+\newpage
 
 \begin{itemize}
 \item \textbf{md\_gender} - is a collection of automatically labeled large-scale data gathered from various sources around the internet, where gender annotation of a particular dimension is provided (eg., gender information of a user in an internet discussion). It also includes a small gold-labeled dataset for evaluation with 785 data points for the \textit{ABOUT} dimension.
 \end{itemize}
 
 \subsection{Initial experiment}
-To transfer the results of the paper mentioned above to the Czech environment, I sampled 150k sentences from across all datasets with an \textit{ABOUT} dimension label and translated them via \textbf{DeepL} machine translator (more on machine translation in section \ref{DeepL}). Then I managed to train a RoBERTa based model that achieved an F1 score of 80\% on the small gold-labeled evaluation dataset. 
+To transfer the results of the paper mentioned above to the Czech environment, I sampled 150k sentences from across all datasets with an \textit{ABOUT} dimension label and translated them via \textbf{DeepL} machine translator (more on machine translation in section \ref{DeepL}). Then I managed to train a RoBERTa-based model \cite{liu2019roberta} that achieved an F1 score of 80\% on the small gold-labeled evaluation dataset. 
 Unfortunately, the results are not comparable to the original English experiments because I took a \textbf{single-task} approach and omitted other dimensions completely. I share the trained model together with translated data on HuggingFace\footnote{\url{https://huggingface.co/}} hub, and I also present a demo. An example of the demo can be seen in the Appendix \ref{gender_results}.
 
 
@@ -34,11 +38,11 @@ Moreover, gender bias could also be an interesting task choice in the \gls{mtl} 
 \section{Media bias detection}\label{mediabias}
 When it comes to automatic detection of media bias, the standard is to use supervised learning. Most of the previous work in media bias used hand-crafted features together with traditional\footnote{By traditional I refer to all \Gls{ml} models that are not deep neural networks.} \Gls{ml} algorithms. For example, Hube et al. \cite{hube2018detecting} used a lexicon-based approach with various lexicons (sentiment, bias, subjective, and other linguistic features). Although hand-crafted feature-based approaches offer fairly reasonable explainability of the model's decision, they were outperformed by neural networks and have been replaced by them completely.
 
-The majority of current research focuses on \textbf{sentence-level} classification \cite{sinha2021determining,Spinde2021MBIC,lee2021unifying,hube2019neural}, however, there has also been an effort to lift the classification to \textbf{article level}.
+The majority of current research focuses on \textbf{sentence-level} classification \cite{sinha2021determining,Spinde2021MBIC,lee2021unifying,hube2019neural}, however, there has also been an effort to lift the classification to the \textbf{article-level}.
 
-Article-level classification is usually more difficult since it is inconvenient to put the whole article through the neural network. Even though such things as document embeddings exist, bottom-up solutions are usually used. A simple approach would be to classify all sentences and count the frequency. Eventually, I used this approach when applying the classifier to Czech news corpora in section \ref{inference}.
+Article-level classification is usually more difficult since it is inconvenient to put the whole article through the neural network. Even though such things as document embeddings exist \cite{lau2016empirical}, bottom-up solutions are usually used. A simple approach would be to classify all sentences and count the frequency. Eventually, I used this approach when applying the classifier to Czech news corpora in section \ref{inference}.
 
-However, additional high-level features such as the position of bias, the frequency, or the ordering, have been studied and proved to be effective in article level classification.\cite{chen2020detecting,chen-etal-2020-analyzing}.
+However, additional high-level features such as the position of bias, the frequency, or the ordering, have been studied and proved to be effective in article level classification \cite{chen2020detecting,chen-etal-2020-analyzing}.
 
 As I outlined in the previous section, \gls{mb} can be divided into two classes, where one depends on the outer context, and the other does not. This is commonly referred to as \textbf{informational} and \textbf{lexical} bias. There have been efforts to classify informational bias with varying context sizes \cite{van2020context}, although a majority of the work focuses on lexical bias, and I follow this standard as well.
 
