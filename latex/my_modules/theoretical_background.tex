@@ -1,5 +1,5 @@
 \chapter{Theoretical background}\label{theory}
-In this section, I briefly introduce \gls{sota} methods and models used in the experiment section \ref{experiments}. Many of the problems in NLP are tasks of mapping one sequence to another; therefore, modern architectures were designed to tackle this very problem \textbf{efficiently}.
+In this section, I briefly introduce \gls{sota} methods and models used in the experiment section \ref{experiments}. Many of the problems in NLP are tasks of mapping one sequence to another; therefore, modern architectures were designed to tackle this problem efficiently.
 
 
 
@@ -42,7 +42,7 @@ There are several problems with this architecture. Firstly, when a long sequence
 
 
 \section{Transformers}\label{att_transformers}
-Transformers is a family of deep neural architectures that has revolutionized the field of \gls{nlp}. The \textbf{attention} mechanism is a core principle behind transformer architecture and solves some of the problems mentioned in the previous section.
+Transformers \cite{vaswani2017attention} is a family of deep neural architectures that has revolutionized the field of \gls{nlp}. The \textbf{attention} mechanism is a core principle behind transformer architecture and solves some of the problems mentioned in the previous section.
 
 Current \gls{sota} language models, such as GPT-3, BERT, RoBERTa, all use the transformer architecture. Although their architecture can vary from the original one; for example BERT only uses the Encoder module. Eventually, I have also narrowed the choice of models to transformers rather than other neural architectures.
 
@@ -108,7 +108,7 @@ The scores for each class are then averaged to obtain the final score. This is o
 
 
 \subsection{Transformers for text classification}
-The Predictive power of transformers is behind many \gls{sota} results, and text classification is no exception. For classification, usually only the encoder part of a transformer is utilized, although some define the classification problem as a sequence-to-sequence and incorporate the decoder too \cite{raffel2019exploring}.
+The predictive power of transformers is behind many \gls{sota} results, and text classification is no exception. For classification, usually only the encoder part of a transformer is utilized, although some define the classification problem as a sequence-to-sequence and incorporate the decoder too \cite{raffel2019exploring}.
 
 During tokenization,a special [CLS] token is prepended to a sentence. The token has its own embedding and flows through the stack of encoders just as any other token, with a difference that when the forward pass reaches the classification layer, only the [CLS] token is passed as an input. [CLS] token can therefore be understood as a sort of sentence embedding.
 
@@ -117,17 +117,34 @@ Usually, one or two dense layers with an activation function are sufficient as a
 
 
 
+
 \section{Transfer learning}
-Nowadays, the true power of transformers lies in \textbf{transfer learning}. Transfer is a process where some knowledge is not learned from scratch but transferred from a previously trained model. Since large transformer models such as BERT or RoBERTa have millions of parameters, it would be extremely costly to train them from scratch. 
+Nowadays, the true power of transformers lies in \textbf{transfer learning} \cite{pan2009survey}. It is a process where some knowledge is not learned from scratch but transferred from a previously trained model. Since large transformer models such as BERT or RoBERTa have millions of parameters, it would be extremely costly to train them from scratch every time. 
 
 Such large models are usually pre-trained on an extensive corpus of data. There are several common \textbf{unsupervised} pre-training tasks that allow these models to learn contextual representations of words without supervision. For instance, \gls{mlm} is a task in which a random sample of tokens in the input sequence is replaced with a [MASK] token, and the model learns to predict the original token. Another unsupervised pre-training task is a \gls{nsp} which is self-explanatory.
 
-Having such pre-trained model, one can then easily train a task specific head on top of pre-trained representations. Although the process of \textbf{fine-tuning} is more often adopted. During fine-tuning, the whole model with \textbf{all} its parameters is trained, as well as the task-specific head.
+
+%Fine-tuning is essentially a process of adapting the pre-trained language model and the task-specific head to the target dataset. In the context of this work, the task-specific head is a binary classifier.
+
+%During the fine-tuning both the parameters of the language model, e.g. BERT, and the parameters of the classifier are updated jointly. The weights of the classification layer are trained from scratch; on the other hand, the pre-trained language model already contains meaningful linguistic features, so in the process, its parameters are fine-tuned for task-specific representations.
+
+
+\section{Fine-tuning}\label{finetuning}
+Having a pre-trained model, one can then train a task specific head
+on top of pre-trained representations. Although the process of fine-tuning
+is more often adopted.
+
+In the context of this thesis, fine-tuning is essentially a process of adapting the pre-trained model, as well as the classifier, to the target dataset. Both the parameters of the language model, e.g. BERT, and the parameters of the classification head are updated jointly. The weights of the classification layer are trained from scratch; on the other hand, the pre-trained language model already contains
+meaningful linguistic features, so in the process, its parameters are fine-tuned
+for bias-specific representations.
+
+
+
 
 \section{Notes on Multi-Task learning}\label{mtl}
 When talking about training a neural network, we usually talk about fitting a network to one particular task. However, fine-tuning language models on small datasets often results in overfitting. Multi-Task learning \cite{caruana1997multitask} serves as a good \textbf{generalization} technique and a potential solution to this problem.
 
 In essence, \gls{mtl} means learning multiple tasks together within one model; thus, representations for all tasks are learned together. Tasks do not have to share loss functions; they can have their own task-specific heads on top of the shared model.
 
-In terms of optimizing (training) an \gls{mtl} model, there are two approaches in leveraging an \gls{mtl} paradigm \cite{ruder2017overview}.
-\textbf{Hard-paramater sharing} where all parameters of the network, except the tasks-specific heads, are shared among tasks. On the other hand, with \textbf{Soft-parameter sharing}, each task has its own version of parameters, but they are encouraged to reduce the distance between the parameters through constraints.
+%In terms of optimizing (training) an \gls{mtl} model, there are two approaches in leveraging an \gls{mtl} paradigm \cite{ruder2017overview}.
+%\textbf{Hard-paramater sharing} where all parameters of the network, except the tasks-specific heads, are shared among tasks. On the other hand, with \textbf{Soft-parameter sharing}, each task has its own version of parameters, but they are encouraged to reduce the distance between the parameters through constraints.

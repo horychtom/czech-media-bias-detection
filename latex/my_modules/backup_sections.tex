@@ -10,3 +10,23 @@ Then, using state-of-the-art language models, I experiment with different datase
 Finally, a trained classifier is applied to provided Czech news corpora, and the results of the real-world \gls{mb} classification are presented.
 
 Before turning my attention to media bias, I have examined several other relevant bias detection topics. At the beginning of my research, I studied the possibilities of applying gender bias detection to Czech News. Therefore, I dedicate a small section \ref{gender} to my results and examination of one of the gender-focused datasets.
+
+
+\section{intro experiments}
+In this context, fine-tuning is essentially a process of adapting the language
+model and the classification head to the BABE dataset. Both the parameters
+of the language model, e.g. BERT, and the parameters of the classifier are
+updated jointly. The weights of the classification layer are trained from
+scratch; on the other hand, the pre-trained language model already contains
+meaningful linguistic features, so in the process, its parameters are fine-tuned
+for bias-specific representations. 
+
+This is especially convenient since the BABE dataset has only about 3700 sentences. Therefore, training from scratch would likely fail to learn general linguistic properties together with subtle bias features.
+
+
+
+
+
+
+
+Morover, the effects of further \textbf{pre-training} are studied to answer the two research questions, \hyperref[Q1]{Q1} and \hyperref[Q2]{Q2}. This means that before fine-tuning on BABE, the language model with the classifier is further pre-trained on a combination of auxiliary bias datasets. The purpose of secondary\footnote{Primary pre-training is the original unsupervised pre-training task executed by the authors of the particualr language model.} pre-training is to learn subtle bias representations and therefore help with subsequent fine-tuning on the BABE. The pre-trained models are then used 1) to evaluate on BABE directly 2) as an initialization for fine-tuning on BABE.
