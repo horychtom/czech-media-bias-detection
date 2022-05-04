@@ -415,3 +415,4 @@ notebooks/media/full_pipeline/.ipynb_checkpoints/novinky_w_commentary-checkpoint
 notebooks/media/full_pipeline/idnes.csv
 data/Inference/idnes.csv
 data/idnes.csv
+confmat.png
