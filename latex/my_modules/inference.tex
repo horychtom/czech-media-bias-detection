@@ -1,24 +1,48 @@
 \chapter{Inference on Czech News sample}\label{inference}
+A small experiment on czech news is provided. On sumeczech\footnote{\url{https://ufal.mff.cuni.cz/sumeczech}} \cite{straka2018sumeczech}
 
-\begin{itemize}
-    \item abstract,headline, text bias correlation
-    \item vbias progress over time for one domain
-    \item plot the difference between domains
-    \item plot the difference between topics
-    \item info about 'commentary' articles is presented! super
-    \item length correlates with bias -> perhaps longer text leaves more space for bias
-    \item quoting has no correlation with bias
-    \item čím víc článků je, tím menší je bias.. :(
-\end{itemize}
 
-vhodný články
-\begin{enumerate}
-    \item \url{https://www.novinky.cz/domaci/clanek/jak-cist-volby-294694}
-    \item tahle je asi nej ta pod timhle
-    \item \url{https://www.novinky.cz/zahranicni/evropa/150611-v-rakouskych-volbach-podle-pruzkumu-triumfuji-pravicovi-populiste.html}
-\end{enumerate}
 
-An example of classified news article can be seen in figure \ref{fig:demoarticle}.
+\section{Data}
+popis dat, co ty columns obsahují, co naopak chybí. na kolika 
+
+\section{Methodology}
+text is splitted into sentences, labeled 0,1. The frequency is calulated -> article. Article-level features could be used (maybe conclusion). headline bias, also binary. Abstract bias. možná to uvest spíš jako: we measure bias on three levels. additionaly quoting bias.
+Processing of domains: sport.novinky.cz -> novinky.cz
+
+
+\section{Bias between domains}
+
+\section{Bias along sections}
+commentary wins
+
+\section{quoting bias effects}
+ctk vs denik
+
+\section{Denik.cz}
+on CTK there were only data in years 2016 and 2017. so no time plot
+
+An example of classified news article can be seen in figure \ref{fig:demoarticle}. Note that 
+
+
+
+\subsection{Application}
+Additionally, I provide a simple web demo application for the reader to experiment with\footnote{\url{https://huggingface.co/spaces/horychtom/czech_media_bias_detection}}. The app runs on HuggingFace's spaces\footnote{\url{https://huggingface.co/spaces}} which is a free hosting service for demonstraing \gls{ml} applications. For the frontend, Gradio\footnote{\url{https://gradio.app/}} was used.
+
+The user can insert arbitrary text in Czech language (text in other languages will result in meaningless outcomes). The text is then split into sentences and classified individually.
+
+The app shows results in two output windows; first one \textit{classification} displays inserted text with highlighted labels. Second one, \textit{ratio}, displays ratio of biased/unbiased sentences in the text.
+
+Example can be seen in \ref{fig:demodemo}.
+
+\begin{figure}[h]
+\makebox[\textwidth][c]{
+  \includegraphics[scale=0.3]{my_modules/multimedia/bias.png}
+  \caption{Example of the bias classifier demo usage.}
+  \label{fig:demodemo}
+  }
+\end{figure}
+
 
 \begin{figure}
 \makebox[\textwidth][c]{
@@ -28,15 +52,6 @@ An example of classified news article can be seen in figure \ref{fig:demoarticle
   }
 \end{figure}
 
-\subsection{Demo}
-Additionally, I provide a simple web demo for the reader to experiment with\footnote{\url{https://huggingface.co/spaces/horychtom/czech_media_bias_detection}}. The use of the demo can be seen in \ref{fig:demodemo}. The backend runs on HuggingFace's spaces\footnote{\url{https://huggingface.co/spaces}} which is a free hosting service for demonstration of \gls{ml} applications. 
-
-The user can insert arbitrary text in Czech language; text is then split into sentences and classified individually. Then the average percentage bias score of the text is displayed. An \textit{interpret} button allows the user to further inspect the classification.
-
-\begin{figure}
-\makebox[\textwidth][c]{
-  \includegraphics[scale=0.3]{my_modules/multimedia/bias.png}
-  \caption{Example of the bias classifier demo usage. Red and blue color represent the biased and unbiased annotation respectively.}
-  \label{fig:demodemo}
-  }
-\end{figure}
+\section{Discussion}
+Not all commentary articles are marked in the data.
+Sometimes quoting is not marked, no discussion etc.
