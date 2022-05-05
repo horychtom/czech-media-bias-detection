@@ -12,8 +12,9 @@ def plot_bias_corr(data):
 
 
 def plot_corr(data):
+    df = data[['text_bias','abstract_bias','headline_bias','quoting_ratio','length']]
     plt.figure(figsize=(10, 6))
-    heatmap = sns.heatmap(data.corr(), vmin=-1, vmax=1, annot=True)
+    heatmap = sns.heatmap(df.corr(), vmin=-1, vmax=1, annot=True)
     heatmap.set_title('Correlation Heatmap', fontdict={'fontsize':12}, pad=12);
 
 
