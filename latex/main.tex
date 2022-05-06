@@ -158,6 +158,8 @@ In Prague, \monthinlanguage{title} \ctufield{day}, \ctufield{year}
 \usepackage{amsmath,amsthm,enumitem}
 \usepackage{comment}
 
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
 
 % A savebox for typesetting listings in the titles
 \newsavebox{\myboxa}
@@ -230,6 +232,7 @@ In Prague, \monthinlanguage{title} \ctufield{day}, \ctufield{year}
 \appendix
 \input{my_modules/AppendixA}
 \input{my_modules/AppendixB}
+\input{my_modules/AppendixC}
 
 
 \end{document}
