@@ -17,6 +17,8 @@ def plot_corr(data):
     heatmap = sns.heatmap(df.corr(), vmin=-1, vmax=1, annot=True)
     heatmap.set_title('Correlation Heatmap', fontdict={'fontsize':12}, pad=12);
 
+    plt.savefig('corr.png',dpi=400)
+
 
 def agg_years_moths(data):
     data['published'] = pd.to_datetime(data['published'], format = '%Y-%m')
