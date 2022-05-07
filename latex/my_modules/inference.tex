@@ -11,19 +11,20 @@ The dataset includes five Czech news domains: novinky.cz, idnes.cz, ceskenoviny.
 
 List of the fields available in the dataset can be seen in the following:
 \begin{itemize}
-    \item \textbf{text} 
-    \item \textbf{headline}
-    \item \textbf{abstract}
-    \item \textbf{subdomain} - domains with some additional information about the topics, e.g., lidovky.cz has sport.lidovky.cz for sport news.
-    \item \textbf{section} - a topic of the article
-    \item \textbf{published} - date of publication
-    \item \textbf{length} - number of characters in the text
+    \item \verb|text :| body of the article
+    \item \verb|headline :| headline of the article
+    \item \verb|abstract :|  abstract of the article
+    \item \verb|subdomain :| domains with some additional information about the topics, e.g., lidovky.cz has sport.lidovky.cz for sport news.
+    \item \verb|section :| a topic of the article
+    \item \verb|published :| date of publication
+    \item \verb|length :| number of characters in the text
 \end{itemize}
 
-The dataset contains around one million of articles. For the purpose of the experiments I only used the validation and test split, which comprises of approximately 90k articles. Additionaly, only data ceskenoviny.cz domain were oversampled from the large train set to match the size of other domains.
 
 
-\section{Preprocessing}
+\section{Pre-processing}
+The SumeCzech contains around one million of articles. For the purpose of the experiments I only used the validation and test split, which comprises of approximately 90k articles. Additionaly, only data ceskenoviny.cz domain were oversampled from the large train set to match the size of other domains.
+
 All subdomains were stripped such that only a domain remained. The prefix of the domain was additionaly imputed as a section. For example:
 \begin{verbatim}
     subdomain:= novinky.cz <- sport.novinky.cz 
@@ -41,107 +42,148 @@ For each article in the dataset, the following procedure was executed:
     \item Text and abstract are splitted into sentences using \textbf{sent\_tokenize} nltk function\footnote{\url{https://www.nltk.org/}}.
     \item Each sentence from the text, abstract and a headline is classified with binary label 0,1 using the media bias classifier (\ref{classifier}).
     \item Each sentence from the text is assigned with 'reported\_speech' indicator if matched the regular expression for quoting extraction. 
-    \item The ratio of biased/unbiased sentences is calulated for text and abstract. Later referred to as \textbf{text\_bias} and \textbf{abstract\_bias}.
-    \item The ratio of reported/direct speech among the sentences is calculated for the text. Later referred to as \textbf{quoting\_ratio}.
+    \item The ratio of biased/unbiased sentences is calculated for text and abstract.
+    \item The ratio of reported/direct speech among the sentences is calculated for the text.
 \end{enumerate}
 
-%možná to uvest spíš jako: we measure bias on three levels. additionaly quoting bias.
 This procedure results into introduction of four new fields:
+\begin{itemize}
+    \item \verb|text_bias :| ratio of biased and unbiased sentences in the text
+    \item \verb|abstract_bias :| ratio of biased and unbiased sentences in the abstract
+    \item \verb|headline_bias :| bias label of the headline
+    \item \verb|quoting_ratio :| ratio of reported and direct speech in the text     
+\end{itemize}
 
-\begin{verbatim}
-    text_bias, abstract_bias, headline_bias, quoting_ratio
-\end{verbatim}
+
 
 These fields are further used to study nature of the media bias in the corpus.
+For the data processing and statistics, third party libraries were used, in particular, \textbf{numpy}\footnote{\url{https://numpy.org/}}, \textbf{pandas}\footnote{\url{https://pandas.pydata.org/}}, \textbf{scipy}\footnote{\url{https://scipy.org/}} for data processing and \textbf{seaborn}\footnote{\url{https://seaborn.pydata.org/}} for visualisations.
+
 
 \section{Results}
-In this section I present statistics of different subjects of study.
+In this section I present statistics of media bias across domains and topics and, additionaly, it's progression over time for denik.cz domain.
 
-\tocless\subsection{Bias between domains}
-\ref{fig:domains}
+%%%%% CORR %%%%%
+\subsection{Correlations}
+Firstly, a simple correlation heatmap is shown in figure \ref{fig:corr}. Bias of the abstract and headline have relatively high correlation with the \verb|text_bias|. Both abstract and headline is sort of an aggregate of the text, therefore these results are justified.
 
+Furthermore there is some evidence that longer articles tend to be more biased, but the coefficient of the correlation is relatively low.
 
-\begin{figure}[h]
-\makebox[\textwidth][c]{
-  \includegraphics[scale=0.5]{my_modules/multimedia/inference/domains.jpg}
-  \caption{Comparison of average text bias and headline bias across the domains.}
-  \label{fig:domains}
-}
-\end{figure}
+Seemingly, there is no relationship between the \verb|quoting_ratio| (frequency of reported speech)
+and the bias of the article.
 
+\begin{figure}
 
-
-\tocless\subsection{Bias distribution}
-As we can see in the prevous result, the average bias were in the interval between 5 and 15 percent. In the plots below, a precise distribution of bias in articles can be seen.
-\ref{fig:dists}
-\ref{fig:dists_ctk_idnes}
-
-\begin{figure}[h]
-\makebox[\textwidth][c]{
-  \includegraphics[scale=0.5]{my_modules/multimedia/inference/dists.jpg}
-  \caption{Distribution of text bias values over the dataset. Second plot is without the articles with 0 text bias.}
-  \label{fig:dists}
-}
-\end{figure}
-
-\begin{figure}[h]
-\makebox[\textwidth][c]{
-  \includegraphics[scale=0.5]{my_modules/multimedia/inference/dists_ctk_idnes.png}
-  \caption{Distributions of bias between two domains.}
-  \label{fig:dists_ctk_idnes}
-}
-\end{figure}
-
-
-
-\tocless\subsection{Correlations}
-Correlation heatmap can be seen in
-\begin{figure}[h]
-\makebox[\textwidth][c]{
   \includegraphics[scale=0.5]{my_modules/multimedia/inference/corr.png}
   \caption{Ten least and ten most biased sections.}
   \label{fig:corr}
-}
+
 \end{figure}
 
 
-\tocless\subsection{Bias along sections}
-commentary wins
+\subsection{Bias distribution}
+Histogram of the \verb|text_bias| values can be seen in figure \ref{fig:dists}. In the first plot, we see that more than 20\% of the classified articles had no biased sentences at all. To have a more detailed look into distribution, I omitted the unbiased articles in the second histogram. Apparently, most biased articles has around 10\% of biased sentences.
 
-\begin{figure}[h]
-\makebox[\textwidth][c]{
+
+\begin{figure}
+
+  \includegraphics[scale=0.5]{my_modules/multimedia/inference/dists.jpg}
+  \caption{Distribution of text bias values over the dataset. Second plot is without the articles with 0 text bias.}
+  \label{fig:dists}
+
+\end{figure}
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%% DOMAINS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Bias between domains}
+Data were grouped by domains and their \verb|text_bias| and \verb|headline_bias| within the domain were averaged. The bar plot of the results can be seen in figure \ref{fig:domains}. \textbf{ceskenoviny.cz} exhibit significantly lower average \verb|text_bias| as well as ratio of biased headlines (average \verb|headline_bias|).
+
+Additionaly, difference between the bias distribution of the least biased and the most biased domain is presented in the figure \ref{fig:dists_ctk_idnes}. An x-axis is log-scaled for better visualisation.
+\newpage
+
+
+\begin{figure}
+
+  \includegraphics[scale=0.5]{my_modules/multimedia/inference/domains.jpg}
+  \caption{Comparison of average text bias and headline bias across the domains.}
+  \label{fig:domains}
+
+\end{figure}
+
+\begin{figure}
+  \includegraphics[scale=0.5]{my_modules/multimedia/inference/dists_ctk_idnes.png}
+  \caption{Distributions of bias between two domains.}
+  \label{fig:dists_ctk_idnes}
+\end{figure}
+
+
+
+
+
+
+
+
+\newpage
+\subsection{Bias along sections}\label{commentary_bias}
+In this experiment, data were grouped by sections (topics of the article) and their \verb|text_bias| was averaged. I made an arbitrary choice to exclude sections that had less than 50 datapoints within the dataset, because such sections were way too specific.
+
+The ten least and most biased sections can be seen in the figure \ref{fig:sections}.
+
+
+Sections that exhibit low average \verb|text_bias|, for instance \textit{career}, \textit{economics}, \textit{business} are all of a rather factual, emotionless nature.
+On the other hand, sections with high average bias, such as \textit{art}, \textit{music} and \textit{culture}, are more of a subjective, personal nature.
+
+Interestingly, the \textit{commentary} section, exhibits by far the highest average \verb|text_bias| (51.97\%). This was an expected result, since essence of the \textit{commentary} format is presenting an, often subjective, opinion.
+
+\begin{figure}
+
   \includegraphics[scale=0.2]{my_modules/multimedia/inference/sections.jpg}
   \caption{Ten least and ten most biased sections.}
   \label{fig:sections}
-}
 \end{figure}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DENIK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\tocless\subsection{Denik.cz experiments}
-on CTK there were only data in years 2016 and 2017. so no time plot
+
+
+\subsection{Denik.cz experiments}
+Finally, a progression of media bias over the period of time is examined. Because a distribution of the domains across the years was highly imbalanced, I decided to examine only the denik.cz domain.
+
+To make the results as clear as possible, I only used data from one section. denik.cz data include articles from years 2007 to 2016. For each year, 350 articles were sampled randomly and the \verb|text_bias| was averaged. A graph of the progression can be seen in figure \ref{fig:denik_years}. I used a linear regression model to fit a line through the datapoints to highlight the trend.
+
+Additionally, the same statistics, but with respect to months, is shown in figure \ref{fig:months_clean}.
+
+The experiment has shown a decreasing trend in media bias over period of ten years.
+\newpage
+
 
 \begin{figure}[h]
-\makebox[\textwidth][c]{
+
   \includegraphics[scale=0.5]{my_modules/multimedia/inference/denik_years.png}
-  \caption{Distributions of bias between two domains.}
+  \caption{Progression of text bias of denik.cz over ten years.}
   \label{fig:denik_years}
-}
+
 \end{figure}
 
 
-\begin{figure}[h]
-\makebox[\textwidth][c]{
+\begin{figure}
+
   \includegraphics[scale=0.5]{my_modules/multimedia/inference/months_clean.jpg}
-  \caption{Distributions of bias between two domains.}
+  \caption{Progression of text bias of denik.cz over ten years. The bias is averaged over months.}
   \label{fig:months_clean}
-}
 \end{figure}
 
 
 
 
+
+\section{Discussion}
+Even though these inference experiments has shown some interesting properties of the news, the data has some minor issues in this context. 
+
+For example not all commentary articles are marked as commentary in the data. Also quoting of reported speech is sometimes missing. 
+
+On top of it, the classifier has around 80\% accuracy (\ref{classifier}), therefore these results should be taken with a grain of salt.
 
 
 
@@ -154,9 +196,10 @@ The user can insert arbitrary text in Czech language (text in other languages wi
 
 The app shows results in two output windows; first one \textit{classification} displays inserted text with highlighted labels. Second one, \textit{ratio}, displays ratio of biased/unbiased sentences in the text.
 
-Example can be seen in figure \ref{fig:demodemo}.
+An Example can be seen in figure \ref{fig:demodemo}. 
+Classification of a whole article can be seen in Appendix \ref{classified_article}.
 
-\begin{figure}[H]
+\begin{figure}
 \makebox[\textwidth][c]{
   \includegraphics[scale=0.3]{my_modules/multimedia/bias.png}
   \caption{Example of the bias classifier demo usage.}
@@ -165,10 +208,4 @@ Example can be seen in figure \ref{fig:demodemo}.
 \end{figure}
 
 
-
-
-\section{Discussion}
-Not all commentary articles are marked in the data.
-Sometimes quoting is not marked, no discussion etc.
-An example of classified news article can be seen in Appendix \ref{classified_article}.
 
