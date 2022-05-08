@@ -1,11 +1,11 @@
 \chapter{Introduction}
-Consumption of media of all kinds increases as people become more and more engaged in the online world. We usually learn about the events happening in the world through the online news media of our choice; therefore, it is essential that media present fair, unbiased, reliable information. Although there is a huge effort in pointing out potentially \textbf{biased} sources of information by humans, we still fail to classify media in a broad and comprehensive manner. Automatic, machine classification of news texts may help humans on this journey toward a more reliable news environment.
+Consumption of media of all kinds increases as people become increasingly engaged in the online world. We usually learn about the events happening in the world through the online news media of our choice; therefore, it is essential that the media present fair, unbiased, and reliable information. Although there is a great deal of effort in pointing out potentially \textbf{biased} sources of information by humans\footnote{Websites like \url{allsides.com}, \url{mediabiasfactcheck.com} and \url{adfontesmedia.com}}, we still fail to classify the media in a broad and comprehensive manner. Automatic, machine classification of news texts may help humans on this journey toward a more reliable news environment.
 
-\gls{nlp} is a set of methods that works with text and aims to bring an understanding of textual data leveraging machine learning algorithms. Using the methods of \gls{nlp} to classify news text has some limits for low-resource languages such as the Czech language. In this work, I focus on exploring and applying current \gls{sota} methods on automatic detection of bias in Czech news.
+\gls{nlp} is a set of methods that work with text and aims to bring an understanding of textual data leveraging machine learning algorithms. Using the methods of \gls{nlp} to classify news text has some limits for low-resource languages, such as the Czech language. In this work, I focus on exploring and applying current \gls{sota} methods on automatic detection of bias in Czech news.
 
 
 \section{Bias}
-Defining the word \textbf{bias} can be a bit tricky because with different settings and different goals, the definition also changes. Much of the work done in \gls{ml} research focused on \textbf{bias} also lacks a proper definition and often includes vague descriptions of its objectives \cite{blodgett2020language}. 
+Defining the word \textbf{bias} can be a bit tricky because, with different settings and different goals, the definition also changes. Much of the work done in \gls{ml} research focused on \textbf{bias} also lacks a proper definition and often includes vague descriptions of its objectives \cite{blodgett2020language}. 
 
 In terms of \Gls{ml}, bias generally means a tilt, prejudice, or tendency that, during training, slips into the model and may subsequently lead to potentially unfair decisions. The bias is typically skewed toward some group of people, for example, based on their race, gender, etc. 
 
@@ -13,20 +13,20 @@ For instance, an infamous example is Microsoft's AI chatbot that has picked up r
 
 Nowadays, these systems are used for decision-making in essential areas such as hiring, loans, and even justice. Therefore, the detection of this bias in \Gls{ml} models and subsequent mitigation of it have been widely studied \cite{blodgett2020language}. This kind of \gls{ml} bias research is often referred to as \textbf{unfairness in machine learning}.
 
-However, as outlined before, besides the study of the models that reflect the biased nature of the data, one can focus on the origin of the bias introduced by human in the first place. In other words, writer's bias that is reflected in a text. This work focuses on the detection of bias in the Czech \textbf{news}, thus from now on I refer to bias as a \textbf{property of text} which can be potentially detected and classified.
+However, as outlined before, besides the study of the models that reflect the biased nature of the data, one can focus on the origin of the bias introduced by humans in the first place. In other words, the writer's bias that is reflected in a text. This work focuses on the detection of bias in Czech \textbf{news}, so from now on I refer to bias as a \textbf{property of text} which can be potentially detected and classified.
 
 
 
 
 \subsection{Media Bias}\label{mb_intro}
-The need to address bias in media articles arises from the ever-increasing social polarization. News that exhibit \textbf{\gls{mb}} can sway opinions and alter readers' beliefs. In this work, I refer to Allsides\footnote{\url{https://www.allsides.com/} is a company that focuses on the non-automatic classification of news outlets with respect to their bias} definition\footnote{\url{https://www.allsides.com/blog/what-media-bias}} of the media bias:
+The need to address bias in media articles arises from the ever-increasing social polarization. News exhibiting \textbf{\gls{mb}} can sway opinions and alter readers' beliefs. In this work, I refer to Allsides\footnote{\url{https://www.allsides.com/} is a company that focuses on the non-automatic classification of news outlets with respect to their bias} definition\footnote{\url{https://www.allsides.com/blog/what-media-bias}} of the media bias:
 
 \vbox{
 \blockquote{
 \textbf{Media Bias} - \textit{noun}. The tendency of news media to report in a way that reinforces a viewpoint, worldview, preference, political ideology, corporate or financial interests, moral framework, or policy inclination, instead of reporting in an objective way (simply describing the facts). A media outlet may reveal bias in how it reports specific news stories or which stories they choose to cover, ie., deem more important than others to cover or emphasize.
 }}
 \noindent
-An example of sentences from allsides.com that exhibit explicit \gls{mb} is as follows:
+An example of sentences from Allsides that exhibit explicit \gls{mb} is as follows:
 
 \vbox{
 \blockquote{
@@ -39,7 +39,7 @@ An example of sentences from allsides.com that exhibit explicit \gls{mb} is as f
 \textit{The legislation never resulted in meaningful action.}
 }}
 
-In these examples there is a clear evidence of an author's opinion or state, to particular problem, inprinted into the statement. Although the definition is a bit too abstract, according to Allsides, \gls{mb} can be decomposed into several features\footnote{\url{https://www.allsides.com/media-bias/how-to-spot-types-of-media-bias}}. To name a few:
+In these examples, there is a clear evidence of an author's opinion or state, on a particular problem imprinted into the statement. Although the definition is a bit too abstract, according to Allsides, \gls{mb} can be decomposed into several features\footnote{\url{https://www.allsides.com/media-bias/how-to-spot-types-of-media-bias}}. To name a few:
 \begin{itemize}\label{features}
     \item \textbf{Sensationalism/Emotionalism} - Explicit sentiment in statement
     \item \textbf{Subjective Qualifying Adjectives} - Adjectives such as \textit{extreme, awkward, serious,..}
@@ -51,7 +51,7 @@ The diversity of these characteristics shows how complex and subtle the overall 
 Most of the features are of a lexical nature; on the other hand, there are other features that are practically not possible to detect automatically without a context, e.g., bias by \textbf{omitting information}, where it strongly depends on an outer context. In section \ref{mediabias} I refer to the family of these kinds of features as \textbf{informational bias}.
 
 
-Previous examples show how the statements that contain \gls{mb} may be manipulative or persuasive to some extent. However, the presence of \gls{mb} does not always imply malicious intent. It is in human nature to draw on experience, to express something, that we \textit{believe} to be the truth, in a factual way. Thus, one can simply not be aware of their implicit bias. As the authors of Allsides suggest, the bias might even be desirable. For example, the \textit{Commentary} format article often contains more bias (see \ref{commentary_bias}), but its purpose is to present an opinion, and there is nothing wrong with that.
+Previous examples show how statements that contain \gls{mb} may be manipulative or persuasive to some extent. However, the presence of \gls{mb} does not always imply malicious intent. It is in human nature to draw on experience, to express something, that we \textit{believe} to be the truth, in a factual way. Thus, one can simply not be aware of their implicit bias. As the authors of Allsides suggest, the bias might even be desirable. For example, the \textit{Commentary} format article often contains more bias (see \ref{commentary_bias}), but its purpose is to present an opinion, and there is nothing wrong with that.
 
 
 \section{Outline and problem definition}\label{problem_definition}

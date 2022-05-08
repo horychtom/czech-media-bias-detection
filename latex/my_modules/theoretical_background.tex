@@ -9,9 +9,9 @@ In order to process text, NLP models operate on the text on a \textbf{token} lev
 
 A typical token unit is a word; however, tokens can be as small as a single byte. Currently, a standard way of tokenization is using WordPiece tokens, which is a balance between word-level and byte-level tokenization.
 
-After tokenization, a numerical representation of the tokens is to be obtained. A naive way is to use mapping for every word to an index in predefined/obtained vocabulary. Such approach suffers from the explicit ordering of the words, which may negatively influence the model. Another possible representation is \textbf{one-hot-encoding} where each word is represented by a vector that has $1$ in a single row and zeros everywhere else. The size of such an encoding is proportional to the size of the vocabulary, making the feature space very sparse. 
+After tokenization, a numerical representation of the tokens is to be obtained. A naive way is to use a mapping for every word to an index in a predefined/obtained vocabulary. Such an approach suffers from the explicit ordering of the words, which may negatively influence the model. Another possible representation is \textbf{one-hot-encoding} where each word is represented by a vector that has $1$ in a single row and zeros everywhere else. The size of such an encoding is proportional to the size of the vocabulary, making the feature space very sparse. 
 
-The current standard representations of words are word \textbf{embeddings}. Embeddings are fixed-size feature vectors. The dimension of the embeddings is a hyperparameter, usually with a value between 100 and 1000. Embeddings can be learned along the particular task, in an Embedding layer. Or, it is possible to use available precomputed representations, such as word2vec, Glove, or ELmo.
+The current standard representations of words are word \textbf{embeddings}. Embeddings are fixed-size feature vectors. The dimension of the embeddings is a hyperparameter, usually with a value between 100 and 1000. Embeddings can be learned along a particular task in an Embedding layer. Or, it is possible to use available precomputed representations, such as word2vec, Glove, or ELmo.
 \newpage
 
 
@@ -42,14 +42,14 @@ There are several problems with this architecture. Firstly, when a long sequence
 
 
 \section{Transformers}\label{att_transformers}
-Transformers \cite{vaswani2017attention} is a family of deep neural architectures that has revolutionized the field of \gls{nlp}. The \textbf{attention} mechanism is a core principle behind transformer architecture and solves some of the problems mentioned in the previous section.
+Transformers \cite{vaswani2017attention} is a family of deep neural architectures that has revolutionized the field of \gls{nlp}. The \textbf{attention} mechanism is a core principle behind the transformer architecture and solves some of the problems mentioned in the previous section.
 
-Current \gls{sota} language models, such as GPT-3, BERT, RoBERTa, all use the transformer architecture. Although their architecture can vary from the original one; for example BERT only uses the Encoder module. Eventually, I have also narrowed the choice of models to transformers rather than other neural architectures.
+Current \gls{sota} language models, such as GPT-3, BERT, RoBERTa, all use the transformer architecture. Although their architecture can vary from the original one; for example, BERT only uses the Encoder module. Eventually, I have also narrowed the choice of models to transformers rather than other neural architectures.
 
 
 
 \subsection{Attention}
-Attention \cite{bahdanau2014neural,luongeffective} is essentially a mechanism that allows the unit (whether it is on the decoder or the encoder side) to learn to focus on some segments of the input sequence more than the others. This mechanism has been motivated by the problem of "forgetting" information in long sequences. This way, parts of the sequences that potentially drive the decision are represented more in hidden states than other less relevant parts.
+Attention \cite{bahdanau2014neural,luongeffective} is essentially a mechanism that allows the unit (whether it is on the decoder or the encoder side) to learn to focus on some segments of the input sequence more than others. This mechanism has been motivated by the problem of "forgetting" information in long sequences. This way, parts of the sequences that potentially drive the decision are represented more in hidden states than other less relevant parts.
 
 \begin{figure}
   \includegraphics[scale=0.5]{my_modules/multimedia/atalyned.png}
@@ -66,13 +66,13 @@ As particular words/tokens flow through the stack of encoders, the model gradual
 
 The Decoder modules work essentially the same, except it has an extra attentive layer that performs the attention computation over the output of the encoder stack. Since I only utilize the encoder part for more details, I refer the reader to the original transformer paper \cite{vaswani2017attention}.
 
-Although the computation of self-attention is dependent on other tokens, the forward pass of a feed forward network can be done completely in parallel over the input sequence. Therefore, this design offers a significant computational speedup against the Encdoer-Decoder based on \gls{rnn}.
+Although the computation of self-attention depends on other tokens, the forward pass of a feed-forward network can be done completely in parallel over the input sequence. Therefore, this design offers a significant computational speedup against the Encdoer-Decoder based on \gls{rnn}.
 
 
 
 
 \section{Text classification}
-Text classification is a supervised learning task of assigning a particular text (word, sentence, or document) a category to which it belongs. A standard loss for classification is a Cross-Entropy loss. In case of binary classification:
+Text classification is a supervised learning task of assigning a particular text (word, sentence, or document) a category to which it belongs. A standard loss for classification is a Cross-Entropy loss. In the case of binary classification:
 
 \begin{equation}
     L_{BCE} = \frac{1}{n} \sum_{i=1}^n ( y_i \cdot \log\hat{y_i} + (1-y_i)\cdot\log(1-\hat{y_i}))
@@ -92,17 +92,17 @@ This metric is feasible if the classes of the dataset are balanced. However, ima
 \begin{equation}
     F1 = \frac{2*Precision*Recall}{Precision + Recall}
 \end{equation}
-where precision
+
 
 \begin{equation}\footnote{TP,TN,FP,FN denotes to True positive, True Negative, Fasle Positive, False Negative respectively.}
     Precision = \frac{TP}{TP+FP}
 \end{equation}
-can be understood as "how precisely the model predicts a positive class", whereas recall
+Precision can be understood as "how precisely the model predicts a positive class", whereas recall
 \begin{equation}
     Recall = \frac{TP}{TP+FN}
 \end{equation}
 can be understood as "how much of a positive class can model predict".
-The scores for each class are then averaged to obtain the final score. This is often referred to as "macro" averaging.
+The scores for each class are then averaged to obtain the final score. This is often referred to as \textit{macro} averaging.
 
 
 
@@ -110,7 +110,7 @@ The scores for each class are then averaged to obtain the final score. This is o
 \subsection{Transformers for text classification}
 The predictive power of transformers is behind many \gls{sota} results, and text classification is no exception. For classification, usually only the encoder part of a transformer is utilized, although some define the classification problem as a sequence-to-sequence and incorporate the decoder too \cite{raffel2019exploring}.
 
-During tokenization,a special [CLS] token is prepended to a sentence. The token has its own embedding and flows through the stack of encoders just as any other token, with a difference that when the forward pass reaches the classification layer, only the [CLS] token is passed as an input. [CLS] token can therefore be understood as a sort of sentence embedding.
+During tokenization, a special [CLS] token is prepended to a sentence. The token has its own embedding and flows through the stack of encoders just as any other token, with a difference that when the forward pass reaches the classification layer, only the [CLS] token is passed as an input. [CLS] token can therefore be understood as a sort of sentence embedding.
 
 Usually, one or two dense layers with an activation function are sufficient as a classifier on top of the encoder stack. However, it is also possible to extract representations from any level of the encoder stack and run an arbitrary classification algorithm on top of it.
 
@@ -129,12 +129,12 @@ Such large models are usually pre-trained on an extensive corpus of data. There 
 %During the fine-tuning both the parameters of the language model, e.g. BERT, and the parameters of the classifier are updated jointly. The weights of the classification layer are trained from scratch; on the other hand, the pre-trained language model already contains meaningful linguistic features, so in the process, its parameters are fine-tuned for task-specific representations.
 
 
-\section{Fine-tuning}\label{finetuning}
-Having a pre-trained model, one can then train a task specific head
+\section{Fine-tuning for classification}\label{finetuning}
+Having a pre-trained model, one can then train a classification head
 on top of pre-trained representations. Although the process of fine-tuning
 is more often adopted.
 
-In the context of this thesis, fine-tuning is essentially a process of adapting the pre-trained model, as well as the classifier, to the target dataset. Both the parameters of the language model, e.g. BERT, and the parameters of the classification head are updated jointly. The weights of the classification layer are trained from scratch; on the other hand, the pre-trained language model already contains
+In the context of this thesis, fine-tuning is essentially a process of adapting the pre-trained model, as well as the classifier, to the target dataset. Both the parameters of the language model, e.g., BERT, and the parameters of the classification head are updated jointly. The weights of the classification layer are trained from scratch; on the other hand, the pre-trained language model already contains
 meaningful linguistic features, so in the process, its parameters are fine-tuned
 for bias-specific representations.
 

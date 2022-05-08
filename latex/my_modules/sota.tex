@@ -1,5 +1,5 @@
 \chapter{Bias Detection}
-Before turning my attention to media bias, I have examined several other relevant bias detection topics. At the beginning of my research, I studied the possibilities of applying gender bias detection to Czech News. Therefore, following small section is dedicated to my results and examination of one of the gender-focused datasets.
+Before turning my attention to media bias, I have examined several other relevant bias detection topics. At the beginning of my research, I studied the possibilities of applying gender bias detection to Czech News. Therefore, the following small section is dedicated to my results and examination of one of the gender-focused datasets.
 
 
 %______________________________GENDER______________________________________________%
@@ -24,11 +24,11 @@ To measure this kind of bias over all three dimensions, a large-scale dataset \t
 
 \subsection{Initial experiment}
 To transfer the results of the paper mentioned above to the Czech environment, I sampled 150k sentences from across all datasets with an \textit{ABOUT} dimension label and translated them via \textbf{DeepL} machine translator (more on machine translation in section \ref{DeepL}). Then I managed to train a RoBERTa-based model \cite{liu2019roberta} that achieved an F1 score of 80\% on the small gold-labeled evaluation dataset. 
-Unfortunately, the results are not comparable to the original English experiments because I took a \textbf{single-task} approach and omitted other dimensions completely. I share the trained model together with translated data on HuggingFace\footnote{\url{https://huggingface.co/}} hub, and I also present a demo. An example of the demo can be seen in the Appendix \ref{gender_results}.
+Unfortunately, the results are not comparable to the original English experiments because I took a \textbf{single-task} approach and omitted other dimensions completely. I share the trained model together with translated data on HuggingFace\footnote{\url{https://huggingface.co/}} hub, and I also present a demo. An example of the demo can be seen in Appendix \ref{gender_results}.
 
 
 \subsection{Discussion}
-The gender classifier, such as this one, can be used to determine what percentage of a particular article in the Czech news environment is about men, women or is completely genderless. This statistical indicator could help to keep the writing more balanced or provide insight into already published writing.
+The gender classifier, such as this one, can be used to determine what percentage of a particular article in the Czech news environment is about men, women, or is completely genderless. This statistical indicator could help to keep the writing more balanced or provide insight into already published writings.
 
 Moreover, gender bias could also be an interesting task choice in the \gls{mtl} setting, with respect to media bias. However, since this is just an initial experiment and is not further developed, I suggest that a clear-cut methodology and datasets review should be performed. 
 
@@ -42,7 +42,7 @@ The majority of current research focuses on \textbf{sentence-level} classificati
 
 Article-level classification is usually more difficult since it is inconvenient to put the whole article through the neural network. Even though such things as document embeddings exist \cite{lau2016empirical}, bottom-up solutions are usually used. A simple approach would be to classify all sentences and count the frequency. Eventually, I used this approach when applying the classifier to Czech news corpora in section \ref{inference}.
 
-However, additional high-level features such as the position of bias, the frequency, or the ordering, have been studied and proved to be effective in article level classification \cite{chen2020detecting,chen-etal-2020-analyzing}.
+However, additional high-level features such as the position of bias, frequency, or ordering, have been studied and proved to be effective in article-level classification \cite{chen2020detecting,chen-etal-2020-analyzing}.
 
 As I outlined in the previous section, \gls{mb} can be divided into two classes, where one depends on the outer context, and the other does not. This is commonly referred to as \textbf{informational} and \textbf{lexical} bias. There have been efforts to classify informational bias with varying context sizes \cite{van2020context}, although a majority of the work focuses on lexical bias, and I follow this standard as well.
 

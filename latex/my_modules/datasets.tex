@@ -1,5 +1,5 @@
 \chapter{Datasets} \label{datasets}
-Due to the complex nature of \gls{mb}, different datasets try to capture different aspects of it. In this section, I present a collection of all datasets related to biased writing and subjectivity detection available. Later this collection is used to study the proposed research questions \hyperref[Q1]{Q1} and \hyperref[Q2]{Q2} and to build a final classifier. For details see experiment section \ref{experiments}.
+Due to the complex nature of \gls{mb}, different datasets try to capture different aspects of it. In this section, I present a collection of all datasets related to biased writing and subjectivity detection available. Later, this collection is used to study the proposed research questions \hyperref[Q1]{Q1} and \hyperref[Q2]{Q2} and to build a final classifier. For details see experiment section \ref{experiments}.
 
 As stated above, this work focuses only on sentence-level classification; thus, data annotated on article-level were not considered.
 
@@ -9,15 +9,15 @@ I divided the available datasets into 3 main families:
     \item Wikipedia bias
     \item Media bias
 \end{itemize}
-Wikipedia bias could also be considered as a form of subjective bias, but all the Wiki data come from the same distribution\footnote{some are even different samples from the same larger corpora}. and environment; hence I find it reasonable to put them together.
+Wikipedia bias could also be considered as a form of subjective bias, but all the Wiki data come from the same distribution\footnote{Some datasets are different samples from the same larger corpora}. and environment; hence I find it reasonable to put them together.
 
 
 \section{Subjectivity Datasets}
 
 \subsection{SUBJ}
-It is reasonable to include datasets that focus on the detection of subjectivity since it is one of the \gls{mb} characteristics. The Subjectivity dataset (SUBJ) \cite{Pang+Lee:04a} consists of 10000 sentences gathered from movie review sites. Sentences are labeled as subjective and objective with 1:1 ratio. 
+It is reasonable to include datasets that focus on the detection of subjectivity, as it is one of the \gls{mb} characteristics. The Subjectivity dataset (SUBJ) \cite{Pang+Lee:04a} consists of 10000 sentences gathered from movie review sites. Sentences are labeled as subjective and objective with 1:1 ratio. 
 
-The data were collected in an automatic way. The authors made an assumption that all reviews from Rottentomatoes\footnote{https://www.rottentomatoes.com/} are subjective, and all plot summaries from IMBD\footnote{ www.imdb.com} are objective. For each class, 5k sentences were sampled \textbf{randomly}.
+The data were collected automatically. The authors made an assumption that all reviews from Rottentomatoes\footnote{https://www.rottentomatoes.com/} are subjective, and all IMBD plot summaries\footnote{ www.imdb.com} are objective. For each class, 5k sentences were sampled randomly.
 
 
 
@@ -34,7 +34,7 @@ To extract the bias information, I focused on two types of annotations:
 \end{itemize}
 These annotations were present if any form of subjectivity was suspected by the annotator. Each annotation consists of indices of span in the text and properties. For each sentence in the corpus, I extracted labels as follows:
 
-If there was at least one annotation \textbf{direct\_subjective} or \textbf{expressive\_subjectivity} with span inside the sentence and the intensity tag was not $low$, the sentence was labelled as \textit{subjective $\sim$ biased}. All other sentences were extracted as \textit{objective $\sim$ unbiased}.
+If there was at least one annotation \textbf{direct\_subjective} or \textbf{expressive\_subjectivity} with span inside the sentence and the intensity tag was not $low$, the sentence was labeled as \textit{subjective $\sim$ biased}. All other sentences were extracted as \textit{objective $\sim$ unbiased}.
 
 This approach has produced $9484$ subjective sentences and 6318 objective sentences.
 
@@ -54,7 +54,7 @@ Even though BASIL brings sufficient annotation quality, most of the labeling res
 
 \subsection{Ukraine Crisis Dataset}
 This dataset \cite{farber2020multidimensional} offers 2057 sentences with binary media bias labels. All sentences are related to one topic - the Ukraine-Russian crisis. Data were gathered from 90 news sources.
-
+\newpage
 The authors introduce rich annotations for each sentence. Each of them looks at the bias from a different perspective, called \textit{bias dimensions}:
 \begin{enumerate}
     \item Hidden Assumptions and Premises
@@ -67,7 +67,7 @@ Even though this dataset encompasses comprehensive bias information, it also suf
 
 
 \subsection{NFNJ}
-The NFNJ\footnote{\cite{farber2020multidimensional} refers to this dataset as NFNJ, however, in the original paper the name is not presented.} dataset provides 966 sentences from 46 articles with annotations on a fine-grained level.
+The NFNJ\footnote{\cite{farber2020multidimensional} refers to this dataset as NFNJ, however, in the original paper \cite{lim2018understanding} the name is not presented.} dataset provides 966 sentences from 46 articles with annotations on a fine-grained level.
 
 Authors share the dataset for research purposes; however, the public version differs from the one described in the original paper. Therefore, while extracting the final dataset, I made a few assumptions:
 
@@ -102,6 +102,7 @@ This dataset plays a pivotal role in my approach to media bias detection and is 
   \caption{Data collection and annotation pipeline of \textbf{BABE}, reprinted from \cite{Spinde2021f}}
   \label{fig:babe-data}
 \end{figure}
+ \newpage
 
 
 
@@ -124,7 +125,7 @@ Even though these datasets introduce a large number of samples that are highly r
 
 
 \subsection{Wiki Neutrality Corpus}\label{wiki}
-\Gls{wnc} \cite{pryzant2020automatically} is a parallel corpus of 180k pairs of biased and unbiased sentences. For the collection of the data, \ref{wiki-npov} approach was adopted. The authors crawled revisions from 2014 to 2019. Each revision has been processed to check if it contains any variation of \textit{POV} related tag inside. This approach yielded 180k pairs such that the sentence before edit is considered biased and the modified/added sentence after edit is considered neutral/unbiased.
+\Gls{wnc} \cite{pryzant2020automatically} is a parallel corpus of 180k pairs of biased and unbiased sentences. For the collection of the data, \ref{wiki-npov} approach was adopted. The authors crawled revisions from 2014 to 2019. Each revision has been processed to check if it contains any variation of \textit{POV} related tags inside. This approach yielded 180k pairs such that the sentence before edit is considered biased and the modified/added sentence after edit is considered neutral/unbiased.
     
 In addition to WNC, 385k of sentences that have not been changed during the NPOV dispute were extracted as neutral and for word-level classification purposes, a subset of the WNC corpus, where only one word is changed in the biased-unbiased pair, were added.
 
@@ -140,8 +141,8 @@ After filtering out sentences that annotators labeled with the "I don't know" op
 
 
 \subsection{WikiBias}
-This is the latest dataset based on Wikipedia. The authors \cite{zhong-etal-2021-wikibias-detecting} closely follow the approach of WNC \cite{pryzant2020automatically} and extract another parallel wiki corpus of 214k sentences.
-To achieve a higher quality corpus, 4099 sentence pairs were randomly sampled and labeled by trained annotators. As a result, introduced \textbf{WikiBias-Manual} dataset consists of 3400 biased and 4798 neutral sentences annotated with high \gls{iaa} score of Cohen's $\kappa = 0.734$
+This is, to this date, the latest dataset based on Wikipedia. The authors \cite{zhong-etal-2021-wikibias-detecting} closely follow the approach of WNC \cite{pryzant2020automatically} and extract another parallel wiki corpus of 214k sentences.
+To achieve a higher quality corpus, 4099 sentence pairs were randomly sampled and labeled by trained annotators. As a result, WikiBias-Manual dataset consists of 3400 biased and 4798 neutral sentences annotated with high \gls{iaa} score of Cohen's $\kappa = 0.734$
 
 \input{my_modules/tables/datasets_table}
 
@@ -159,4 +160,4 @@ Consists of labels capturing the authors political ideology (liberal, conservati
 \section{Summary}
 In this chapter, I introduced all resources that are potentially useful for media bias analysis and are publicly available. The overview of all datasets and its properties can be seen in figure \ref{table:1}.
 
-BABE dataset is generally a good benchmark, and its translated parallel version will be used for evaluation in this work. Training a classifier on combinations of different datasets is studied in \ref{experiments}. Unfortunately, a lot of the data suffer from noisy labeling and low \gls{iaa} greatly. Therefore, its usability is considerably limited.
+BABE dataset is generally a good benchmark, and its translated parallel version will be used for evaluation in this work. Combining other listed datasets for pre-training is studied in \ref{experiments}. Unfortunately, many of the datasets suffer from noisy labeling and low \gls{iaa} greatly. Therefore, its usability is considerably limited.
