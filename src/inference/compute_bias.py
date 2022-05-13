@@ -101,7 +101,7 @@ def assign_bias_headline(data):
     return data
 
 
-# DATA
+# DATA (RCI repository)
 test = pd.read_json('/mnt/data/factcheck/summarization/sumeczech/sumeczech-1.0-test.jsonl',lines=True)
 dev = pd.read_json('/mnt/data/factcheck/summarization/sumeczech/sumeczech-1.0-dev.jsonl',lines=True)
 data = pd.concat([test,dev])
@@ -116,17 +116,8 @@ data.drop(['filename', 'dataset','md5','offset'], axis=1, inplace=True)
 idnes = data[data.subdomain == 'idnes.cz']
 
 idnes = assign_quote_ratio(idnes)
-
-idnes.to_csv('/home/horyctom/bias-detection-thesis/notebooks/media/full_pipeline/idnes.csv',index=False)
-
 idnes = assign_bias_headline(idnes)
-
-idnes.to_csv('/home/horyctom/bias-detection-thesis/notebooks/media/full_pipeline/idnes.csv',index=False)
-
 idnes = assign_bias_ratio(idnes,'abstract')
-
-idnes.to_csv('/home/horyctom/bias-detection-thesis/notebooks/media/full_pipeline/idnes.csv',index=False)
-
 idnes = assign_bias_ratio(idnes,'text')
 
 idnes.to_csv('/home/horyctom/bias-detection-thesis/notebooks/media/full_pipeline/idnes.csv',index=False)
