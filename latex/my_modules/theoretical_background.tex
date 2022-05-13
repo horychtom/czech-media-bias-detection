@@ -1,5 +1,5 @@
 \chapter{Theoretical background}\label{theory}
-In this section, I briefly introduce \gls{sota} methods and models used in the experiment section \ref{experiments}. Many of the problems in NLP are tasks of mapping one sequence to another; therefore, modern architectures were designed to tackle this problem efficiently.
+In this section, I briefly introduce \gls{sota} methods and models used for classification in the experiment section \ref{experiments}. Many of the problems in NLP are tasks of mapping one sequence to another; therefore, modern architectures were designed to tackle this problem efficiently.
 
 
 
@@ -44,7 +44,7 @@ There are several problems with this architecture. Firstly, when a long sequence
 \section{Transformers}\label{att_transformers}
 Transformers \cite{vaswani2017attention} is a family of deep neural architectures that has revolutionized the field of \gls{nlp}. The \textbf{attention} mechanism is a core principle behind the transformer architecture and solves some of the problems mentioned in the previous section.
 
-Current \gls{sota} language models, such as GPT-3, BERT, RoBERTa, all use the transformer architecture. Although their architecture can vary from the original one; for example, BERT only uses the Encoder module. Eventually, I have also narrowed the choice of models to transformers rather than other neural architectures.
+Current \gls{sota} language models, such as GPT-3 \cite{brown2020language}, BERT \cite{devlin2019bert}, RoBERTa  \cite{liu2019roberta}, all use the transformer architecture. Although their architecture can vary from the original one; for example, BERT only uses the Encoder module. Eventually, I have narrowed the choice of models to transformers rather than other neural architectures.
 
 
 
@@ -58,7 +58,7 @@ Attention \cite{bahdanau2014neural,luongeffective} is essentially a mechanism th
 \end{figure}
 
 \subsection{Transformer architecture}
-Scheme of the original architecture can be seen in \ref{fig:transformer}. The bottom of the architecture consists of an embedding layer enriched with \textbf{positional embeddings} that encodes the ordering information in the sequence.
+Scheme of the original architecture can be seen in figure \ref{fig:transformer}. The bottom of the architecture consists of an embedding layer enriched with \textbf{positional embeddings} that encodes the ordering information in the sequence.
 
 Just as previous seq2seq models, the transformer also consists of Encoder and Decoder modules. Precisely, each module is a stack of $n$ identical encoder or decoder layers. Each encoder layer consists of two main layers: the \textbf{self-attention} layer and the \textbf{feed-forward} neural network.
 
@@ -124,9 +124,6 @@ Nowadays, the true power of transformers lies in \textbf{transfer learning} \cit
 Such large models are usually pre-trained on an extensive corpus of data. There are several common \textbf{unsupervised} pre-training tasks that allow these models to learn contextual representations of words without supervision. For instance, \gls{mlm} is a task in which a random sample of tokens in the input sequence is replaced with a [MASK] token, and the model learns to predict the original token. Another unsupervised pre-training task is a \gls{nsp} which is self-explanatory.
 
 
-%Fine-tuning is essentially a process of adapting the pre-trained language model and the task-specific head to the target dataset. In the context of this work, the task-specific head is a binary classifier.
-
-%During the fine-tuning both the parameters of the language model, e.g. BERT, and the parameters of the classifier are updated jointly. The weights of the classification layer are trained from scratch; on the other hand, the pre-trained language model already contains meaningful linguistic features, so in the process, its parameters are fine-tuned for task-specific representations.
 
 
 \section{Fine-tuning for classification}\label{finetuning}

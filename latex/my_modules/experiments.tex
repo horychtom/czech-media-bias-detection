@@ -17,7 +17,7 @@ The optimal pre-training strategy and hyperparameters are then used to build the
 \end{figure}
  
 \section{Models}
-Architecture-wise, a classifier consisting of a dense\footnote{Sometimes is referred to as fully connected layer.} layer is attached to the pre-trained language model to perform the binary classification task. The tested language models were pre-trained either solely on Czech data (monolingual) or on multiple languages jointly (multilingual). The scheme of the particular architecture used can be seen in \ref{fig:classifier}.
+Architecture-wise, a classifier consisting of a dense\footnote{Sometimes is referred to as fully connected layer.} layer is attached to the pre-trained language model to perform the binary classification task. The tested language models were pre-trained either solely on Czech data (monolingual) or on multiple languages jointly (multilingual). The scheme of the particular architecture used can be seen in figure \ref{fig:classifier}.
 
 As opposed to English language, there is a relatively low number of Czech pre-trained language models available. A list and a brief summary of all the models tested can be found in the following:
 
@@ -66,7 +66,7 @@ All training has been done on the RCI cluster node with 4 x NVIDIA Tesla V100 wi
  
  Because of the novelty of the CWNC, I also perform a baseline evaluation over this dataset, but later it is only used as an auxiliary dataset.
  
- The hyperparameters used are the same as those used by the authors of BABE \cite{Spinde2021MBIC}. However, the authors used early stopping together with \gls{cv} and used the validation split inside \gls{cv} to early stop. This allows the model to "see" the test data during the training. This condition may lead to too optimistic results.
+ The hyperparameters used are the same as those used by the authors of BABE \cite{Spinde2021MBIC}. However, the authors used early stopping together with \gls{cv} and used the validation split inside \gls{cv} to early stop. This may lead to data leakage. Which can subsequently lead to too optimistic results.
  
  A solution to this problem would require another split for validation, but at this point, the size of the training data is already shrunk significantly. Therefore, I did not use early stopping together with \gls{cv} at all. Instead, I fixed the number of epochs to 3 as suggested by the authors of BERT \cite{devlin2019bert} . 
  All other hyperaparemeters remained unchanged; AdamW optimizer is used with an initial learning rate of 5e-5 and a batch size of 64.
@@ -142,11 +142,11 @@ In conclusion, models that generalized to BABE best were pre-trained on Wikipedi
 \subsection{Pre-training + Fine-tuning}
 Secondly, pre-trained models are used as a sort of weight initialization for subsequent \textbf{fine-tuning} on the BABE. The results can be seen in table \ref{table:4}. This process is referred to as \textbf{Pre-trained + Fine-tuned}.
 
-Fine-tuning a model pre-trained on \textbf{ALL} datasets combined resulted in the best performance; however, virtually the same performance was achieved by the model trained on the \textbf{SUBJe} combination. The difference is statistically insignificant. Importantly, the SUBJ split represents almost half of all data (see \ref{fig:cz_data}). Therefore, I assume that the performance of ALL model is high because of the presence of SUBJe in the training data.
+Fine-tuning a model pre-trained on \textbf{ALL} datasets combined resulted in the best performance; however, virtually the same performance was achieved by the model trained on the \textbf{SUBJe} combination. Importantly, the SUBJ split represents almost half of all data (see \ref{fig:cz_data}). Therefore, I assume that the performance of ALL model is high because of the presence of SUBJe in the training data.
 
 Using the rest of the pre-trained models for fine-tuning actually hurt the performance. Yet, the difference is very small. The lowest score is achieved by fine-tuning the MB model. I suspect this is mainly due to the small size (2500 sentences) of the balanced MB set that may have led to overfitting.
 
-In conclusion, using models pre-trained on the subjective bias datasets improved the performance of fine-tuning on BABE.
+In conclusion, using models pre-trained on the subjective datasets improved the performance of fine-tuning on BABE, but the increase was very small.
 
 
 
@@ -165,7 +165,7 @@ For the final model that I share\footnote{\url{https://huggingface.co/horychtom/
 \section{Discussion}
 The results suggest that subjectivity bias as opposed to media bias appears to be a bit more explicit and straightforward, since pre-training on the subjectivity task helped with \gls{mb} detection, but proved insufficient without further fine-tuning (only 55\% on BABE). This supports the assumption that \gls{mb} is composed of many more superficial linguistic features (\ref{features}).
 
-Also, despite the relatively high performance, the final score on the test set is not representative due to its size. The test set consists of $\sim$ 500 sentences and therefore, may not adequately represent all bias information. For a better evaluation, I propose using a nested \gls{cv}.
+Also, despite the relatively high performance, the final score on the test set is not representative due to its size. The test set consists of $\sim$ 500 sentences and therefore, may not adequately represent all bias information. For a better evaluation, I propose using a nested \gls{cv} \cite{stone1974cross}.
 
 The authors of the original paper that introduces BABE \cite{spinde2021neural} report an F1 score of $\sim$ 0.8 for fine-tuned transformer model. That is approximately 2\% higher score than I achieved on the Czech version. This may be caused either by the noise introduced into the data during machine translation or by the possibly lower quality of the Czech pre-trained models.
 

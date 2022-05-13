@@ -4,7 +4,7 @@ Finally, the classifier built in the previous section is used to classify media 
 
 
 \section{Data}
-For this purpose, the \textbf{SumeCzech}\footnote{\url{https://ufal.mff.cuni.cz/sumeczech}} dataset has been used \cite{straka2018sumeczech}. It is originally a dataset meant for training summarization models; however, it consists of complete news articles in Json format and therefore is suitable.
+For this purpose, the \textbf{SumeCzech}\footnote{\url{https://ufal.mff.cuni.cz/sumeczech}} dataset has been used \cite{straka2018sumeczech}. It is originally a dataset meant for training summarization models; however, it consists of complete news articles in JSON format and therefore is suitable.
 
 The dataset includes five Czech news domains: novinky.cz, idnes.cz, ceskenoviny.cz, denik.cz, lidovky.cz. 
 
@@ -41,16 +41,16 @@ For each article in the dataset, the following procedure was executed:
     \item Text and abstract are splitted into sentences using \verb|sent_tokenize| nltk function\footnote{\url{https://www.nltk.org/}}.
     \item Each sentence from the text, abstract and a headline is classified with binary label 0,1 using the media bias classifier (\ref{classifier}).
     \item Each sentence from the text is assigned with 'reported\_speech' indicator if matched the regular expression for quoting extraction. 
-    \item The ratio of biased/unbiased sentences is calculated for text and abstract.
-    \item The ratio of reported/direct speech among the sentences is calculated for the text.
+    \item The precentage of biased sentences is calculated for text and abstract.
+    \item The percentage of reported speech among the sentences is calculated for the text.
 \end{enumerate}
 
 This procedure results in the introduction of four new fields:
 \begin{itemize}
-    \item \verb|text_bias :| ratio of biased and unbiased sentences in the text
-    \item \verb|abstract_bias :| ratio of biased and unbiased sentences in the abstract
+    \item \verb|text_bias :| percentage of biased sentences in the text
+    \item \verb|abstract_bias :| percentage of biased sentences in the abstract
     \item \verb|headline_bias :| bias label of the headline
-    \item \verb|quoting_ratio :| ratio of reported and direct speech in the text     
+    \item \verb|quoting_ratio :| percentage of reported speech in the text     
 \end{itemize}
 
 
@@ -74,14 +74,14 @@ and the bias of the article.
 \begin{figure}
 
   \includegraphics[scale=0.5]{my_modules/multimedia/inference/corr.png}
-  \caption{Ten least and ten most biased sections.}
+  \caption{Correlation of dataset fields.}
   \label{fig:corr}
 
 \end{figure}
 
 
 \subsection{Bias distribution}
-Histogram of the \verb|text_bias| values can be seen in figure \ref{fig:dists}. In the first plot, we see that more than 20\% of the classified articles had no biased sentences at all. To have a more detailed look at the distribution, I omitted the unbiased articles in the second histogram. Apparently, most of the biased articles have around 10\% of biased sentences.
+Histogram of the \verb|text_bias| values can be seen in figure \ref{fig:dists}. In the first plot, we see that more than 20\% of the classified articles had no biased sentences at all. To have a more detailed look at the distribution, I omitted the unbiased articles in the second histogram. Apparently, most of the biased articles have between 5-10\% of biased sentences.
 
 
 \begin{figure}
@@ -127,7 +127,7 @@ Furthermore, the difference between the bias distribution of the least biased an
 \subsection{Bias along sections}\label{commentary_bias}
 In this experiment, data were grouped by sections (topics of the article) and their \verb|text_bias| was averaged. I made an arbitrary choice to exclude sections that had less than 50 data points within the dataset, because such sections were way too specific.
 
-The ten least biased and most biased sections can be seen in figure \ref{fig:sections}. The values are in percents.
+The ten least biased and most biased sections\footnote{\textit{rungo} is a lifestyle section, \textit{xman} is a male oriented section and \textit{revue} is sort of a yellow press.} can be seen in figure \ref{fig:sections}. The values are in percents.
 
 
 Sections that exhibit low average \verb|text_bias|, for example \textit{career}, \textit{economics}, \textit{business} are all of a rather factual, emotionless nature.
@@ -135,12 +135,23 @@ On the other hand, sections with high average bias, such as \textit{art}, \texti
 
 Interestingly, the \textit{commentary} section, exhibits by far the highest average \verb|text_bias| (51.97\%). This was an expected result, as the essence of the \textit{commentary} format is to present an opinion, often subjective.
 
-\begin{figure}
+%\begin{figure}
+%
+%  \includegraphics[scale=0.2]{my_modules/multimedia/inference/sections.jpg}
+%  \caption{Ten least and ten most biased sections.}
+%  \label{fig:sections}
+%\end{figure}
 
-  \includegraphics[scale=0.2]{my_modules/multimedia/inference/sections.jpg}
-  \caption{Ten least and ten most biased sections.}
-  \label{fig:sections}
+\begin{figure}%
+    \centering
+    \subfloat[\centering in Czech]{{\includegraphics[height=5cm]{my_modules/multimedia/inference/sections_cs.png} }}%
+    \qquad
+    \subfloat[\centering in English]{{\includegraphics[height=5cm]{my_modules/multimedia/inference/sections_en.png} }}%
+    \caption{Ten least and ten most biased sections}%
+    \label{fig:sections}%
 \end{figure}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DENIK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -151,10 +162,9 @@ Finally, a progression of the media bias over time is examined. Because a distri
 
 To make the results as clear as possible, I only used data from one section. denik.cz data include articles from the years 2007 to 2016. For each year, 350 articles were randomly sampled and the \verb|text_bias| was averaged. A graph of the progression can be seen in figure \ref{fig:denik_years}. I used a linear regression model to fit a line through the data points to highlight the trend.
 
-Additionally, the same statistics, but with respect to months, is shown in figure \ref{fig:months_clean}.
+Additionally, the same statistics, but with respect to months, is shown in figure \ref{fig:months_clean}. A blue stripe represents a confidence interval.
 
 The experiment has shown a decreasing trend in media bias over a period of ten years. The inspection of this result and its possible causes is beyond the scope of this thesis and beyond the scope of the subject of media bias classification. 
-\newpage
 
 
 \begin{figure}[h]
@@ -166,9 +176,9 @@ The experiment has shown a decreasing trend in media bias over a period of ten y
 \end{figure}
 
 
-\begin{figure}
+\begin{figure}[h]
 
-  \includegraphics[scale=0.5]{my_modules/multimedia/inference/months_clean.jpg}
+  \includegraphics[scale=0.5]{my_modules/multimedia/inference/denik_months2_clean.png}
   \caption{Progression of text bias of denik.cz over ten years. The bias is averaged over months.}
   \label{fig:months_clean}
 \end{figure}
@@ -184,7 +194,7 @@ For example, not all commentary articles are marked as commentary in the data. A
 
 On top of it, the classifier has around 80\% accuracy (\ref{classifier}), therefore these results should be taken with a grain of salt.
 
-
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% APP %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -193,14 +203,14 @@ Additionally, I provide a simple web demo application for the reader to experime
 
 The user can insert arbitrary text in Czech language (text in other languages will result in meaningless outcomes). The text is then split into sentences and classified individually.
 
-The application shows the results in two output windows; the first one \textit{classification} displays inserted text with highlighted labels. The second one, \textit{ratio}, displays the ratio of biased/unbiased sentences in the text.
+The application shows the results in two output windows; the first one \textit{classification} displays inserted text with highlighted labels. The second one, \textit{bias ratio}, displays the precentage of biased sentences in the text.
 
 An example can be seen in figure \ref{fig:demodemo}. 
 Classification of a news article can be seen in Appendix \ref{classified_article}.
 
 \begin{figure}
 \makebox[\textwidth][c]{
-  \includegraphics[scale=0.3]{my_modules/multimedia/bias.png}
+  \includegraphics[scale=0.3]{my_modules/multimedia/bias_classif_demo.png}
   \caption{Example of the bias classifier demo usage.}
   \label{fig:demodemo}
   }

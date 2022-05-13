@@ -13,6 +13,7 @@ Wikipedia bias could also be considered as a form of subjective bias, but all th
 
 
 \section{Subjectivity Datasets}
+Datasets that contain annotations of explicitly subjective expressions.
 
 \subsection{SUBJ}
 It is reasonable to include datasets that focus on the detection of subjectivity, as it is one of the \gls{mb} characteristics. The Subjectivity dataset (SUBJ) \cite{Pang+Lee:04a} consists of 10000 sentences gathered from movie review sites. Sentences are labeled as subjective and objective with 1:1 ratio. 
@@ -40,7 +41,7 @@ This approach has produced $9484$ subjective sentences and 6318 objective senten
 
 
 \section{Media Bias datasets}
-
+Datasets that focus on media bias specifically.
 
 \subsection{BASIL}
 BASIL dataset \cite{fan2019plain} comprises 300 articles with 1727 sentence level bias annotations. The authors of the dataset distinguish between \textbf{lexical} and \textbf{informational} bias.
@@ -62,7 +63,7 @@ The authors introduce rich annotations for each sentence. Each of them looks at 
     \item Framing
 \end{enumerate}
 In addition, the \textit{overall bias} annotation is presented. Together, the data include 44547 fine-grained annotations. For simplicity, I only included the overall bias annotation.
-Even though this dataset encompasses comprehensive bias information, it also suffers from a low \Gls{iaa} score. Specifically, Krippendorff’s $\alpha = -0.05$.
+Even though this dataset encompasses comprehensive bias information, it also suffers from a low \Gls{iaa} score. Specifically, Krippendorff’s $\alpha = -0.05$ \cite{krippendorff2011computing}.
 
 
 
@@ -89,9 +90,9 @@ The Fleiss Kappa \Gls{iaa} score averaged at zero, making it practically unusabl
 
 BABE contains 3700 sentences. 1700 sentences are from MBIC, which were extracted from 1000 news articles, and in addition extended by 2000 more sentences, altogether covering 12 topics, annotated with binary bias indications. In addition, the annotations were enriched with a list of biased words. However, the presence of biased words does not always result in an overall biased sentence label. See \ref{table:babe_example2} for examples.
 
-It has been annotated by eight experts resulting in \gls{iaa} Krippendorfs $\alpha = 0.39$, which exceeds other media bias datasets by a significant margin. It also provides detailed information about the annotator background, making it a \textbf{reliable} source of information. The pipeline of the collection of BABE can be seen in \ref{fig:babe-data}.
+It has been annotated by eight experts resulting in \gls{iaa} Krippendorfs $\alpha = 0.39$, which exceeds other media bias datasets by a significant margin. It also provides detailed information about the annotator background, making it a \textbf{reliable} source of information. The pipeline of the collection of BABE can be seen in figure \ref{fig:babe-data}.
 
-This dataset plays a pivotal role in my approach to media bias detection and is selected as a target for tuning and evaluating language models in chapter \ref{experiments}. Examples of BABE data points can be seen in 
+This dataset plays a pivotal role in my approach to media bias detection and is selected as a target for tuning and evaluating language models in chapter \ref{experiments}. Examples of BABE data points can be seen in figure
 \ref{table:babe_example2}
 
 \input{my_modules/tables/babe_example2}
@@ -142,7 +143,7 @@ After filtering out sentences that annotators labeled with the "I don't know" op
 
 \subsection{WikiBias}
 This is, to this date, the latest dataset based on Wikipedia. The authors \cite{zhong-etal-2021-wikibias-detecting} closely follow the approach of WNC \cite{pryzant2020automatically} and extract another parallel wiki corpus of 214k sentences.
-To achieve a higher quality corpus, 4099 sentence pairs were randomly sampled and labeled by trained annotators. As a result, WikiBias-Manual dataset consists of 3400 biased and 4798 neutral sentences annotated with high \gls{iaa} score of Cohen's $\kappa = 0.734$
+To achieve a higher quality corpus, 4099 sentence pairs were randomly sampled and labeled by trained annotators. As a result, WikiBias-Manual dataset consists of 3400 biased and 4798 neutral sentences annotated with high \gls{iaa} score of Cohen's $\kappa = 0.734$ \cite{cohen1960coefficient}.
 
 \input{my_modules/tables/datasets_table}
 

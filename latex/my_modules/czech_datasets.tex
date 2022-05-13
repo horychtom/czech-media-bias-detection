@@ -1,7 +1,7 @@
 \chapter{Czech datasets}
-Czech language is a so-called \textbf{low resource language}, which, in the machine learning community, means that, for a particular language, a limited number of datasets of sufficient quality and size is available. Thus, the bias detection task in the Czech environment is complicated. Despite the relatively sufficient number of datasets in English, there is essentially no suitable Czech one.
+ Despite the relatively sufficient number of datasets in English, there is essentially no suitable Czech one.
 
- In essence, three options are feasible to solve this problem. The most promising way is to annotate a new gold-standard dataset. However, media bias is a non-trivial, complex, and subtle linguistic feature; hence,a lot of effort must be put into annotator training and eventually filtering of implicitly biased annotations.
+ In essence, three options are feasible to solve this problem. The most promising way is to annotate a new gold-standard dataset. However, media bias is a non-trivial, complex, and subtle linguistic feature; hence, a lot of effort must be put into annotator training and eventually filtering of implicitly biased annotations.
  
  Another way is to use an automatic approach. For example, Allsides\footnote{\url{https://www.allsides.com/unbiased-balanced-news}} provide annotations on source and article-level with expert annotation quality. However, since I focus on a statement level only, using such data leads to oversimplification and results in a very noisy dataset. Regardless, it can still be used for domain-specific pretraining \cite{Spinde2021f}. Unfortunately, there is no Czech site that would provide \textbf{useful} bias information on neither source nor article level. The server \Gls{nfnz}\footnote{\url{https://www.nfnz.cz/}} provides a scoring for different news sources. Yet, only a fraction of their scoring is related to the actual linguistic aspect of the writing. Most of the scoring is based on meta-information such as transparency, proper citation, advertisement, etc.
  
@@ -26,7 +26,7 @@ For the translation of the datasets, \textbf{DeepL} translator, which is a purel
 
 
 \section{Processing}\label{processing}
-Every dataset has been processed into "sentence,label" format, where $label \in \{0,1\}$ stands for \textbf{unbiased} and \textbf{biased}, respectively. Using this simplified data format makes merging and combining several datasets convenient. All sentences that were originally cased were \textbf{not} lowercased, and during the training of the classifier, the maximum sentence length was set to 128 tokens. No other pre-processing was done.
+Every dataset has been processed into "sentence,label" format, where $label \in \{0,1\}$ stands for \textbf{unbiased} and \textbf{biased}, respectively. Using this simplified data format makes merging and combining several datasets convenient. All casing has been preserved, and during the training of the classifier, the maximum sentence length was set to 128 tokens. No other pre-processing was done.
 
 \section{Translated data}
 All translated datasets are listed below. I hope that this collection will serve as a good starting point for future \gls{mb} research in Czech News.
@@ -42,7 +42,7 @@ I will share all the listed datasets on HuggingFace\footnote{\url{https://huggin
     \item NFNJ-CS
     \item SUBJ-CS
     \item UA-crisis-CS
-    \item WNC-large-CS\footnote{additional \textit{large} is added to distinguish between large translated WNC and the Czech version of WNC}
+    \item WNC-large-CS\footnote{Additional \textit{large} is added to distinguish between large translated WNC and the Czech version of WNC.}
 \end{itemize}
 
 Together, approximately 400k bias-labeled translated sentences were collected. The distribution of the datasets can be seen in figure \ref{fig:cz_data}. The WNC is not included in the plot because it represents 87\% of all data. 
@@ -89,7 +89,7 @@ The final dataset consists of:
 \input{my_modules/tables/cwnc_example_table}
 
 
-In total, 5766 sentences. The neutral corpus, which contains only neutral sentences, is saved for a potential need of oversampling. Two examples of CWNC sentence pairs can be seen in \ref{table:cwnc_example}
+In total, 5766 sentences. The neutral corpus, which contains only neutral sentences, is saved for a potential need of oversampling. Two examples of CWNC sentence pairs can be seen in figure \ref{table:cwnc_example}
 
 
 

@@ -14,7 +14,7 @@ I closely followed the approach of Dinan et al. \cite{dinan2020multi}. They defi
 
 The \textit{bias} here simply means an aspect of the statement that implies the gender of a particular person along the dimensions. To make this definition more clear, for example, the authors further propose that an unbiased sentence would be a sentence in which a machine learning model would not be able to classify a gender because there would basically be no difference between the classes. Yet, in a real-world scenario, sentences \textbf{are} influenced by gender, and therefore such classification is possible.
 
-To measure this kind of bias over all three dimensions, a large-scale dataset \textbf{md\_gender}\footnote{\url{https://huggingface.co/datasets/md_gender_bias}} has been collected. The authors train a transformer model using \Gls{mtl}, to capture all three dimensions. However, only the \textit{ABOUT} dimension and a very small fraction of the \textit{AS} dimension are publicly available, so I focused only on the \textit{ABOUT} dimension.
+To measure this kind of bias over all three dimensions, a large-scale dataset \textbf{md\_gender}\footnote{\url{https://huggingface.co/datasets/md_gender_bias}} has been collected. The authors train a transformer model (\ref{att_transformers}) using \Gls{mtl} (\ref{mtl}) paradigm, to capture all three dimensions. However, only the \textit{ABOUT} dimension and a very small fraction of the \textit{AS} dimension are publicly available, so I focused only on the \textit{ABOUT} dimension.
 
 \newpage
 
@@ -46,6 +46,6 @@ However, additional high-level features such as the position of bias, frequency,
 
 As I outlined in the previous section, \gls{mb} can be divided into two classes, where one depends on the outer context, and the other does not. This is commonly referred to as \textbf{informational} and \textbf{lexical} bias. There have been efforts to classify informational bias with varying context sizes \cite{van2020context}, although a majority of the work focuses on lexical bias, and I follow this standard as well.
 
-Various pre-training and fine-tuning strategies have been studied regarding sentence classification. However, one of the most promising approaches is using an \Gls{mtl} to tackle the problem. Although there are already some results of applying \Gls{mtl} to the detection of \gls{mb} \cite{lee2021unifying,spindeexploiting}, empirical studies suggest that a large number of tasks should be used to allow \Gls{mtl} to shine \cite{aribandi2021ext5}. For more details about \gls{mtl} see \ref{theory} section.
+Various pre-training and fine-tuning strategies have been studied regarding sentence classification. However, one of the most promising approaches is using an \Gls{mtl} to tackle the problem (see \ref{mtl} for more details). Although there are already some results of applying \Gls{mtl} to the detection of \gls{mb} \cite{lee2021unifying,spindeexploiting}, empirical studies suggest that a large number of tasks should be used to allow \Gls{mtl} to shine \cite{aribandi2021ext5}
 
 \let\cleardoublepage\clearpage
