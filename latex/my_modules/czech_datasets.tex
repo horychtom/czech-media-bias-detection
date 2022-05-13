@@ -1,5 +1,5 @@
 \chapter{Czech datasets}
- Despite the relatively sufficient number of datasets in English, there is essentially no suitable Czech one.
+ Despite the relatively sufficient number of datasets in English, there is essentially no suitable Czech dataset.
 
  In essence, three options are feasible to solve this problem. The most promising way is to annotate a new gold-standard dataset. However, media bias is a non-trivial, complex, and subtle linguistic feature; hence, a lot of effort must be put into annotator training and eventually filtering of implicitly biased annotations.
  
@@ -26,12 +26,12 @@ For the translation of the datasets, \textbf{DeepL} translator, which is a purel
 
 
 \section{Processing}\label{processing}
-Every dataset has been processed into "sentence,label" format, where $label \in \{0,1\}$ stands for \textbf{unbiased} and \textbf{biased}, respectively. Using this simplified data format makes merging and combining several datasets convenient. All casing has been preserved, and during the training of the classifier, the maximum sentence length was set to 128 tokens. No other pre-processing was done.
+Every dataset has been processed into "sentence,label" format, where $label \in \{0,1\}$ stands for \textbf{unbiased} and \textbf{biased}, respectively. Using this simplified data format makes merging and combining several datasets convenient. All cases have been preserved, and during the training of the classifier, the maximum sentence length was set to 128 tokens. No other pre-processing was done.
 
 \section{Translated data}
 All translated datasets are listed below. I hope that this collection will serve as a good starting point for future \gls{mb} research in Czech News.
 
-I will share all the listed datasets on HuggingFace\footnote{\url{https://huggingface.co/}} hub.
+I will share the listed datasets on HuggingFace\footnote{\url{https://huggingface.co/}} hub.
 
 \begin{itemize}
     \item BABE-CS
